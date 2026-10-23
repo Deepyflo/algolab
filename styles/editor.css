@@ -50,7 +50,7 @@
   text-align: center;
 }
 
-.timer-toggle.is-running { color: var(--potato); }
+.timer-toggle.is-running { color: var(--gold); }
 .timer-reset, .reset-code { padding: 5px 7px; color: #c6b9a6; font-size: 13px; line-height: 1; }
 .timer-reset:hover, .reset-code:hover { color: #ffd3b4; }
 

@@ -7,14 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/layout.css?v=2026-10-23-chiche-dark">
-  <link rel="stylesheet" href="styles/editor.css?v=2026-10-23-chiche-dark">
+  <link rel="stylesheet" href="styles/layout.css?v=2026-10-23-dark-personal">
+  <link rel="stylesheet" href="styles/editor.css?v=2026-10-23-dark-personal">
 </head>
 <body>
   <div class="app">
     <header class="top">
-      <a class="brand" href="index.html" aria-label="AlgoLab, accueil"><span class="brand-mark" aria-hidden="true">🥔</span><span>algo<b>lab</b></span></a>
-      <div class="sub">On s’entraîne, chiche ?</div><div class="grow"></div>
+      <a class="brand" href="index.html" aria-label="AlgoLab, accueil"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>algo<b>lab</b></span></a>
+      <div class="sub">Entraînement Python 3</div><div class="grow"></div>
       <button id="clearSubmissions" class="btn clear-submissions" title="Effacer les brouillons et résultats de tous les exercices">Effacer les soumissions</button>
       <div id="count" class="pill count-pill">Chargement…</div><div class="pill exam-target">5 exercices <i>·</i> 60–75 min <i>·</i> &gt;80 %</div><div class="pill language-pill"><span></span> PYTHON 3</div>
     </header>
@@ -24,7 +24,7 @@
         <div class="crumb">ALGORITHMES <span> / <b id="crumb">WARMUP</b></span></div>
         <h1 id="title">Chargement…</h1><div class="tag" id="tag"></div>
         <div id="desc" class="description"></div>
-        <div class="hint"><span class="hint-spark">✳</span><div><b>Petit conseil</b><p>Reformule le problème, trace un exemple à la main, puis choisis ton pattern. Chiche ?</p></div></div>
+        <div class="hint"><span class="hint-spark">✳</span><div><b>Petit conseil</b><p>Reformule le problème, trace un exemple à la main, puis choisis ton pattern.</p></div></div>
       </section>
       <section class="right">
         <div class="bar"><span class="file">◈ &nbsp;<span id="filename">solution.py</span></span><div class="spacer"></div><span id="status" class="foot">Prêt</span><div class="timer-tools"><span id="timer" class="timer">00:00</span><button class="btn timer-toggle" id="timerToggle">Démarrer</button><button class="btn timer-reset" id="timerReset" title="Remettre le chronomètre à zéro" aria-label="Remettre le chronomètre à zéro">↺</button></div><span id="score" class="score-chip" title="Taux de réussite et nombre de tests requis">Cible &gt;80 %</span><label class="limit-control" title="Temps maximal accordé au code soumis">Temps <select id="timeoutLimit" aria-label="Limite de temps"><option value="5">5 s</option><option value="10" selected>10 s</option><option value="15">15 s</option><option value="30">30 s</option></select></label><label class="limit-control" title="Allocation Python suivie pendant l’exécution">Mémoire <select id="memoryLimit" aria-label="Limite mémoire"><option value="64">64 MB</option><option value="128" selected>128 MB</option><option value="256">256 MB</option></select></label><button class="btn reset-code" id="reset" title="Réinitialiser le code">↺</button><button class="btn run" id="run">Soumettre</button></div>
@@ -35,6 +35,6 @@
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
-  <script type="module" src="scripts/app.js?v=2026-10-23-chiche-dark"></script>
+  <script type="module" src="scripts/app.js?v=2026-10-23-dark-personal"></script>
 </body>
 </html>

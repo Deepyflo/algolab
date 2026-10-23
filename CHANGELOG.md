@@ -5,7 +5,7 @@ Historique reconstitué à partir des demandes et de l’état actuel du projet.
 ## [0.9.0] — 2026-10-23 — Identité visuelle AlgoLab
 
 - Refonte des pages d’entraînement et de gestion des exercices pour une interface moins générique et plus personnelle.
-- Conservation du dark mode avec une palette charbon, orange patate et crème inspirée de Chiche Patate !
+- Conservation du dark mode avec une palette charbon, orange brûlé et crème.
 - Ajout de détails de marque chaleureux, de surfaces mieux hiérarchisées, de contrôles plus lisibles et d’une adaptation responsive retravaillée.
 - Harmonisation des composants de l’éditeur, de la console et du formulaire de création avec cette identité.
 

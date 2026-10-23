@@ -48,11 +48,12 @@
   width: 31px;
   height: 31px;
   place-items: center;
-  border: 1px solid #f0c97880;
-  border-radius: 12px 9px 12px 8px;
-  background: #34281a;
-  font-size: 18px;
-  transform: rotate(-5deg);
+  border: 1px solid #ee824a70;
+  border-radius: 9px 9px 9px 5px;
+  background: #33231a;
+  color: var(--accent-strong);
+  font: 700 10px var(--mono);
+  letter-spacing: -1px;
 }
 
 .sub {
