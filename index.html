@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AlgoLab — Python 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css?v=2026-10-23-console-layout">
+  <link rel="stylesheet" href="styles/editor.css?v=2026-10-23-console-layout">
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">algo<b>lab</b></div><div class="sub">Entraînement Python 3</div><div class="grow"></div>
+      <button id="clearSubmissions" class="btn clear-submissions" title="Effacer les brouillons et résultats de tous les exercices">Effacer les soumissions</button>
+      <div id="count" class="pill">Chargement…</div><div class="pill exam-target">Examen · 5 exercices · 60–75 min · &gt;80 %</div><div class="pill">PYTHON 3</div>
+    </header>
+    <main class="layout">
+      <aside class="sidebar"><a class="add-exercise" href="custom.html">＋ Mes exercices</a><input id="search" class="search" placeholder="⌕  Rechercher un exercice…"><nav id="nav"></nav></aside>
+      <section class="statement">
+        <div class="crumb">ALGORITHMES <span> / <b id="crumb">WARMUP</b></span></div>
+        <h1 id="title">Chargement…</h1><div class="tag" id="tag"></div>
+        <div id="desc" class="description"></div>
+        <div class="hint">✦ &nbsp;Avant de coder : reformule le problème, trace un exemple à la main, puis nomme le pattern.</div>
+      </section>
+      <section class="right">
+        <div class="bar"><span class="file">◈ &nbsp;<span id="filename">solution.py</span></span><div class="spacer"></div><span id="status" class="foot">Prêt</span><div class="timer-tools"><span id="timer" class="timer">00:00</span><button class="btn timer-toggle" id="timerToggle">Démarrer</button><button class="btn timer-reset" id="timerReset" title="Remettre le chronomètre à zéro" aria-label="Remettre le chronomètre à zéro">↺</button></div><span id="score" class="score-chip" title="Taux de réussite et nombre de tests requis">Cible &gt;80 %</span><label class="limit-control" title="Temps maximal accordé au code soumis">Temps <select id="timeoutLimit" aria-label="Limite de temps"><option value="5">5 s</option><option value="10" selected>10 s</option><option value="15">15 s</option><option value="30">30 s</option></select></label><label class="limit-control" title="Allocation Python suivie pendant l’exécution">Mémoire <select id="memoryLimit" aria-label="Limite mémoire"><option value="64">64 MB</option><option value="128" selected>128 MB</option><option value="256">256 MB</option></select></label><button class="btn reset-code" id="reset" title="Réinitialiser le code">↺</button><button class="btn run" id="run">Soumettre</button></div>
+        <div class="editorWrap"><div id="editor" class="editor" aria-label="Éditeur de code Python"></div></div>
+        <div class="consoleHead"><span>▸ &nbsp;SORTIE PYTHON · RÉSULTATS DES TESTS</span><div class="spacer"></div><span id="summary">Sélectionne un exercice</span></div>
+        <div id="console" class="console"><span class="muted">Les résultats apparaîtront ici après exécution.</span></div>
+      </section>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+  <script type="module" src="scripts/app.js?v=2026-10-23-console-layout"></script>
+</body>
+</html>

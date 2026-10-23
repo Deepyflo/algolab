@@ -1,0 +1,3162 @@
+[
+  {
+    "id": "warmup/check_if_pangram",
+    "folder": "warmup",
+    "name": "Check If Pangram",
+    "title": "CHECK IF THE SENTENCE IS PANGRAM",
+    "statement": "CHECK IF THE SENTENCE IS PANGRAM\nPattern: Set membership\n\nA pangram contains every letter of the English alphabet at least once.\nGiven a string containing only lowercase English letters, return True\nif it is a pangram, otherwise False. Letter order does not matter.\n\nExamples:\n    is_pangram(\"thequickbrownfoxjumpsoverthelazydog\") -> True\n    is_pangram(\"leetcode\") -> False\n\nContract: input contains only a-z; repeated letters are allowed.\nAs a local extension, an empty string returns False. Return a bool.\nUppercase letters, accents, spaces, and punctuation are out of scope.\n\nThink about: how many distinct letters does a complete alphabet have?\n\nSource: https://leetcode.com/problems/check-if-the-sentence-is-pangram/",
+    "code": "def is_pangram(sentence):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "classic",
+        "expr": "is_pangram(\"thequickbrownfoxjumpsoverthelazydog\")",
+        "expected": true
+      },
+      {
+        "label": "incomplete",
+        "expr": "is_pangram(\"leetcode\")",
+        "expected": false
+      },
+      {
+        "label": "alphabet",
+        "expr": "is_pangram(\"abcdefghijklmnopqrstuvwxyz\")",
+        "expected": true
+      },
+      {
+        "label": "reverse alphabet",
+        "expr": "is_pangram(\"zyxwvutsrqponmlkjihgfedcba\")",
+        "expected": true
+      },
+      {
+        "label": "missing z",
+        "expr": "is_pangram(\"abcdefghijklmnopqrstuvwxy\")",
+        "expected": false
+      },
+      {
+        "label": "26 characters are not 26 letters",
+        "expr": "is_pangram(\"a\" * 26)",
+        "expected": false
+      },
+      {
+        "label": "repetitions allowed",
+        "expr": "is_pangram(\"abcdefghijklmnopqrstuvwxyzabc\")",
+        "expected": true
+      },
+      {
+        "label": "empty extension",
+        "expr": "is_pangram(\"\")",
+        "expected": false
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/warmup/check_if_pangram.py"
+  },
+  {
+    "id": "warmup/contains_duplicate",
+    "folder": "warmup",
+    "name": "Contains Duplicate",
+    "title": "CONTAINS DUPLICATE",
+    "statement": "CONTAINS DUPLICATE\nPattern: HashSet\n\nGiven a list of integers, return True if any value appears at least\ntwice, and False if every element is distinct.\n\nExamples:\n    contains_duplicate([1, 2, 3, 1]) -> True\n    contains_duplicate([1, 2, 3, 4]) -> False\n\nThink about: as you walk through the list, how do you remember which\nvalues you have already seen? What lets you check \"have I seen this?\"\nin one step?\nContract:\nInput: a list of integers; it may be empty. Return a bool.",
+    "code": "def contains_duplicate(nums):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "has a duplicate",
+        "expr": "contains_duplicate([1, 2, 3, 1])",
+        "expected": true
+      },
+      {
+        "label": "all distinct",
+        "expr": "contains_duplicate([1, 2, 3, 4])",
+        "expected": false
+      },
+      {
+        "label": "empty list",
+        "expr": "contains_duplicate([])",
+        "expected": false
+      },
+      {
+        "label": "single element",
+        "expr": "contains_duplicate([7])",
+        "expected": false
+      },
+      {
+        "label": "all same",
+        "expr": "contains_duplicate([5, 5, 5, 5])",
+        "expected": true
+      },
+      {
+        "label": "duplicate at the end",
+        "expr": "contains_duplicate([1, 2, 3, 4, 2])",
+        "expected": true
+      },
+      {
+        "label": "negative duplicate",
+        "expr": "contains_duplicate([-1, 0, -1])",
+        "expected": true
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/warmup/contains_duplicate.py"
+  },
+  {
+    "id": "warmup/is_subsequence",
+    "folder": "warmup",
+    "name": "Is Subsequence",
+    "title": "IS SUBSEQUENCE",
+    "statement": "IS SUBSEQUENCE\nPattern: Two Pointers\n\nGiven two strings `s` and `t`, return True if `s` is a subsequence of\n`t`. A subsequence keeps the characters in order but may skip some.\nYou do NOT rearrange characters.\n\nExamples:\n    is_subsequence(\"abc\", \"ahbgdc\") -> True\n    is_subsequence(\"axc\", \"ahbgdc\") -> False\n\nThink about: walk through `t` with one pointer. Keep a second pointer\non `s`. Every time the current character of `t` matches the character\n`s` is waiting for, advance the `s` pointer. Did `s` reach the end?\nContract:\nComparison is case-sensitive; both strings may be empty. Return a bool.",
+    "code": "def is_subsequence(s, t):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "is a subsequence",
+        "expr": "is_subsequence(\"abc\", \"ahbgdc\")",
+        "expected": true
+      },
+      {
+        "label": "not a subsequence",
+        "expr": "is_subsequence(\"axc\", \"ahbgdc\")",
+        "expected": false
+      },
+      {
+        "label": "empty s",
+        "expr": "is_subsequence(\"\", \"anything\")",
+        "expected": true
+      },
+      {
+        "label": "empty t",
+        "expr": "is_subsequence(\"a\", \"\")",
+        "expected": false
+      },
+      {
+        "label": "equal strings",
+        "expr": "is_subsequence(\"abc\", \"abc\")",
+        "expected": true
+      },
+      {
+        "label": "order matters",
+        "expr": "is_subsequence(\"ba\", \"ab\")",
+        "expected": false
+      },
+      {
+        "label": "both empty",
+        "expr": "is_subsequence(\"\", \"\")",
+        "expected": true
+      },
+      {
+        "label": "cannot reuse one character",
+        "expr": "is_subsequence(\"aa\", \"a\")",
+        "expected": false
+      },
+      {
+        "label": "case sensitive",
+        "expr": "is_subsequence(\"A\", \"a\")",
+        "expected": false
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/warmup/is_subsequence.py"
+  },
+  {
+    "id": "warmup/length_of_last_word",
+    "folder": "warmup",
+    "name": "Length Of Last Word",
+    "title": "LENGTH OF LAST WORD",
+    "statement": "LENGTH OF LAST WORD\nPattern: String manipulation\n\nGiven a string made of words separated by spaces, return the length of\nthe last word. A word is a maximal substring of non-space characters.\nThere may be trailing spaces.\n\nExamples:\n    length_of_last_word(\"Hello World\")        -> 5\n    length_of_last_word(\"   fly me   to   the moon  \") -> 4\n    length_of_last_word(\"luffy is still joyboy\")       -> 6\n\nThink about: trailing spaces can trip you up. How do you isolate the\nwords and grab the last one? Python string methods can help, but try\nto reason about what they do.\nContract:\nInput contains only English letters and ordinary spaces, with at least\none word. Empty strings and strings made only of spaces are out of scope.",
+    "code": "def length_of_last_word(s):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "two words",
+        "expr": "length_of_last_word(\"Hello World\")",
+        "expected": 5
+      },
+      {
+        "label": "messy spacing",
+        "expr": "length_of_last_word(\"   fly me   to   the moon  \")",
+        "expected": 4
+      },
+      {
+        "label": "longer sentence",
+        "expr": "length_of_last_word(\"luffy is still joyboy\")",
+        "expected": 6
+      },
+      {
+        "label": "single word",
+        "expr": "length_of_last_word(\"word\")",
+        "expected": 4
+      },
+      {
+        "label": "trailing space only",
+        "expr": "length_of_last_word(\"a \")",
+        "expected": 1
+      },
+      {
+        "label": "leading spaces",
+        "expr": "length_of_last_word(\"   python\")",
+        "expected": 6
+      },
+      {
+        "label": "one letter",
+        "expr": "length_of_last_word(\"x\")",
+        "expected": 1
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/warmup/length_of_last_word.py"
+  },
+  {
+    "id": "warmup/missing_number",
+    "folder": "warmup",
+    "name": "Missing Number",
+    "title": "MISSING NUMBER",
+    "statement": "MISSING NUMBER\nPattern: Math (sum formula) or Set\n\nGiven a list containing n distinct numbers taken from the range\n0, 1, 2, ..., n (so exactly one number in that range is missing),\nreturn the missing number.\n\nExamples:\n    missing_number([3, 0, 1])       -> 2\n    missing_number([0, 1])          -> 2\n    missing_number([9,6,4,2,3,5,7,0,1]) -> 8\n\nThink about: the numbers 0..n have a known total (n * (n + 1) // 2).\nIf you compare that to the actual sum of the list, what does the\ndifference tell you? A Set-based approach also works.\nContract:\nThe empty list is allowed: n = 0 and the missing number is 0.",
+    "code": "def missing_number(nums):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "missing middle",
+        "expr": "missing_number([3, 0, 1])",
+        "expected": 2
+      },
+      {
+        "label": "missing the top",
+        "expr": "missing_number([0, 1])",
+        "expected": 2
+      },
+      {
+        "label": "longer case",
+        "expr": "missing_number([9, 6, 4, 2, 3, 5, 7, 0, 1])",
+        "expected": 8
+      },
+      {
+        "label": "missing zero",
+        "expr": "missing_number([1])",
+        "expected": 0
+      },
+      {
+        "label": "single zero present",
+        "expr": "missing_number([0])",
+        "expected": 1
+      },
+      {
+        "label": "empty range",
+        "expr": "missing_number([])",
+        "expected": 0
+      },
+      {
+        "label": "zero missing from longer list",
+        "expr": "missing_number([3, 1, 2])",
+        "expected": 0
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/warmup/missing_number.py"
+  },
+  {
+    "id": "warmup/single_number",
+    "folder": "warmup",
+    "name": "Single Number",
+    "title": "SINGLE NUMBER",
+    "statement": "SINGLE NUMBER\nPattern: HashMap frequency (or XOR trick)\n\nEvery element in the list appears exactly twice, except for one element\nthat appears only once. Find and return that single element.\n\nExamples:\n    single_number([2, 2, 1])       -> 1\n    single_number([4, 1, 2, 1, 2]) -> 4\n\nThink about: one simple approach counts how many times each value\nappears. A slicker approach uses the XOR property: a ^ a = 0 and\na ^ 0 = a. Try the counting version first, then see if you can do it\nwithout extra memory.\nContract:\nThe list is non-empty and contains integers (including negatives and zero).\nInputs that break the stated frequency rule are out of scope.",
+    "code": "def single_number(nums):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "single at end",
+        "expr": "single_number([2, 2, 1])",
+        "expected": 1
+      },
+      {
+        "label": "single at start",
+        "expr": "single_number([4, 1, 2, 1, 2])",
+        "expected": 4
+      },
+      {
+        "label": "only one element",
+        "expr": "single_number([99])",
+        "expected": 99
+      },
+      {
+        "label": "negatives included",
+        "expr": "single_number([-3, -3, 7])",
+        "expected": 7
+      },
+      {
+        "label": "zero is the answer",
+        "expr": "single_number([0, 5, 5])",
+        "expected": 0
+      },
+      {
+        "label": "negative answer",
+        "expr": "single_number([4, -7, 4])",
+        "expected": -7
+      },
+      {
+        "label": "separated pairs",
+        "expr": "single_number([2, 0, 2, -1, 0])",
+        "expected": -1
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/warmup/single_number.py"
+  },
+  {
+    "id": "warmup/valid_anagram",
+    "folder": "warmup",
+    "name": "Valid Anagram",
+    "title": "VALID ANAGRAM",
+    "statement": "VALID ANAGRAM\nPattern: HashMap (character frequency)\n\nTwo strings are anagrams if they contain exactly the same characters\nwith the same counts, just in a different order.\n\nWrite a function that returns True if `t` is an anagram of `s`,\notherwise False.\n\nExamples:\n    is_anagram(\"anagram\", \"nagaram\") -> True\n    is_anagram(\"rat\", \"car\")         -> False\n\nThink about: how do you compare the contents of two strings while\nignoring the order? What data structure counts things for you?\nContract:\nComparison is case-sensitive and every character counts, including spaces.\nEmpty strings are allowed. Return a bool.",
+    "code": "def is_anagram(s, t):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "classic anagram",
+        "expr": "is_anagram(\"anagram\", \"nagaram\")",
+        "expected": true
+      },
+      {
+        "label": "not an anagram",
+        "expr": "is_anagram(\"rat\", \"car\")",
+        "expected": false
+      },
+      {
+        "label": "different lengths",
+        "expr": "is_anagram(\"a\", \"ab\")",
+        "expected": false
+      },
+      {
+        "label": "both empty",
+        "expr": "is_anagram(\"\", \"\")",
+        "expected": true
+      },
+      {
+        "label": "same letters repeated",
+        "expr": "is_anagram(\"aacc\", \"ccac\")",
+        "expected": false
+      },
+      {
+        "label": "single char match",
+        "expr": "is_anagram(\"z\", \"z\")",
+        "expected": true
+      },
+      {
+        "label": "case matters",
+        "expr": "is_anagram(\"A\", \"a\")",
+        "expected": false
+      },
+      {
+        "label": "spaces count",
+        "expr": "is_anagram(\"a \", \" a\")",
+        "expected": true
+      },
+      {
+        "label": "positive repeated counts",
+        "expr": "is_anagram(\"aabb\", \"baba\")",
+        "expected": true
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/warmup/valid_anagram.py"
+  },
+  {
+    "id": "drill/duplicate_encoder",
+    "folder": "drill",
+    "name": "Duplicate Encoder",
+    "title": "DUPLICATE ENCODER",
+    "statement": "DUPLICATE ENCODER\nPattern: HashMap frequency\n\nConvert a string into a new string where each character is replaced by\n\"(\" if it appears only once in the original string, or \")\" if it\nappears more than once. The check is case-insensitive and spaces count\nas characters too.\n\nExamples:\n    duplicate_encode(\"din\")    -> \"(((\"\n    duplicate_encode(\"recede\") -> \"()()()\"\n    duplicate_encode(\"Success\") -> \")())())\"\n    duplicate_encode(\"(( @\")    -> \"))((\"\n\nThink about: you need to know each character's total count BEFORE you\nstart building the answer. So make one pass to count, then a second\npass to build the output.\nContract:\nInput is an ASCII string and may be empty. Return a string.",
+    "code": "def duplicate_encode(word):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "all unique",
+        "expr": "duplicate_encode(\"din\")",
+        "expected": "((("
+      },
+      {
+        "label": "mixed frequencies",
+        "expr": "duplicate_encode(\"recede\")",
+        "expected": "()()()"
+      },
+      {
+        "label": "case insensitive",
+        "expr": "duplicate_encode(\"Success\")",
+        "expected": ")())())"
+      },
+      {
+        "label": "symbols and spaces",
+        "expr": "duplicate_encode(\"(( @\")",
+        "expected": "))(("
+      },
+      {
+        "label": "empty string",
+        "expr": "duplicate_encode(\"\")",
+        "expected": ""
+      },
+      {
+        "label": "same letter different case",
+        "expr": "duplicate_encode(\"aA\")",
+        "expected": "))"
+      },
+      {
+        "label": "single space",
+        "expr": "duplicate_encode(\" \")",
+        "expected": "("
+      },
+      {
+        "label": "all repeated",
+        "expr": "duplicate_encode(\"aaaa\")",
+        "expected": "))))"
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/duplicate_encoder.py"
+  },
+  {
+    "id": "drill/largest_four",
+    "folder": "drill",
+    "name": "Largest Four",
+    "title": "LARGEST FOUR",
+    "statement": "LARGEST FOUR\nPattern: Sorting / select largest elements\n\nReturn the sum of the four largest integers in a list. If there are\nfewer than four elements, sum all of them. Repeated values count as\nseparate elements. Negative values count too; do not discard them.\n\nExamples:\n    largest_four([4, 5, -2, 3, 1, 2, 6, 6]) -> 21\n    largest_four([1, 2, 3]) -> 6\n    largest_four([-5, -2, -3, -4, -1]) -> -10\n\nContract: input is a list of integers. As a local extension, [] returns 0.\nReturn an integer. Modifying the input is allowed but not required.\n\nThink about: after sorting, which four positions do you need?\nBonus: keep only the four largest values while scanning once.\n\nSource: recueil_questions.md, Coderbyte Largest Four.",
+    "code": "def largest_four(nums):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "duplicates count",
+        "expr": "largest_four([4, 5, -2, 3, 1, 2, 6, 6])",
+        "expected": 21
+      },
+      {
+        "label": "fewer than four",
+        "expr": "largest_four([1, 2, 3])",
+        "expected": 6
+      },
+      {
+        "label": "exactly four",
+        "expr": "largest_four([9, 1, 2, 3])",
+        "expected": 15
+      },
+      {
+        "label": "all negative",
+        "expr": "largest_four([-5, -2, -3, -4, -1])",
+        "expected": -10
+      },
+      {
+        "label": "must include negative values",
+        "expr": "largest_four([5, -1, -2, -3, -4])",
+        "expected": -1
+      },
+      {
+        "label": "not distinct values",
+        "expr": "largest_four([7, 7, 7, 7, 1])",
+        "expected": 28
+      },
+      {
+        "label": "single negative",
+        "expr": "largest_four([-8])",
+        "expected": -8
+      },
+      {
+        "label": "zeros",
+        "expr": "largest_four([0, 0, 0, 0, 0])",
+        "expected": 0
+      },
+      {
+        "label": "empty extension",
+        "expr": "largest_four([])",
+        "expected": 0
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/largest_four.py"
+  },
+  {
+    "id": "drill/max_sum_distinct_subarray_k",
+    "folder": "drill",
+    "name": "Max Sum Distinct Subarray K",
+    "title": "MAXIMUM SUM OF DISTINCT SUBARRAYS WITH LENGTH K",
+    "statement": "MAXIMUM SUM OF DISTINCT SUBARRAYS WITH LENGTH K\nPattern: Sliding Window + frequency map\n\nGiven a list of integers and an integer k, look at every contiguous\nwindow of exactly k elements. A window is \"valid\" only if all k\nelements are distinct. Return the largest sum among all valid windows.\nIf no window of length k has all distinct elements, return 0.\n\nExamples:\n    max_distinct_sum([1, 5, 4, 2, 9, 9, 9], 3) -> 15\n        windows of size 3: [1,5,4]=10, [5,4,2]=11, [4,2,9]=15,\n        [2,9,9] invalid, [9,9,9] invalid -> best valid = 15\n    max_distinct_sum([4, 4, 4], 3) -> 0\n\nThink about: slide a window of fixed size k across the list. Keep a\nrunning sum and a frequency map of what is inside the window. When the\nwindow holds k distinct values, it is a candidate. Add the entering\nelement, remove the leaving one, each step.\nContract:\nInput values are positive integers and 1 <= k <= len(nums).\nEmpty lists and invalid window sizes are out of scope. Aim for O(n) time.",
+    "code": "def max_distinct_sum(nums, k):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "best is a later window",
+        "expr": "max_distinct_sum([1, 5, 4, 2, 9, 9, 9], 3)",
+        "expected": 15
+      },
+      {
+        "label": "no valid window",
+        "expr": "max_distinct_sum([4, 4, 4], 3)",
+        "expected": 0
+      },
+      {
+        "label": "whole list distinct",
+        "expr": "max_distinct_sum([1, 2, 3], 3)",
+        "expected": 6
+      },
+      {
+        "label": "k equals one",
+        "expr": "max_distinct_sum([5, 1, 3], 1)",
+        "expected": 5
+      },
+      {
+        "label": "two valid windows",
+        "expr": "max_distinct_sum([1, 2, 1, 2, 3], 3)",
+        "expected": 6
+      },
+      {
+        "label": "becomes valid after duplicates leave",
+        "expr": "max_distinct_sum([1, 1, 2, 3], 3)",
+        "expected": 6
+      },
+      {
+        "label": "duplicate at window ends",
+        "expr": "max_distinct_sum([1, 2, 1], 3)",
+        "expected": 0
+      },
+      {
+        "label": "best window first",
+        "expr": "max_distinct_sum([9, 8, 1, 1], 2)",
+        "expected": 17
+      },
+      {
+        "label": "must keep exactly k",
+        "expr": "max_distinct_sum([10, 1, 2, 3], 2)",
+        "expected": 11
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/max_sum_distinct_subarray_k.py"
+  },
+  {
+    "id": "drill/number_stream",
+    "folder": "drill",
+    "name": "Number Stream",
+    "title": "NUMBER STREAM",
+    "statement": "NUMBER STREAM\nPattern: Linear scan / consecutive run length\n\nGiven a non-empty string containing only digits from 2 to 9, return the\nstring \"true\" if some digit d repeats consecutively at least d times.\nOtherwise return the string \"false\". Count consecutive occurrences,\nnot the total number of occurrences scattered through the string.\n\nExamples:\n    number_stream(\"6539923335\") -> \"true\"  (three consecutive 3s)\n    number_stream(\"232323\")     -> \"false\"\n    number_stream(\"2222\")       -> \"true\"  (at least two 2s)\n\nContract: return lowercase strings, as in Coderbyte, not Python booleans.\nDigits 0 and 1 and empty strings are outside the input domain.\n\nThink about: remember the previous digit and the current run length.\nWhen the digit changes, the new run starts at one, not zero.\n\nSource: recueil_questions.md, Coderbyte Number Stream.",
+    "code": "def number_stream(digits):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "run in middle",
+        "expr": "number_stream(\"6539923335\")",
+        "expected": "true"
+      },
+      {
+        "label": "no qualifying run",
+        "expr": "number_stream(\"5556293383563665\")",
+        "expected": "false"
+      },
+      {
+        "label": "single digit",
+        "expr": "number_stream(\"2\")",
+        "expected": "false"
+      },
+      {
+        "label": "exact length",
+        "expr": "number_stream(\"22\")",
+        "expected": "true"
+      },
+      {
+        "label": "longer than needed",
+        "expr": "number_stream(\"2222\")",
+        "expected": "true"
+      },
+      {
+        "label": "scattered repeats",
+        "expr": "number_stream(\"232323\")",
+        "expected": "false"
+      },
+      {
+        "label": "run after change",
+        "expr": "number_stream(\"322\")",
+        "expected": "true"
+      },
+      {
+        "label": "run at end",
+        "expr": "number_stream(\"2333\")",
+        "expected": "true"
+      },
+      {
+        "label": "eight nines are not enough",
+        "expr": "number_stream(\"99999999\")",
+        "expected": "false"
+      },
+      {
+        "label": "nine nines",
+        "expr": "number_stream(\"999999999\")",
+        "expected": "true"
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/number_stream.py"
+  },
+  {
+    "id": "drill/product_of_array_except_self",
+    "folder": "drill",
+    "name": "Product Of Array Except Self",
+    "title": "PRODUCT OF ARRAY EXCEPT SELF",
+    "statement": "PRODUCT OF ARRAY EXCEPT SELF\nPattern: Arrays (prefix / suffix products)\n\nGiven a list of integers, return a new list where each position holds\nthe product of every other element (everything except the element at\nthat position). Do it WITHOUT using division.\n\nExamples:\n    product_except_self([1, 2, 3, 4])  -> [24, 12, 8, 6]\n    product_except_self([-1, 1, 0, -3, 3]) -> [0, 0, 9, 0, 0]\n\nWalkthrough of the first example:\n    index 0 -> 2*3*4 = 24\n    index 1 -> 1*3*4 = 12\n    index 2 -> 1*2*4 = 8\n    index 3 -> 1*2*3 = 6\n\nThink about: for each index, the answer is (product of everything to\nthe LEFT) times (product of everything to the RIGHT). Compute the left\nproducts in one pass, the right products in another, and multiply.\nContract:\nThe input contains at least two integers; negatives and zeros are allowed.\nReturn a list of integers. Required time: O(n), without division.\nBonus: O(1) extra space, excluding the returned list.",
+    "code": "def product_except_self(nums):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "basic",
+        "expr": "product_except_self([1, 2, 3, 4])",
+        "expected": [
+          24,
+          12,
+          8,
+          6
+        ]
+      },
+      {
+        "label": "contains a zero",
+        "expr": "product_except_self([-1, 1, 0, -3, 3])",
+        "expected": [
+          0,
+          0,
+          9,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "two elements",
+        "expr": "product_except_self([3, 7])",
+        "expected": [
+          7,
+          3
+        ]
+      },
+      {
+        "label": "with ones",
+        "expr": "product_except_self([1, 1, 1])",
+        "expected": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "label": "two zeros",
+        "expr": "product_except_self([0, 2, 0, 4])",
+        "expected": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "all negative",
+        "expr": "product_except_self([-1, -2, -3])",
+        "expected": [
+          6,
+          3,
+          2
+        ]
+      },
+      {
+        "label": "zero at start",
+        "expr": "product_except_self([0, 2, 3])",
+        "expected": [
+          6,
+          0,
+          0
+        ]
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/product_of_array_except_self.py"
+  },
+  {
+    "id": "drill/search_insert_position",
+    "folder": "drill",
+    "name": "Search Insert Position",
+    "title": "SEARCH INSERT POSITION",
+    "statement": "SEARCH INSERT POSITION\nPattern: Binary Search\n\nGiven a sorted list of distinct integers and a target value, return the\nindex of the target if it is found. If not, return the index where it\nwould be inserted to keep the list sorted.\n\nExamples:\n    search_insert([1, 3, 5, 6], 5) -> 2\n    search_insert([1, 3, 5, 6], 2) -> 1\n    search_insert([1, 3, 5, 6], 7) -> 4\n    search_insert([1, 3, 5, 6], 0) -> 0\n\nThink about: the list is sorted, so you do not need to scan it all.\nKeep a low and a high boundary and halve the search space each step.\nWhere do low and high end up when the target is not present?\nContract:\nThe list may be empty (return 0). Required time: O(log n).",
+    "code": "def search_insert(nums, target):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "found in middle",
+        "expr": "search_insert([1, 3, 5, 6], 5)",
+        "expected": 2
+      },
+      {
+        "label": "insert in middle",
+        "expr": "search_insert([1, 3, 5, 6], 2)",
+        "expected": 1
+      },
+      {
+        "label": "insert at end",
+        "expr": "search_insert([1, 3, 5, 6], 7)",
+        "expected": 4
+      },
+      {
+        "label": "insert at start",
+        "expr": "search_insert([1, 3, 5, 6], 0)",
+        "expected": 0
+      },
+      {
+        "label": "single element found",
+        "expr": "search_insert([1], 1)",
+        "expected": 0
+      },
+      {
+        "label": "single element after",
+        "expr": "search_insert([1], 2)",
+        "expected": 1
+      },
+      {
+        "label": "empty list",
+        "expr": "search_insert([], 3)",
+        "expected": 0
+      },
+      {
+        "label": "negative values",
+        "expr": "search_insert([-5, -2, 3], -3)",
+        "expected": 1
+      },
+      {
+        "label": "found first",
+        "expr": "search_insert([1, 3, 5], 1)",
+        "expected": 0
+      },
+      {
+        "label": "found last",
+        "expr": "search_insert([1, 3, 5], 5)",
+        "expected": 2
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/search_insert_position.py"
+  },
+  {
+    "id": "drill/sort_the_odd",
+    "folder": "drill",
+    "name": "Sort The Odd",
+    "title": "SORT THE ODD",
+    "statement": "SORT THE ODD\nPattern: Arrays / in-place positions\n\nGiven a list of integers, sort ONLY the odd numbers in ascending order\nwhile leaving every even number exactly where it is.\n\nExamples:\n    sort_odd([5, 3, 2, 8, 1, 4]) -> [1, 3, 2, 8, 5, 4]\n    sort_odd([5, 3, 1, 8, 0])    -> [1, 3, 5, 8, 0]\n    sort_odd([2, 4, 6])          -> [2, 4, 6]\n\nWalkthrough of the first example:\n    odd positions hold 5, 3, 1 (indices 0, 1, 4)\n    sorted odds are 1, 3, 5\n    drop them back into the same odd positions -> [1, 3, 2, 8, 5, 4]\n\nThink about: collect the odd values, sort them, then place them back\ninto the slots that originally held an odd value. The even values\nnever move.\nContract:\nNegative integers, zeros, duplicates, and empty lists are allowed.\nReturn a list; modifying the input is allowed but not required.",
+    "code": "def sort_odd(nums):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "mixed",
+        "expr": "sort_odd([5, 3, 2, 8, 1, 4])",
+        "expected": [
+          1,
+          3,
+          2,
+          8,
+          5,
+          4
+        ]
+      },
+      {
+        "label": "ends with even",
+        "expr": "sort_odd([5, 3, 1, 8, 0])",
+        "expected": [
+          1,
+          3,
+          5,
+          8,
+          0
+        ]
+      },
+      {
+        "label": "all even",
+        "expr": "sort_odd([2, 4, 6])",
+        "expected": [
+          2,
+          4,
+          6
+        ]
+      },
+      {
+        "label": "all odd",
+        "expr": "sort_odd([9, 7, 5, 3])",
+        "expected": [
+          3,
+          5,
+          7,
+          9
+        ]
+      },
+      {
+        "label": "empty",
+        "expr": "sort_odd([])",
+        "expected": []
+      },
+      {
+        "label": "negative odds and zero",
+        "expr": "sort_odd([-1, 0, -5, 2, 3])",
+        "expected": [
+          -5,
+          0,
+          -1,
+          2,
+          3
+        ]
+      },
+      {
+        "label": "repeated odds",
+        "expr": "sort_odd([3, 2, 1, 3, 1])",
+        "expected": [
+          1,
+          2,
+          1,
+          3,
+          3
+        ]
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/sort_the_odd.py"
+  },
+  {
+    "id": "drill/string_merge",
+    "folder": "drill",
+    "name": "String Merge",
+    "title": "STRING MERGE",
+    "statement": "STRING MERGE\nPattern: Strings / parallel traversal\n\nThe input contains two equally long, non-empty alphanumeric strings\nseparated by exactly one \"*\". Return their characters interleaved,\nstarting with the first character of the left string. Omit the \"*\".\n\nExamples:\n    string_merge(\"abc1*kyoo\") -> \"akbyco1o\"\n    string_merge(\"aaa*bbb\")   -> \"ababab\"\n    string_merge(\"A*9\")       -> \"A9\"\n\nContract: the format and equal lengths are guaranteed. Preserve case.\nYou do not need to validate malformed input or handle unequal lengths.\n\nThink about: split once, then pair characters at matching indices.\n\nSource: recueil_questions.md, Coderbyte String Merge.",
+    "code": "def string_merge(text):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "letters and digits",
+        "expr": "string_merge(\"abc1*kyoo\")",
+        "expected": "akbyco1o"
+      },
+      {
+        "label": "repeated letters",
+        "expr": "string_merge(\"aaa*bbb\")",
+        "expected": "ababab"
+      },
+      {
+        "label": "single pair",
+        "expr": "string_merge(\"A*9\")",
+        "expected": "A9"
+      },
+      {
+        "label": "preserve case",
+        "expr": "string_merge(\"Ab*Cd\")",
+        "expected": "ACbd"
+      },
+      {
+        "label": "digits stay strings",
+        "expr": "string_merge(\"12*34\")",
+        "expected": "1324"
+      },
+      {
+        "label": "longer halves",
+        "expr": "string_merge(\"123hg*aaabb\")",
+        "expected": "1a2a3ahbgb"
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/string_merge.py"
+  },
+  {
+    "id": "drill/triangle_number_check",
+    "folder": "drill",
+    "name": "Triangle Number Check",
+    "title": "TRIANGLE NUMBER CHECK",
+    "statement": "TRIANGLE NUMBER CHECK\nPattern: Math / integer search\n\nA triangular number counts dots arranged in rows of 1, 2, 3, ... dots.\nFor example, 6 = 1 + 2 + 3. Return True if the input is a triangular\nnumber, otherwise False. The sequence starts 0, 1, 3, 6, 10, 15, 21, ...\n\nExamples:\n    is_triangle_number(6) -> True\n    is_triangle_number(8) -> False\n    is_triangle_number(0) -> True\n\nContract:\nNon-negative integers may be very large. Negative numbers and non-integer\nvalues return False. For this Python version, a float such as 6.0 is\naccepted as an integer-valued number; 6.5 is not. Strings, None, and bool\nvalues return False. No implicit conversion from text is allowed.\n\nThink about: the total for m rows is m * (m + 1) // 2. Can you search\nfor m without constructing every previous triangular number? Use exact\ninteger arithmetic for large integers; floating-point roots can round.\n\nSource: https://www.codewars.com/kata/557e8a141ca1f4caa70000a6",
+    "code": "def is_triangle_number(n):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "three rows",
+        "expr": "is_triangle_number(6)",
+        "expected": true
+      },
+      {
+        "label": "incomplete rows",
+        "expr": "is_triangle_number(8)",
+        "expected": false
+      },
+      {
+        "label": "zero rows",
+        "expr": "is_triangle_number(0)",
+        "expected": true
+      },
+      {
+        "label": "one row",
+        "expr": "is_triangle_number(1)",
+        "expected": true
+      },
+      {
+        "label": "two is not triangular",
+        "expr": "is_triangle_number(2)",
+        "expected": false
+      },
+      {
+        "label": "negative",
+        "expr": "is_triangle_number(-6)",
+        "expected": false
+      },
+      {
+        "label": "fractional",
+        "expr": "is_triangle_number(6.5)",
+        "expected": false
+      },
+      {
+        "label": "integer-valued float",
+        "expr": "is_triangle_number(6.0)",
+        "expected": true
+      },
+      {
+        "label": "text is not a number",
+        "expr": "is_triangle_number(\"6\")",
+        "expected": false
+      },
+      {
+        "label": "none",
+        "expr": "is_triangle_number(None)",
+        "expected": false
+      },
+      {
+        "label": "bool is not a count",
+        "expr": "is_triangle_number(True)",
+        "expected": false
+      },
+      {
+        "label": "very large triangle",
+        "expr": "is_triangle_number((10**20 * (10**20 + 1) // 2))",
+        "expected": true
+      },
+      {
+        "label": "just below large triangle",
+        "expr": "is_triangle_number((10**20 * (10**20 + 1) // 2) - 1)",
+        "expected": false
+      },
+      {
+        "label": "just above large triangle",
+        "expr": "is_triangle_number((10**20 * (10**20 + 1) // 2) + 1)",
+        "expected": false
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/triangle_number_check.py"
+  },
+  {
+    "id": "drill/unique_in_order",
+    "folder": "drill",
+    "name": "Unique In Order",
+    "title": "UNIQUE IN ORDER",
+    "statement": "UNIQUE IN ORDER\nPattern: Linear scan (compare to previous)\n\nGiven a string or a list, return a list of items with consecutive\nduplicates removed, keeping the original order. Only repeats that are\nADJACENT are collapsed; the same value appearing again later stays.\n\nExamples:\n    unique_in_order(\"AAAABBBCCDAABBB\") -> ['A','B','C','D','A','B']\n    unique_in_order(\"ABBCcAD\")         -> ['A','B','C','c','A','D']\n    unique_in_order([1, 2, 2, 3, 3])   -> [1, 2, 3]\n\nThink about: this is NOT \"remove all duplicates\". You only drop an item\nwhen it equals the one immediately before it. So you just need to\nremember the previous item as you walk through.\nContract:\nInput may be a string, list, or tuple; comparison is case-sensitive.\nEmpty input returns []. Return a list, even for string input.",
+    "code": "def unique_in_order(iterable):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "string with runs",
+        "expr": "unique_in_order(\"AAAABBBCCDAABBB\")",
+        "expected": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "A",
+          "B"
+        ]
+      },
+      {
+        "label": "case sensitive",
+        "expr": "unique_in_order(\"ABBCcAD\")",
+        "expected": [
+          "A",
+          "B",
+          "C",
+          "c",
+          "A",
+          "D"
+        ]
+      },
+      {
+        "label": "list of ints",
+        "expr": "unique_in_order([1, 2, 2, 3, 3])",
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "label": "empty",
+        "expr": "unique_in_order(\"\")",
+        "expected": []
+      },
+      {
+        "label": "no repeats",
+        "expr": "unique_in_order(\"ABC\")",
+        "expected": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      {
+        "label": "empty list",
+        "expr": "unique_in_order([])",
+        "expected": []
+      },
+      {
+        "label": "zero is not a sentinel",
+        "expr": "unique_in_order([0, 0, 1, 0])",
+        "expected": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "label": "tuple input",
+        "expr": "unique_in_order((1, 1, 2))",
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "label": "none is not a sentinel",
+        "expr": "unique_in_order([None, None, 1, None])",
+        "expected": [
+          null,
+          1,
+          null
+        ]
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/unique_in_order.py"
+  },
+  {
+    "id": "drill/valid_palindrome",
+    "folder": "drill",
+    "name": "Valid Palindrome",
+    "title": "VALID PALINDROME",
+    "statement": "VALID PALINDROME\nPattern: Two Pointers\n\nA phrase is a palindrome if, after lowercasing and removing every\ncharacter that is not a letter or digit, it reads the same forward and\nbackward. Return True if the input is a palindrome, otherwise False.\n\nExamples:\n    is_palindrome(\"A man, a plan, a canal: Panama\") -> True\n    is_palindrome(\"race a car\")                     -> False\n    is_palindrome(\" \")                              -> True\n\nThink about: you could clean the string first, then compare it to its\nreverse. The two-pointer version is nicer: one pointer from the left,\none from the right, skip non-alphanumeric characters, compare as you\nmove inward.\nContract:\nInput is ASCII and may be empty. Only a-z, A-Z, and 0-9 are retained.",
+    "code": "def is_palindrome(s):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "classic palindrome",
+        "expr": "is_palindrome(\"A man, a plan, a canal: Panama\")",
+        "expected": true
+      },
+      {
+        "label": "not a palindrome",
+        "expr": "is_palindrome(\"race a car\")",
+        "expected": false
+      },
+      {
+        "label": "only punctuation",
+        "expr": "is_palindrome(\" \")",
+        "expected": true
+      },
+      {
+        "label": "single letter",
+        "expr": "is_palindrome(\"a\")",
+        "expected": true
+      },
+      {
+        "label": "alphanumeric mix",
+        "expr": "is_palindrome(\"0P\")",
+        "expected": false
+      },
+      {
+        "label": "digits palindrome",
+        "expr": "is_palindrome(\"12321\")",
+        "expected": true
+      },
+      {
+        "label": "empty",
+        "expr": "is_palindrome(\"\")",
+        "expected": true
+      },
+      {
+        "label": "punctuation ignored",
+        "expr": "is_palindrome(\".,!?\")",
+        "expected": true
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/valid_palindrome.py"
+  },
+  {
+    "id": "drill/valid_parentheses",
+    "folder": "drill",
+    "name": "Valid Parentheses",
+    "title": "VALID PARENTHESES",
+    "statement": "VALID PARENTHESES\nPattern: Stack\n\nGiven a string containing only the characters ( ) [ ] { }, return True\nif every opening bracket is closed by a matching bracket in the correct\norder, otherwise False.\n\nExamples:\n    is_valid(\"()\")     -> True\n    is_valid(\"()[]{}\") -> True\n    is_valid(\"(]\")     -> False\n    is_valid(\"([)]\")   -> False\n    is_valid(\"{[]}\")   -> True\n\nThink about: a closing bracket must match the MOST RECENT unmatched\nopening bracket. \"Most recent\" is the clue: which data structure gives\nyou back the last thing you put in?\nContract:\nThe empty string is valid. Return a bool.",
+    "code": "def is_valid(s):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "simple pair",
+        "expr": "is_valid(\"()\")",
+        "expected": true
+      },
+      {
+        "label": "all three types",
+        "expr": "is_valid(\"()[]{}\")",
+        "expected": true
+      },
+      {
+        "label": "wrong close",
+        "expr": "is_valid(\"(]\")",
+        "expected": false
+      },
+      {
+        "label": "interleaved wrong",
+        "expr": "is_valid(\"([)]\")",
+        "expected": false
+      },
+      {
+        "label": "nested correct",
+        "expr": "is_valid(\"{[]}\")",
+        "expected": true
+      },
+      {
+        "label": "empty string",
+        "expr": "is_valid(\"\")",
+        "expected": true
+      },
+      {
+        "label": "only opening",
+        "expr": "is_valid(\"(((\")",
+        "expected": false
+      },
+      {
+        "label": "only closing",
+        "expr": "is_valid(\")\")",
+        "expected": false
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/valid_parentheses.py"
+  },
+  {
+    "id": "drill/valid_triangle",
+    "folder": "drill",
+    "name": "Valid Triangle",
+    "title": "VALID TRIANGLE (three side lengths)",
+    "statement": "VALID TRIANGLE (three side lengths)\nPattern: Logic (triangle inequality)\n\nThe inputs are integers. Zero and negative lengths are invalid.\nThree positive lengths can form a valid triangle if the sum of the two\nshorter sides is strictly greater than the longest side. Given exactly\nthree numbers, return True if they can form a triangle, otherwise False.\n\nExamples:\n    is_triangle(3, 4, 5)  -> True\n    is_triangle(1, 2, 3)  -> False   (1 + 2 is not > 3)\n    is_triangle(7, 2, 2)  -> False\n\nThink about: if you sort the three sides, the rule reduces to one\ncomparison: shortest + middle > longest. Watch the strict inequality.",
+    "code": "def is_triangle(a, b, c):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "valid triangle",
+        "expr": "is_triangle(3, 4, 5)",
+        "expected": true
+      },
+      {
+        "label": "degenerate",
+        "expr": "is_triangle(1, 2, 3)",
+        "expected": false
+      },
+      {
+        "label": "too flat",
+        "expr": "is_triangle(7, 2, 2)",
+        "expected": false
+      },
+      {
+        "label": "equilateral",
+        "expr": "is_triangle(5, 5, 5)",
+        "expected": true
+      },
+      {
+        "label": "zero side",
+        "expr": "is_triangle(0, 4, 5)",
+        "expected": false
+      },
+      {
+        "label": "order does not matter",
+        "expr": "is_triangle(5, 3, 4)",
+        "expected": true
+      },
+      {
+        "label": "negative side",
+        "expr": "is_triangle(-1, 2, 2)",
+        "expected": false
+      },
+      {
+        "label": "two zero sides",
+        "expr": "is_triangle(0, 0, 1)",
+        "expected": false
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/drill/valid_triangle.py"
+  },
+  {
+    "id": "simulation/challenge_01",
+    "folder": "simulation",
+    "name": "Challenge 01",
+    "title": "CHALLENGE 1",
+    "statement": "CHALLENGE 1\n\nAn online shop generates an order ID for every purchase. Because of a\nbug, some IDs may have been issued twice. Given the list of order IDs\nrecorded today, determine whether the shop issued any ID more than once.\n\nReturn True if at least one ID is repeated, False otherwise.\n\nExamples:\n    has_repeat([1001, 1002, 1003, 1001]) -> True\n    has_repeat([1, 2, 3, 4, 5])          -> False\n\nContract:\nIDs are integers. An empty list returns False.",
+    "code": "def has_repeat(order_ids):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "a repeat exists",
+        "expr": "has_repeat([1001, 1002, 1003, 1001])",
+        "expected": true
+      },
+      {
+        "label": "all unique",
+        "expr": "has_repeat([1, 2, 3, 4, 5])",
+        "expected": false
+      },
+      {
+        "label": "empty day",
+        "expr": "has_repeat([])",
+        "expected": false
+      },
+      {
+        "label": "one order",
+        "expr": "has_repeat([42])",
+        "expected": false
+      },
+      {
+        "label": "repeat far apart",
+        "expr": "has_repeat([7, 1, 2, 3, 4, 7])",
+        "expected": true
+      },
+      {
+        "label": "zero duplicate",
+        "expr": "has_repeat([0, 1, 0])",
+        "expected": true
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_01.py"
+  },
+  {
+    "id": "simulation/challenge_02",
+    "folder": "simulation",
+    "name": "Challenge 02",
+    "title": "CHALLENGE 2",
+    "statement": "CHALLENGE 2\n\nA moderation system flags two usernames as \"suspiciously related\" when\none is just a rearrangement of the other's characters (same letters,\nsame counts, possibly the same order). Given two usernames, return True if one\nis a rearrangement of the other, otherwise False.\n\nComparison is exact (case matters, treat every character literally).\n\nExamples:\n    is_rearrangement(\"listen\", \"silent\") -> True\n    is_rearrangement(\"admin\", \"demon\")   -> False",
+    "code": "def is_rearrangement(a, b):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "valid rearrangement",
+        "expr": "is_rearrangement(\"listen\", \"silent\")",
+        "expected": true
+      },
+      {
+        "label": "not related",
+        "expr": "is_rearrangement(\"admin\", \"demon\")",
+        "expected": false
+      },
+      {
+        "label": "different length",
+        "expr": "is_rearrangement(\"ab\", \"abc\")",
+        "expected": false
+      },
+      {
+        "label": "same letters different counts",
+        "expr": "is_rearrangement(\"aab\", \"abb\")",
+        "expected": false
+      },
+      {
+        "label": "case matters",
+        "expr": "is_rearrangement(\"a\", \"A\")",
+        "expected": false
+      },
+      {
+        "label": "identical",
+        "expr": "is_rearrangement(\"root\", \"root\")",
+        "expected": true
+      },
+      {
+        "label": "both empty",
+        "expr": "is_rearrangement(\"\", \"\")",
+        "expected": true
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_02.py"
+  },
+  {
+    "id": "simulation/challenge_03",
+    "folder": "simulation",
+    "name": "Challenge 03",
+    "title": "CHALLENGE 3",
+    "statement": "CHALLENGE 3\n\nYou are given the price of a product recorded once per day, in order.\nYou may \"buy\" on one day and \"sell\" on a later day. Return the maximum\nprofit you could have made from a single buy-then-sell. If no profit is\npossible, return 0.\n\nYou cannot sell before you buy.\n\nExamples:\n    best_profit([7, 1, 5, 3, 6, 4]) -> 5    (buy at 1, sell at 6)\n    best_profit([7, 6, 4, 3, 1])    -> 0    (prices only fall)\n\nContract:\nPrices are non-negative integers. Fewer than two days returns 0.",
+    "code": "def best_profit(prices):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "profit possible",
+        "expr": "best_profit([7, 1, 5, 3, 6, 4])",
+        "expected": 5
+      },
+      {
+        "label": "no profit",
+        "expr": "best_profit([7, 6, 4, 3, 1])",
+        "expected": 0
+      },
+      {
+        "label": "flat prices",
+        "expr": "best_profit([3, 3, 3])",
+        "expected": 0
+      },
+      {
+        "label": "rising prices",
+        "expr": "best_profit([1, 2, 3, 4])",
+        "expected": 3
+      },
+      {
+        "label": "single day",
+        "expr": "best_profit([5])",
+        "expected": 0
+      },
+      {
+        "label": "empty",
+        "expr": "best_profit([])",
+        "expected": 0
+      },
+      {
+        "label": "cannot sell before buying",
+        "expr": "best_profit([9, 2, 3])",
+        "expected": 1
+      },
+      {
+        "label": "two days",
+        "expr": "best_profit([0, 4])",
+        "expected": 4
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_03.py"
+  },
+  {
+    "id": "simulation/challenge_04",
+    "folder": "simulation",
+    "name": "Challenge 04",
+    "title": "CHALLENGE 4",
+    "statement": "CHALLENGE 4\n\nA search box has an autocomplete feature. It suggests a full product\nname only if the letters the user typed appear inside that name in the\nsame order (other letters may sit between them, but the order must\nhold). Given the typed letters and a product name, return True if the\ntyped letters appear in order inside the name.\n\nExamples:\n    matches(\"abc\", \"aXbXXc\") -> True\n    matches(\"cab\", \"aXbXXc\") -> False\n\nContract:\nComparison is case-sensitive. Both strings may be empty.",
+    "code": "def matches(typed, name):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "letters in order",
+        "expr": "matches(\"abc\", \"aXbXXc\")",
+        "expected": true
+      },
+      {
+        "label": "wrong order",
+        "expr": "matches(\"cab\", \"aXbXXc\")",
+        "expected": false
+      },
+      {
+        "label": "nothing typed",
+        "expr": "matches(\"\", \"anything\")",
+        "expected": true
+      },
+      {
+        "label": "name too short",
+        "expr": "matches(\"ab\", \"a\")",
+        "expected": false
+      },
+      {
+        "label": "empty name",
+        "expr": "matches(\"a\", \"\")",
+        "expected": false
+      },
+      {
+        "label": "exact match",
+        "expr": "matches(\"abc\", \"abc\")",
+        "expected": true
+      },
+      {
+        "label": "both empty",
+        "expr": "matches(\"\", \"\")",
+        "expected": true
+      },
+      {
+        "label": "repeated letter needed",
+        "expr": "matches(\"aa\", \"a\")",
+        "expected": false
+      },
+      {
+        "label": "case matters",
+        "expr": "matches(\"A\", \"a\")",
+        "expected": false
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_04.py"
+  },
+  {
+    "id": "simulation/challenge_05",
+    "folder": "simulation",
+    "name": "Challenge 05",
+    "title": "CHALLENGE 5",
+    "statement": "CHALLENGE 5\n\nA configuration language uses three kinds of brackets to open and close\nblocks: ( ), [ ], and { }. A configuration string is well-formed only\nif every block that opens is closed by the matching bracket, and blocks\nare closed in the reverse order they were opened. Given such a string\n(containing only bracket characters), return True if it is well-formed.\n\nExamples:\n    well_formed(\"{[()]}\")  -> True\n    well_formed(\"{[(])}\")  -> False\n    well_formed(\"(()\")     -> False\n\nContract:\nThe empty configuration is well-formed. Return a bool.",
+    "code": "def well_formed(config):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "nested ok",
+        "expr": "well_formed(\"{[()]}\")",
+        "expected": true
+      },
+      {
+        "label": "crossed",
+        "expr": "well_formed(\"{[(])}\")",
+        "expected": false
+      },
+      {
+        "label": "unclosed",
+        "expr": "well_formed(\"(()\")",
+        "expected": false
+      },
+      {
+        "label": "empty",
+        "expr": "well_formed(\"\")",
+        "expected": true
+      },
+      {
+        "label": "flat sequence",
+        "expr": "well_formed(\"()[]{}\")",
+        "expected": true
+      },
+      {
+        "label": "lone closer",
+        "expr": "well_formed(\"]\")",
+        "expected": false
+      },
+      {
+        "label": "opens without closes",
+        "expr": "well_formed(\"([{\")",
+        "expected": false
+      },
+      {
+        "label": "close before open",
+        "expr": "well_formed(\")(\")",
+        "expected": false
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_05.py"
+  },
+  {
+    "id": "simulation/challenge_06",
+    "folder": "simulation",
+    "name": "Challenge 06",
+    "title": "CHALLENGE 6",
+    "statement": "CHALLENGE 6\n\nA sensor logs a reading every time a door opens and again when it\ncloses, so each reading value should appear an even number of times.\nDue to one missed event, exactly one value appears an odd number of\ntimes (specifically, every value appears twice except one that appears\nonce). Return the value that appears only once.\n\nExamples:\n    odd_one_out([10, 10, 7])          -> 7\n    odd_one_out([3, 5, 3, 5, 8])      -> 8\n\nContract:\nThe list is non-empty and contains integers. The frequency rule above\nis guaranteed; inputs violating it are out of scope.",
+    "code": "def odd_one_out(readings):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "odd at end",
+        "expr": "odd_one_out([10, 10, 7])",
+        "expected": 7
+      },
+      {
+        "label": "odd in middle",
+        "expr": "odd_one_out([3, 5, 3, 5, 8])",
+        "expected": 8
+      },
+      {
+        "label": "single reading",
+        "expr": "odd_one_out([42])",
+        "expected": 42
+      },
+      {
+        "label": "with zero",
+        "expr": "odd_one_out([0, 1, 1])",
+        "expected": 0
+      },
+      {
+        "label": "odd at start",
+        "expr": "odd_one_out([8, 3, 3, 5, 5])",
+        "expected": 8
+      },
+      {
+        "label": "negative value",
+        "expr": "odd_one_out([-2, 4, 4])",
+        "expected": -2
+      },
+      {
+        "label": "single zero",
+        "expr": "odd_one_out([0])",
+        "expected": 0
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_06.py"
+  },
+  {
+    "id": "simulation/challenge_07",
+    "folder": "simulation",
+    "name": "Challenge 07",
+    "title": "CHALLENGE 7",
+    "statement": "CHALLENGE 7\n\nA gift-card checkout lets a customer combine exactly two products whose\nprices add up to the full balance on their card, leaving nothing unspent.\nGiven the list of product prices (in order on the page) and the card\nbalance, return the indices of the two products that sum to the balance.\n\nReturn the two indices as a list [i, j] with i < j. There is at most one\nvalid pair; if no pair works, return an empty list.\n\nExamples:\n    pair_for_total([2, 7, 11, 15], 9) -> [0, 1]\n    pair_for_total([3, 2, 4], 6)      -> [1, 2]\n\nContract:\nPrices and balance are integers. Each index can be used at most once.\nIndices start at 0; empty lists are allowed.",
+    "code": "def pair_for_total(prices, balance):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "basic pair",
+        "expr": "pair_for_total([2, 7, 11, 15], 9)",
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "label": "pair later",
+        "expr": "pair_for_total([3, 2, 4], 6)",
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "label": "equal values",
+        "expr": "pair_for_total([3, 3], 6)",
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "label": "pair at ends",
+        "expr": "pair_for_total([1, 5, 3, 8], 11)",
+        "expected": [
+          2,
+          3
+        ]
+      },
+      {
+        "label": "no pair",
+        "expr": "pair_for_total([1, 2, 3], 100)",
+        "expected": []
+      },
+      {
+        "label": "single product",
+        "expr": "pair_for_total([5], 5)",
+        "expected": []
+      },
+      {
+        "label": "empty catalog",
+        "expr": "pair_for_total([], 0)",
+        "expected": []
+      },
+      {
+        "label": "cannot reuse index",
+        "expr": "pair_for_total([3, 4], 6)",
+        "expected": []
+      },
+      {
+        "label": "negative values",
+        "expr": "pair_for_total([-3, 4, 0], 1)",
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "label": "two zeros",
+        "expr": "pair_for_total([0, 0], 0)",
+        "expected": [
+          0,
+          1
+        ]
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_07.py"
+  },
+  {
+    "id": "simulation/challenge_08",
+    "folder": "simulation",
+    "name": "Challenge 08",
+    "title": "CHALLENGE 8",
+    "statement": "CHALLENGE 8\n\nA catalog tool wants to cluster product codes that are built from the\nexact same letters, possibly in a different order (same letters, same\ncounts). Given a list of product codes, group together the ones that are\nrearrangements of each other.\n\nTo keep the output predictable, return a list of groups where each group\nis sorted alphabetically, and the groups themselves are sorted by their\nfirst element.\n\nExamples:\n    cluster([\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"])\n        -> [[\"ate\", \"eat\", \"tea\"], [\"bat\"], [\"nat\", \"tan\"]]\n    cluster([\"abc\", \"bca\", \"xyz\"])\n        -> [[\"abc\", \"bca\"], [\"xyz\"]]\n\nContract:\nCodes are strings; comparison is case-sensitive. Empty codes and an\nempty list are allowed. Keep repeated codes in the output.",
+    "code": "def cluster(codes):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "classic groups",
+        "expr": "cluster([\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"])",
+        "expected": [
+          [
+            "ate",
+            "eat",
+            "tea"
+          ],
+          [
+            "bat"
+          ],
+          [
+            "nat",
+            "tan"
+          ]
+        ]
+      },
+      {
+        "label": "two groups",
+        "expr": "cluster([\"abc\", \"bca\", \"xyz\"])",
+        "expected": [
+          [
+            "abc",
+            "bca"
+          ],
+          [
+            "xyz"
+          ]
+        ]
+      },
+      {
+        "label": "empty input",
+        "expr": "cluster([])",
+        "expected": []
+      },
+      {
+        "label": "single empty string",
+        "expr": "cluster([\"\"])",
+        "expected": [
+          [
+            ""
+          ]
+        ]
+      },
+      {
+        "label": "single code",
+        "expr": "cluster([\"a\"])",
+        "expected": [
+          [
+            "a"
+          ]
+        ]
+      },
+      {
+        "label": "duplicates kept",
+        "expr": "cluster([\"ab\", \"ba\", \"ab\"])",
+        "expected": [
+          [
+            "ab",
+            "ab",
+            "ba"
+          ]
+        ]
+      },
+      {
+        "label": "same letters different counts",
+        "expr": "cluster([\"aab\", \"abb\", \"aba\"])",
+        "expected": [
+          [
+            "aab",
+            "aba"
+          ],
+          [
+            "abb"
+          ]
+        ]
+      },
+      {
+        "label": "empty codes kept",
+        "expr": "cluster([\"\", \"\"])",
+        "expected": [
+          [
+            "",
+            ""
+          ]
+        ]
+      },
+      {
+        "label": "case matters",
+        "expr": "cluster([\"a\", \"A\"])",
+        "expected": [
+          [
+            "A"
+          ],
+          [
+            "a"
+          ]
+        ]
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_08.py"
+  },
+  {
+    "id": "simulation/challenge_09",
+    "folder": "simulation",
+    "name": "Challenge 09",
+    "title": "CHALLENGE 9",
+    "statement": "CHALLENGE 9\n\nAn analytics dashboard shows the most viewed product IDs from a stream\nof page views. Given the list of viewed product IDs and a number k,\nreturn the k product IDs that appear most often.\n\nTo keep the output predictable, sort the result by frequency from\nhighest to lowest, breaking ties by smaller product ID first.\n\nExamples:\n    top_viewed([1, 1, 1, 2, 2, 3], 2) -> [1, 2]\n    top_viewed([4, 4, 4, 5, 5, 6, 6, 6, 6], 2) -> [6, 4]\n\nContract:\nIDs are integers and 0 <= k <= the number of distinct IDs.\nFor k = 0, return []; views may then be empty.",
+    "code": "def top_viewed(views, k):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "two most viewed",
+        "expr": "top_viewed([1, 1, 1, 2, 2, 3], 2)",
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "label": "clear order",
+        "expr": "top_viewed([4, 4, 4, 5, 5, 6, 6, 6, 6], 2)",
+        "expected": [
+          6,
+          4
+        ]
+      },
+      {
+        "label": "single id",
+        "expr": "top_viewed([1], 1)",
+        "expected": [
+          1
+        ]
+      },
+      {
+        "label": "tie by value",
+        "expr": "top_viewed([1, 2], 2)",
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "label": "tie picks smaller",
+        "expr": "top_viewed([7, 7, 3, 3, 1], 1)",
+        "expected": [
+          3
+        ]
+      },
+      {
+        "label": "k equals distinct",
+        "expr": "top_viewed([1, 1, 2, 2, 3], 3)",
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "label": "zero requested with views",
+        "expr": "top_viewed([1, 1, 2], 0)",
+        "expected": []
+      },
+      {
+        "label": "zero requested",
+        "expr": "top_viewed([], 0)",
+        "expected": []
+      },
+      {
+        "label": "negative tie breaker",
+        "expr": "top_viewed([-2, -2, 3, 3], 1)",
+        "expected": [
+          -2
+        ]
+      },
+      {
+        "label": "input order is not tie order",
+        "expr": "top_viewed([3, 2, 1], 2)",
+        "expected": [
+          1,
+          2
+        ]
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_09.py"
+  },
+  {
+    "id": "simulation/challenge_10",
+    "folder": "simulation",
+    "name": "Challenge 10",
+    "title": "CHALLENGE 10",
+    "statement": "CHALLENGE 10\n\nTwo warehouses each send a list of the product IDs they currently stock.\nThe buying team wants the products that are available in BOTH warehouses,\nlisted once each (no duplicates).\n\nTo keep the output predictable, return the common product IDs sorted in\nascending order.\n\nExamples:\n    in_both([1, 2, 2, 1], [2, 2])       -> [2]\n    in_both([4, 9, 5], [9, 4, 9, 8, 4]) -> [4, 9]\n\nContract:\nIDs are integers; either input list may be empty.",
+    "code": "def in_both(left, right):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "single common",
+        "expr": "in_both([1, 2, 2, 1], [2, 2])",
+        "expected": [
+          2
+        ]
+      },
+      {
+        "label": "two common",
+        "expr": "in_both([4, 9, 5], [9, 4, 9, 8, 4])",
+        "expected": [
+          4,
+          9
+        ]
+      },
+      {
+        "label": "nothing shared",
+        "expr": "in_both([1, 2, 3], [4, 5, 6])",
+        "expected": []
+      },
+      {
+        "label": "one empty",
+        "expr": "in_both([], [1, 2])",
+        "expected": []
+      },
+      {
+        "label": "both empty",
+        "expr": "in_both([], [])",
+        "expected": []
+      },
+      {
+        "label": "all duplicates",
+        "expr": "in_both([1, 1, 1], [1, 1])",
+        "expected": [
+          1
+        ]
+      },
+      {
+        "label": "same set",
+        "expr": "in_both([1, 2, 3], [3, 2, 1])",
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "label": "negative IDs",
+        "expr": "in_both([-2, 1, -2], [-2, 3])",
+        "expected": [
+          -2
+        ]
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_10.py"
+  },
+  {
+    "id": "simulation/challenge_11",
+    "folder": "simulation",
+    "name": "Challenge 11",
+    "title": "CHALLENGE 11",
+    "statement": "CHALLENGE 11\n\nAfter an online poll, every vote is a candidate ID. One candidate won by\na strict majority, meaning their ID appears more than half the time in\nthe list of votes. Return the winning candidate ID.\n\nYou may assume such a majority always exists.\n\nExamples:\n    winner([3, 2, 3])             -> 3\n    winner([2, 2, 1, 1, 1, 2, 2]) -> 2\n\nContract:\nVotes are integers and the list is non-empty.",
+    "code": "def winner(votes):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "simple majority",
+        "expr": "winner([3, 2, 3])",
+        "expected": 3
+      },
+      {
+        "label": "more votes",
+        "expr": "winner([2, 2, 1, 1, 1, 2, 2])",
+        "expected": 2
+      },
+      {
+        "label": "single vote",
+        "expr": "winner([1])",
+        "expected": 1
+      },
+      {
+        "label": "unanimous",
+        "expr": "winner([5, 5, 5, 5])",
+        "expected": 5
+      },
+      {
+        "label": "majority is zero",
+        "expr": "winner([0, 0, 1])",
+        "expected": 0
+      },
+      {
+        "label": "just over half",
+        "expr": "winner([7, 7, 7, 1, 2])",
+        "expected": 7
+      },
+      {
+        "label": "negative winner",
+        "expr": "winner([-1, 2, -1])",
+        "expected": -1
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_11.py"
+  },
+  {
+    "id": "simulation/challenge_12",
+    "folder": "simulation",
+    "name": "Challenge 12",
+    "title": "CHALLENGE 12",
+    "statement": "CHALLENGE 12\n\nA support system scans an incoming message and wants the position of the\nfirst character that appears only once in the whole message (useful for\nspotting a unique marker). Return the index of the first non-repeating\ncharacter. If every character repeats, return -1.\n\nExamples:\n    first_unique(\"garden\")  -> 0\n    first_unique(\"levelup\") -> 2\n\nContract:\nComparison is case-sensitive and spaces count as characters. Indices\nstart at 0. An empty message returns -1.",
+    "code": "def first_unique(message):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "first char unique",
+        "expr": "first_unique(\"garden\")",
+        "expected": 0
+      },
+      {
+        "label": "unique later",
+        "expr": "first_unique(\"levelup\")",
+        "expected": 2
+      },
+      {
+        "label": "all repeat",
+        "expr": "first_unique(\"aabb\")",
+        "expected": -1
+      },
+      {
+        "label": "empty message",
+        "expr": "first_unique(\"\")",
+        "expected": -1
+      },
+      {
+        "label": "single char",
+        "expr": "first_unique(\"z\")",
+        "expected": 0
+      },
+      {
+        "label": "unique at end",
+        "expr": "first_unique(\"aabbc\")",
+        "expected": 4
+      },
+      {
+        "label": "spaces count",
+        "expr": "first_unique(\"aa \")",
+        "expected": 2
+      },
+      {
+        "label": "case matters",
+        "expr": "first_unique(\"aA\")",
+        "expected": 0
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_12.py"
+  },
+  {
+    "id": "simulation/challenge_13",
+    "folder": "simulation",
+    "name": "Challenge 13",
+    "title": "CHALLENGE 13",
+    "statement": "CHALLENGE 13\n\nA spreadsheet column lists daily sales figures, but the days with no\nsales (zeros) should be pushed to the bottom of the column while keeping\nevery non-zero figure in its original order. Modify the list so all\nzeros sit at the end, and return the list.\n\nExamples:\n    sink_zeros([0, 1, 0, 3, 12]) -> [1, 3, 12, 0, 0]\n    sink_zeros([4, 0, 5, 0, 0, 6]) -> [4, 5, 6, 0, 0, 0]\n\nContract:\nFigures are integers and may be negative. Empty lists are allowed.\nModify the original list in place and return that same list object.",
+    "code": "def sink_zeros(figures):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "mixed",
+        "expr": "sink_zeros([0, 1, 0, 3, 12])",
+        "expected": [
+          1,
+          3,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "several zeros",
+        "expr": "sink_zeros([4, 0, 5, 0, 0, 6])",
+        "expected": [
+          4,
+          5,
+          6,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "all zeros",
+        "expr": "sink_zeros([0, 0, 0])",
+        "expected": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "no zeros",
+        "expr": "sink_zeros([1, 2, 3])",
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "label": "empty",
+        "expr": "sink_zeros([])",
+        "expected": []
+      },
+      {
+        "label": "single zero",
+        "expr": "sink_zeros([0])",
+        "expected": [
+          0
+        ]
+      },
+      {
+        "label": "negative figures keep order",
+        "expr": "sink_zeros([0, -2, 3, 0, -1])",
+        "expected": [
+          -2,
+          3,
+          -1,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "original list modified",
+        "expr": "sink_zeros([0, 1, 0, -2])",
+        "expected": [
+          1,
+          -2,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "same list returned",
+        "expr": "sink_zeros([1, -2, 0, 0])",
+        "expected": [
+          1,
+          -2,
+          0,
+          0
+        ]
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_13.py"
+  },
+  {
+    "id": "simulation/challenge_14",
+    "folder": "simulation",
+    "name": "Challenge 14",
+    "title": "CHALLENGE 14",
+    "statement": "CHALLENGE 14\n\nA meter reports temperature readings already sorted in non-decreasing\norder, but the log contains consecutive repeats of the same value. The\nstorage team wants to know how many distinct readings the log holds so\nthey can size a compacted table.\n\nGiven the sorted list, return the count of distinct values.\n\nExamples:\n    distinct_count([1, 1, 2])                      -> 2\n    distinct_count([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]) -> 5\n\nContract:\nReadings are integers. Empty input returns 0. You only need to return\na count; compacting or modifying the list is not required.",
+    "code": "def distinct_count(readings):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "one repeat",
+        "expr": "distinct_count([1, 1, 2])",
+        "expected": 2
+      },
+      {
+        "label": "many repeats",
+        "expr": "distinct_count([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])",
+        "expected": 5
+      },
+      {
+        "label": "empty log",
+        "expr": "distinct_count([])",
+        "expected": 0
+      },
+      {
+        "label": "single reading",
+        "expr": "distinct_count([1])",
+        "expected": 1
+      },
+      {
+        "label": "all same",
+        "expr": "distinct_count([2, 2, 2, 2])",
+        "expected": 1
+      },
+      {
+        "label": "already distinct",
+        "expr": "distinct_count([1, 2, 3, 4])",
+        "expected": 4
+      },
+      {
+        "label": "negative readings",
+        "expr": "distinct_count([-2, -2, -1, 0, 0])",
+        "expected": 3
+      },
+      {
+        "label": "all negative duplicates",
+        "expr": "distinct_count([-3, -3, -2, -2])",
+        "expected": 2
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_14.py"
+  },
+  {
+    "id": "simulation/challenge_15",
+    "folder": "simulation",
+    "name": "Challenge 15",
+    "title": "CHALLENGE 15",
+    "statement": "CHALLENGE 15\n\nA subscription plan is paid with exactly two coupons whose values add up\nto the plan price. The coupon values are stored sorted in ascending\norder. Return the 1-based positions of the two coupons that sum to the\nprice.\n\nReturn the positions as a list [i, j] with i < j (counting from 1).\nThere is at most one valid pair; if none works, return an empty list.\n\nExamples:\n    coupon_pair([2, 7, 11, 15], 9) -> [1, 2]\n    coupon_pair([2, 3, 4], 6)      -> [1, 3]\n\nContract:\nValues and price are integers; equal coupon values are allowed.\nEach position can be used at most once. Empty input is allowed.",
+    "code": "def coupon_pair(values, price):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "first two",
+        "expr": "coupon_pair([2, 7, 11, 15], 9)",
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "label": "ends",
+        "expr": "coupon_pair([2, 3, 4], 6)",
+        "expected": [
+          1,
+          3
+        ]
+      },
+      {
+        "label": "with negative",
+        "expr": "coupon_pair([-1, 0], -1)",
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "label": "last two",
+        "expr": "coupon_pair([1, 2, 3, 4, 5], 9)",
+        "expected": [
+          4,
+          5
+        ]
+      },
+      {
+        "label": "no pair",
+        "expr": "coupon_pair([1, 2, 3], 100)",
+        "expected": []
+      },
+      {
+        "label": "single coupon",
+        "expr": "coupon_pair([5], 5)",
+        "expected": []
+      },
+      {
+        "label": "empty coupons",
+        "expr": "coupon_pair([], 10)",
+        "expected": []
+      },
+      {
+        "label": "equal coupons",
+        "expr": "coupon_pair([3, 3], 6)",
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "label": "cannot reuse coupon",
+        "expr": "coupon_pair([3, 4], 6)",
+        "expected": []
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_15.py"
+  },
+  {
+    "id": "simulation/challenge_16",
+    "folder": "simulation",
+    "name": "Challenge 16",
+    "title": "CHALLENGE 16",
+    "statement": "CHALLENGE 16\n\nA row of storage tanks sits side by side, each described by its wall\nheight (one unit apart). Choosing two walls forms a container, and the\nwater it can hold is limited by the shorter wall and the distance between\nthem. Given the wall heights, return the most water any pair of walls can\nhold.\n\nExamples:\n    most_water([1, 8, 6, 2, 5, 4, 8, 3, 7]) -> 49\n    most_water([1, 1])                       -> 1\n\nContract:\nHeights are non-negative integers. Fewer than two walls returns 0.\nFor indices i < j, the capacity is min(heights[i], heights[j]) * (j - i).",
+    "code": "def most_water(heights):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "classic",
+        "expr": "most_water([1, 8, 6, 2, 5, 4, 8, 3, 7])",
+        "expected": 49
+      },
+      {
+        "label": "two walls",
+        "expr": "most_water([1, 1])",
+        "expected": 1
+      },
+      {
+        "label": "tall ends",
+        "expr": "most_water([4, 3, 2, 1, 4])",
+        "expected": 16
+      },
+      {
+        "label": "small dip",
+        "expr": "most_water([1, 2, 1])",
+        "expected": 2
+      },
+      {
+        "label": "empty",
+        "expr": "most_water([])",
+        "expected": 0
+      },
+      {
+        "label": "single wall",
+        "expr": "most_water([5])",
+        "expected": 0
+      },
+      {
+        "label": "zero walls",
+        "expr": "most_water([0, 0, 0])",
+        "expected": 0
+      },
+      {
+        "label": "width matters",
+        "expr": "most_water([2, 1, 2])",
+        "expected": 4
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_16.py"
+  },
+  {
+    "id": "simulation/challenge_17",
+    "folder": "simulation",
+    "name": "Challenge 17",
+    "title": "CHALLENGE 17",
+    "statement": "CHALLENGE 17\n\nA text effect for a banner reverses only the vowels of a caption while\nleaving every other character exactly where it is. The vowels are\na, e, i, o, u in both lower and upper case; case is preserved as the\ncharacters move.\n\nGiven the caption, return the new string with its vowels reversed.\n\nExamples:\n    flip_vowels(\"hello\")    -> \"holle\"\n    flip_vowels(\"computer\") -> \"cemputor\"\n\nContract:\nInput may be empty. Only the ten vowel characters listed above move;\ny and accented letters are not treated as vowels here.",
+    "code": "def flip_vowels(caption):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "simple",
+        "expr": "flip_vowels(\"hello\")",
+        "expected": "holle"
+      },
+      {
+        "label": "several vowels",
+        "expr": "flip_vowels(\"computer\")",
+        "expected": "cemputor"
+      },
+      {
+        "label": "case preserved",
+        "expr": "flip_vowels(\"aA\")",
+        "expected": "Aa"
+      },
+      {
+        "label": "no vowels",
+        "expr": "flip_vowels(\"xyz\")",
+        "expected": "xyz"
+      },
+      {
+        "label": "empty",
+        "expr": "flip_vowels(\"\")",
+        "expected": ""
+      },
+      {
+        "label": "single vowel",
+        "expr": "flip_vowels(\"hi\")",
+        "expected": "hi"
+      },
+      {
+        "label": "all vowels mixed case",
+        "expr": "flip_vowels(\"aEiOu\")",
+        "expected": "uOiEa"
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_17.py"
+  },
+  {
+    "id": "simulation/challenge_18",
+    "folder": "simulation",
+    "name": "CHALLENGE 18",
+    "title": "CHALLENGE 18",
+    "statement": "CHALLENGE 18\n\nA file browser groups uploaded files by the longest character prefix they\nall share (not a directory path). Given a list of file names, return the longest starting string\nthat every name begins with. If they share no common start, return the\nempty string.\n\nExamples:\n    common_start([\"flower\", \"flow\", \"flight\"]) -> \"fl\"\n    common_start([\"dog\", \"racecar\", \"car\"])    -> \"\"\n\nContract:\nComparison is case-sensitive and character by character.\nAn empty list returns \"\".",
+    "code": "def common_start(names):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "shared prefix",
+        "expr": "common_start([\"flower\", \"flow\", \"flight\"])",
+        "expected": "fl"
+      },
+      {
+        "label": "nothing shared",
+        "expr": "common_start([\"dog\", \"racecar\", \"car\"])",
+        "expected": ""
+      },
+      {
+        "label": "long prefix",
+        "expr": "common_start([\"interspecies\", \"interstellar\", \"interstate\"])",
+        "expected": "inters"
+      },
+      {
+        "label": "single name",
+        "expr": "common_start([\"alone\"])",
+        "expected": "alone"
+      },
+      {
+        "label": "empty list",
+        "expr": "common_start([])",
+        "expected": ""
+      },
+      {
+        "label": "identical names",
+        "expr": "common_start([\"same\", \"same\"])",
+        "expected": "same"
+      },
+      {
+        "label": "contains empty",
+        "expr": "common_start([\"abc\", \"\"])",
+        "expected": ""
+      },
+      {
+        "label": "prefix ends inside a name",
+        "expr": "common_start([\"ab\", \"abc\"])",
+        "expected": "ab"
+      },
+      {
+        "label": "case matters",
+        "expr": "common_start([\"Ab\", \"ab\"])",
+        "expected": ""
+      },
+      {
+        "label": "FLOWERS",
+        "expr": "common_start([\"flower\", \"flow\"])",
+        "expected": "flow"
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_18.py"
+  },
+  {
+    "id": "simulation/challenge_19",
+    "folder": "simulation",
+    "name": "Challenge 19",
+    "title": "CHALLENGE 19",
+    "statement": "CHALLENGE 19\n\nA museum ticketing system stores edition numbers as Roman numerals and\nneeds them converted back to ordinary integers. The numerals use the\nusual symbols (I=1, V=5, X=10, L=50, C=100, D=500, M=1000) with the\nstandard subtraction rule (e.g. IV is 4, IX is 9, CM is 900).\n\nGiven a valid Roman numeral string, return its integer value.\n\nExamples:\n    roman_value(\"LVIII\")   -> 58\n    roman_value(\"MCMXCIV\") -> 1994\n\nContract:\nInputs are valid uppercase Roman numerals from 1 to 3999.\nAs a local extension, the empty string returns 0.",
+    "code": "def roman_value(numeral):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "simple",
+        "expr": "roman_value(\"III\")",
+        "expected": 3
+      },
+      {
+        "label": "mixed",
+        "expr": "roman_value(\"LVIII\")",
+        "expected": 58
+      },
+      {
+        "label": "subtractions",
+        "expr": "roman_value(\"MCMXCIV\")",
+        "expected": 1994
+      },
+      {
+        "label": "four",
+        "expr": "roman_value(\"IV\")",
+        "expected": 4
+      },
+      {
+        "label": "nine",
+        "expr": "roman_value(\"IX\")",
+        "expected": 9
+      },
+      {
+        "label": "recent year",
+        "expr": "roman_value(\"MMXXIV\")",
+        "expected": 2024
+      },
+      {
+        "label": "empty",
+        "expr": "roman_value(\"\")",
+        "expected": 0
+      },
+      {
+        "label": "largest canonical numeral",
+        "expr": "roman_value(\"MMMCMXCIX\")",
+        "expected": 3999
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_19.py"
+  },
+  {
+    "id": "simulation/challenge_20",
+    "folder": "simulation",
+    "name": "Challenge 20",
+    "title": "CHALLENGE 20",
+    "statement": "CHALLENGE 20\n\nA search bar normalizes a query by reversing the order of the words and\ncollapsing whitespace: leading and trailing spaces are dropped, and any\nrun of spaces between words becomes a single space.\n\nGiven the raw query, return the cleaned, word-reversed string.\n\nExamples:\n    reverse_words(\"the sky is blue\") -> \"blue is sky the\"\n    reverse_words(\"  hello world  \") -> \"world hello\"\n\nContract:\nWhitespace includes spaces, tabs, and newlines. Empty input or input\ncontaining only whitespace returns \"\".",
+    "code": "def reverse_words(query):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "clean input",
+        "expr": "reverse_words(\"the sky is blue\")",
+        "expected": "blue is sky the"
+      },
+      {
+        "label": "trim ends",
+        "expr": "reverse_words(\"  hello world  \")",
+        "expected": "world hello"
+      },
+      {
+        "label": "inner spaces",
+        "expr": "reverse_words(\"a good   example\")",
+        "expected": "example good a"
+      },
+      {
+        "label": "single word",
+        "expr": "reverse_words(\"single\")",
+        "expected": "single"
+      },
+      {
+        "label": "only spaces",
+        "expr": "reverse_words(\"   \")",
+        "expected": ""
+      },
+      {
+        "label": "empty",
+        "expr": "reverse_words(\"\")",
+        "expected": ""
+      },
+      {
+        "label": "tabs and newlines",
+        "expr": "reverse_words(\"one\\ttwo\\nthree\")",
+        "expected": "three two one"
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_20.py"
+  },
+  {
+    "id": "simulation/challenge_21",
+    "folder": "simulation",
+    "name": "Challenge 21",
+    "title": "CHALLENGE 21",
+    "statement": "CHALLENGE 21\n\nA promo code is considered \"almost symmetric\" if it reads the same\nforwards and backwards after deleting at most one character. Given a\ncode, return True if it is already a palindrome or can become one by\nremoving a single character, otherwise False.\n\nExamples:\n    almost_palindrome(\"abca\") -> True   (remove 'b' or 'c')\n    almost_palindrome(\"abc\")  -> False\n\nContract:\nComparison is exact and case-sensitive; do not remove punctuation or\nspaces unless using your one deletion. Empty input returns True.",
+    "code": "def almost_palindrome(code):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "already palindrome",
+        "expr": "almost_palindrome(\"aba\")",
+        "expected": true
+      },
+      {
+        "label": "remove one",
+        "expr": "almost_palindrome(\"abca\")",
+        "expected": true
+      },
+      {
+        "label": "cannot fix",
+        "expr": "almost_palindrome(\"abc\")",
+        "expected": false
+      },
+      {
+        "label": "empty",
+        "expr": "almost_palindrome(\"\")",
+        "expected": true
+      },
+      {
+        "label": "single char",
+        "expr": "almost_palindrome(\"a\")",
+        "expected": true
+      },
+      {
+        "label": "two chars",
+        "expr": "almost_palindrome(\"ab\")",
+        "expected": true
+      },
+      {
+        "label": "remove first",
+        "expr": "almost_palindrome(\"deeee\")",
+        "expected": true
+      },
+      {
+        "label": "needs two removals",
+        "expr": "almost_palindrome(\"abcda\")",
+        "expected": false
+      },
+      {
+        "label": "must try deleting right side",
+        "expr": "almost_palindrome(\"abbab\")",
+        "expected": true
+      },
+      {
+        "label": "case matters",
+        "expr": "almost_palindrome(\"Aaab\")",
+        "expected": false
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_21.py"
+  },
+  {
+    "id": "simulation/challenge_22",
+    "folder": "simulation",
+    "name": "Challenge 22",
+    "title": "CHALLENGE 22",
+    "statement": "CHALLENGE 22\n\nA data-masking tool replaces characters in a token with other characters.\nTwo tokens are \"structurally equal\" if one can be turned into the other\nby a consistent one-to-one replacement: every occurrence of a character\nmaps to the same character, and no two different characters map to the\nsame one.\n\nGiven two tokens, return True if they are structurally equal, otherwise\nFalse. Tokens of different lengths are never structurally equal.\n\nExamples:\n    same_shape(\"egg\", \"add\")     -> True\n    same_shape(\"foo\", \"bar\")     -> False\n\nContract:\nComparison is case-sensitive and every character counts.\nA character may map to itself. Two empty tokens return True.",
+    "code": "def same_shape(a, b):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "matching shape",
+        "expr": "same_shape(\"egg\", \"add\")",
+        "expected": true
+      },
+      {
+        "label": "conflict",
+        "expr": "same_shape(\"foo\", \"bar\")",
+        "expected": false
+      },
+      {
+        "label": "paper title",
+        "expr": "same_shape(\"paper\", \"title\")",
+        "expected": true
+      },
+      {
+        "label": "not bijective",
+        "expr": "same_shape(\"badc\", \"baba\")",
+        "expected": false
+      },
+      {
+        "label": "different lengths",
+        "expr": "same_shape(\"ab\", \"a\")",
+        "expected": false
+      },
+      {
+        "label": "both empty",
+        "expr": "same_shape(\"\", \"\")",
+        "expected": true
+      },
+      {
+        "label": "collapse",
+        "expr": "same_shape(\"ab\", \"aa\")",
+        "expected": false
+      },
+      {
+        "label": "single char",
+        "expr": "same_shape(\"a\", \"z\")",
+        "expected": true
+      },
+      {
+        "label": "self mapping",
+        "expr": "same_shape(\"abc\", \"abc\")",
+        "expected": true
+      },
+      {
+        "label": "reverse length mismatch",
+        "expr": "same_shape(\"a\", \"ab\")",
+        "expected": false
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_22.py"
+  },
+  {
+    "id": "simulation/challenge_23",
+    "folder": "simulation",
+    "name": "Challenge 23",
+    "title": "CHALLENGE 23",
+    "statement": "CHALLENGE 23\n\nA session tracker reads a stream of single-character event codes and\nwants the length of the longest run of consecutive events in which no\nevent code repeats. Given the string of event codes, return that length.\n\nExamples:\n    longest_clean_run(\"abcabcbb\") -> 3   (\"abc\")\n    longest_clean_run(\"pwwkew\")   -> 3   (\"wke\")\n\nContract:\nComparison is case-sensitive; spaces also count as event codes.\nEmpty input returns 0. Events must remain contiguous.",
+    "code": "def longest_clean_run(events):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "repeats later",
+        "expr": "longest_clean_run(\"abcabcbb\")",
+        "expected": 3
+      },
+      {
+        "label": "all same",
+        "expr": "longest_clean_run(\"bbbbb\")",
+        "expected": 1
+      },
+      {
+        "label": "window in middle",
+        "expr": "longest_clean_run(\"pwwkew\")",
+        "expected": 3
+      },
+      {
+        "label": "empty",
+        "expr": "longest_clean_run(\"\")",
+        "expected": 0
+      },
+      {
+        "label": "two distinct",
+        "expr": "longest_clean_run(\"au\")",
+        "expected": 2
+      },
+      {
+        "label": "tricky reset",
+        "expr": "longest_clean_run(\"dvdf\")",
+        "expected": 3
+      },
+      {
+        "label": "repeat at ends",
+        "expr": "longest_clean_run(\"abba\")",
+        "expected": 2
+      },
+      {
+        "label": "spaces are events",
+        "expr": "longest_clean_run(\"a b a\")",
+        "expected": 3
+      },
+      {
+        "label": "case matters",
+        "expr": "longest_clean_run(\"aA\")",
+        "expected": 2
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_23.py"
+  },
+  {
+    "id": "simulation/challenge_24",
+    "folder": "simulation",
+    "name": "Challenge 24",
+    "title": "CHALLENGE 24",
+    "statement": "CHALLENGE 24\n\nA monitoring tool reports the best average load over any window of k\nconsecutive minutes. Given the per-minute load values and the window\nsize k, return the highest average of any k consecutive values.\n\nYou may assume k is at least 1 and no larger than the number of values.\nReturn the average as a float.\n\nExamples:\n    best_average([1, 12, -5, -6, 50, 3], 4) -> 12.75\n    best_average([5], 1)                     -> 5.0\n\nContract:\nLoads are integers and may be negative. Floating-point rounding\ndifferences up to the test helper tolerance are accepted.",
+    "code": "def best_average(loads, k):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "window of four",
+        "expr": "best_average([1, 12, -5, -6, 50, 3], 4)",
+        "expected": 12.75
+      },
+      {
+        "label": "single value",
+        "expr": "best_average([5], 1)",
+        "expected": 5.0
+      },
+      {
+        "label": "window of one",
+        "expr": "best_average([0, 4, 0, 3, 2], 1)",
+        "expected": 4.0
+      },
+      {
+        "label": "all negative",
+        "expr": "best_average([-1, -2, -3, -4], 2)",
+        "expected": -1.5
+      },
+      {
+        "label": "uniform",
+        "expr": "best_average([1, 1, 1, 1], 2)",
+        "expected": 1.0
+      },
+      {
+        "label": "whole array",
+        "expr": "best_average([7, 4, 4], 3)",
+        "expected": 5.0
+      },
+      {
+        "label": "fractional result",
+        "expr": "best_average([0, 0, 1], 3)",
+        "expected": 0.3333333333333333
+      },
+      {
+        "label": "best window last",
+        "expr": "best_average([1, 2, 8, 9], 2)",
+        "expected": 8.5
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_24.py"
+  },
+  {
+    "id": "simulation/challenge_25",
+    "folder": "simulation",
+    "name": "Challenge 25",
+    "title": "CHALLENGE 25",
+    "statement": "CHALLENGE 25\n\nA plagiarism checker scans a document for every spot where a window of\ntext uses the exact same letters (same counts) as a target keyword, in\nany order. Given the document text and the keyword, return the starting\nindices of every such window.\n\nReturn the indices in ascending order.\n\nExamples:\n    scramble_spots(\"cbaebabacd\", \"abc\") -> [0, 6]\n    scramble_spots(\"abab\", \"ab\")        -> [0, 1, 2]\n\nContract:\nText and keyword contain lowercase English letters. The keyword is\nnon-empty; text may be empty. Match counts, not just the set of letters.\nIndices start at 0; overlapping matches are included.",
+    "code": "def scramble_spots(text, keyword):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "two spots",
+        "expr": "scramble_spots(\"cbaebabacd\", \"abc\")",
+        "expected": [
+          0,
+          6
+        ]
+      },
+      {
+        "label": "overlapping",
+        "expr": "scramble_spots(\"abab\", \"ab\")",
+        "expected": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "label": "no match",
+        "expr": "scramble_spots(\"aa\", \"bb\")",
+        "expected": []
+      },
+      {
+        "label": "empty text",
+        "expr": "scramble_spots(\"\", \"a\")",
+        "expected": []
+      },
+      {
+        "label": "keyword too long",
+        "expr": "scramble_spots(\"a\", \"ab\")",
+        "expected": []
+      },
+      {
+        "label": "single spot",
+        "expr": "scramble_spots(\"baa\", \"aa\")",
+        "expected": [
+          1
+        ]
+      },
+      {
+        "label": "counts matter",
+        "expr": "scramble_spots(\"aababb\", \"aab\")",
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "label": "single letter overlaps",
+        "expr": "scramble_spots(\"aaa\", \"a\")",
+        "expected": [
+          0,
+          1,
+          2
+        ]
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_25.py"
+  },
+  {
+    "id": "simulation/challenge_26",
+    "folder": "simulation",
+    "name": "Challenge 26",
+    "title": "CHALLENGE 26",
+    "statement": "CHALLENGE 26\n\nA leaderboard is built from a list of operations applied to a running\nlist of scores. Each operation is one of:\n    an integer string -> record that integer as a new score\n    \"+\"               -> record a new score equal to the sum of the two\n                         most recent scores\n    \"D\"               -> record a new score equal to double the most\n                         recent score\n    \"C\"               -> remove (invalidate) the most recent score\n\nApply the operations in order and return the total of all scores that\nremain recorded.\n\nExamples:\n    final_total([\"5\", \"2\", \"C\", \"D\", \"+\"])              -> 30\n    final_total([\"5\", \"-2\", \"4\", \"C\", \"D\", \"9\", \"+\", \"+\"]) -> 27\n\nContract:\nEvery operation is valid: C and D have at least one preceding score,\nand + has at least two. An empty operation list returns 0.",
+    "code": "def final_total(ops):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "with cancel and double",
+        "expr": "final_total([\"5\", \"2\", \"C\", \"D\", \"+\"])",
+        "expected": 30
+      },
+      {
+        "label": "longer sequence",
+        "expr": "final_total([\"5\", \"-2\", \"4\", \"C\", \"D\", \"9\", \"+\", \"+\"])",
+        "expected": 27
+      },
+      {
+        "label": "single score",
+        "expr": "final_total([\"1\"])",
+        "expected": 1
+      },
+      {
+        "label": "cancel to empty",
+        "expr": "final_total([\"1\", \"C\"])",
+        "expected": 0
+      },
+      {
+        "label": "simple sum",
+        "expr": "final_total([\"3\", \"6\", \"+\"])",
+        "expected": 18
+      },
+      {
+        "label": "no operations",
+        "expr": "final_total([])",
+        "expected": 0
+      },
+      {
+        "label": "zero and negative",
+        "expr": "final_total([\"0\", \"-3\", \"D\", \"+\"])",
+        "expected": -18
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_26.py"
+  },
+  {
+    "id": "simulation/challenge_27",
+    "folder": "simulation",
+    "name": "Challenge 27",
+    "title": "CHALLENGE 27",
+    "statement": "CHALLENGE 27\n\nA text cleanup routine repeatedly removes any two adjacent identical\ncharacters until no such pair remains. For example, \"abbaca\" loses the\n\"bb\" to become \"aaca\", then loses the \"aa\" to become \"ca\".\n\nGiven the string, return the result after all possible adjacent pairs\nhave been removed.\n\nExamples:\n    squash(\"abbaca\") -> \"ca\"\n    squash(\"azxxzy\") -> \"ay\"\n\nContract:\nComparison is case-sensitive; spaces and punctuation count as characters.\nEmpty input returns \"\". Remove pairs, not entire runs of any length.",
+    "code": "def squash(text):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "cascading",
+        "expr": "squash(\"abbaca\")",
+        "expected": "ca"
+      },
+      {
+        "label": "inner pair",
+        "expr": "squash(\"azxxzy\")",
+        "expected": "ay"
+      },
+      {
+        "label": "all removed",
+        "expr": "squash(\"aabbcc\")",
+        "expected": ""
+      },
+      {
+        "label": "nothing to remove",
+        "expr": "squash(\"abc\")",
+        "expected": "abc"
+      },
+      {
+        "label": "empty",
+        "expr": "squash(\"\")",
+        "expected": ""
+      },
+      {
+        "label": "single char",
+        "expr": "squash(\"a\")",
+        "expected": "a"
+      },
+      {
+        "label": "odd run",
+        "expr": "squash(\"aaa\")",
+        "expected": "a"
+      },
+      {
+        "label": "even run",
+        "expr": "squash(\"aaaa\")",
+        "expected": ""
+      },
+      {
+        "label": "cascade to empty",
+        "expr": "squash(\"abccba\")",
+        "expected": ""
+      },
+      {
+        "label": "case matters",
+        "expr": "squash(\"aA\")",
+        "expected": "aA"
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_27.py"
+  },
+  {
+    "id": "simulation/challenge_28",
+    "folder": "simulation",
+    "name": "Challenge 28",
+    "title": "CHALLENGE 28",
+    "statement": "CHALLENGE 28\n\nA report numbers its rows from 1 to n, but with two display rules:\n    - rows divisible by 3 show \"Fizz\" instead of the number\n    - rows divisible by 5 show \"Buzz\" instead of the number\n    - rows divisible by both 3 and 5 show \"FizzBuzz\"\n    - all other rows show the number as a string\n\nGiven n, return the list of row labels from 1 to n.\n\nExamples:\n    row_labels(3) -> [\"1\", \"2\", \"Fizz\"]\n    row_labels(5) -> [\"1\", \"2\", \"Fizz\", \"4\", \"Buzz\"]\n\nContract:\nn is a non-negative integer. For n = 0, return [].\nReturn a list of strings, with the exact capitalization shown.",
+    "code": "def row_labels(n):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "up to three",
+        "expr": "row_labels(3)",
+        "expected": [
+          "1",
+          "2",
+          "Fizz"
+        ]
+      },
+      {
+        "label": "up to five",
+        "expr": "row_labels(5)",
+        "expected": [
+          "1",
+          "2",
+          "Fizz",
+          "4",
+          "Buzz"
+        ]
+      },
+      {
+        "label": "includes fizzbuzz",
+        "expr": "row_labels(15)",
+        "expected": [
+          "1",
+          "2",
+          "Fizz",
+          "4",
+          "Buzz",
+          "Fizz",
+          "7",
+          "8",
+          "Fizz",
+          "Buzz",
+          "11",
+          "Fizz",
+          "13",
+          "14",
+          "FizzBuzz"
+        ]
+      },
+      {
+        "label": "zero rows",
+        "expr": "row_labels(0)",
+        "expected": []
+      },
+      {
+        "label": "single row",
+        "expr": "row_labels(1)",
+        "expected": [
+          "1"
+        ]
+      },
+      {
+        "label": "second fizzbuzz",
+        "expr": "row_labels(30)[-1]",
+        "expected": "FizzBuzz"
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_28.py"
+  },
+  {
+    "id": "simulation/challenge_29",
+    "folder": "simulation",
+    "name": "Challenge 29",
+    "title": "CHALLENGE 29",
+    "statement": "CHALLENGE 29\n\nA counter device stores a large number as a list of its decimal digits,\nmost significant digit first (so [1, 2, 3] means 123). The device ticks\nup by one. Return the new list of digits after adding one, handling any\ncarry that ripples through.\n\nExamples:\n    tick([1, 2, 3]) -> [1, 2, 4]\n    tick([9, 9, 9]) -> [1, 0, 0, 0]\n\nContract:\nThe digit list is non-empty. Each digit is an integer from 0 to 9;\nthere are no leading zeros except for [0]. Return a list of integers.\nModifying the input is allowed but not required.",
+    "code": "def tick(digits):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "no carry",
+        "expr": "tick([1, 2, 3])",
+        "expected": [
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "label": "longer input without carry",
+        "expr": "tick([4, 3, 2, 1])",
+        "expected": [
+          4,
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "label": "single nine",
+        "expr": "tick([9])",
+        "expected": [
+          1,
+          0
+        ]
+      },
+      {
+        "label": "all nines",
+        "expr": "tick([9, 9, 9])",
+        "expected": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "partial carry",
+        "expr": "tick([1, 9, 9])",
+        "expected": [
+          2,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "single zero",
+        "expr": "tick([0])",
+        "expected": [
+          1
+        ]
+      },
+      {
+        "label": "internal nines unchanged",
+        "expr": "tick([9, 0, 9])",
+        "expected": [
+          9,
+          1,
+          0
+        ]
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_29.py"
+  },
+  {
+    "id": "simulation/challenge_30",
+    "folder": "simulation",
+    "name": "Challenge 30",
+    "title": "CHALLENGE 30",
+    "statement": "CHALLENGE 30\n\nA gamified app marks a starting number as \"lucky\" using this process:\nreplace the number by the sum of the squares of its digits, and repeat.\nIf the process eventually reaches 1, the number is lucky. If it instead\nloops forever without reaching 1, it is not.\n\nGiven a positive integer, return True if it is lucky, otherwise False.\n\nExamples:\n    is_lucky(19) -> True   (1+81=82, 64+4=68, 36+64=100, 1+0+0=1)\n    is_lucky(2)  -> False\n\nContract:\nn is an integer greater than 0. Return a bool.",
+    "code": "def is_lucky(n):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "classic lucky",
+        "expr": "is_lucky(19)",
+        "expected": true
+      },
+      {
+        "label": "loops forever",
+        "expr": "is_lucky(2)",
+        "expected": false
+      },
+      {
+        "label": "already one",
+        "expr": "is_lucky(1)",
+        "expected": true
+      },
+      {
+        "label": "seven is lucky",
+        "expr": "is_lucky(7)",
+        "expected": true
+      },
+      {
+        "label": "four is not",
+        "expr": "is_lucky(4)",
+        "expected": false
+      },
+      {
+        "label": "hundred is lucky",
+        "expr": "is_lucky(100)",
+        "expected": true
+      },
+      {
+        "label": "ends in zero",
+        "expr": "is_lucky(10)",
+        "expected": true
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_30.py"
+  },
+  {
+    "id": "simulation/challenge_31",
+    "folder": "simulation",
+    "name": "Challenge 31",
+    "title": "CHALLENGE 31",
+    "statement": "CHALLENGE 31\n\nA storage allocator only accepts buffer sizes that are an exact power of\ntwo (1, 2, 4, 8, 16, ...). Given a requested size, return True if it is a\npower of two, otherwise False. Sizes of zero or below are never valid.\n\nExamples:\n    is_power_of_two(16) -> True\n    is_power_of_two(3)  -> False\n\nContract:\nInput is an integer (including negative values). Return a bool.",
+    "code": "def is_power_of_two(n):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "one",
+        "expr": "is_power_of_two(1)",
+        "expected": true
+      },
+      {
+        "label": "sixteen",
+        "expr": "is_power_of_two(16)",
+        "expected": true
+      },
+      {
+        "label": "three",
+        "expr": "is_power_of_two(3)",
+        "expected": false
+      },
+      {
+        "label": "zero",
+        "expr": "is_power_of_two(0)",
+        "expected": false
+      },
+      {
+        "label": "negative",
+        "expr": "is_power_of_two(-4)",
+        "expected": false
+      },
+      {
+        "label": "large power",
+        "expr": "is_power_of_two(1024)",
+        "expected": true
+      },
+      {
+        "label": "six",
+        "expr": "is_power_of_two(6)",
+        "expected": false
+      },
+      {
+        "label": "large near miss",
+        "expr": "is_power_of_two(2**60 + 1)",
+        "expected": false
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_31.py"
+  },
+  {
+    "id": "simulation/challenge_32",
+    "folder": "simulation",
+    "name": "Challenge 32",
+    "title": "CHALLENGE 32",
+    "statement": "CHALLENGE 32\n\nA layout engine needs the side length of the largest square that fits\ninside a given area, rounded down to a whole number. In other words,\ngiven a non-negative integer, return the integer part of its square root.\nYou may not use any built-in square-root function.\n\nExamples:\n    int_sqrt(8)   -> 2   (since 2*2=4 <= 8 < 9=3*3)\n    int_sqrt(100) -> 10\n\nContract:\nThe input is a non-negative integer. Return an integer, not a float.\nDo not use sqrt, isqrt, or fractional powers such as area ** 0.5.",
+    "code": "def int_sqrt(area):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "perfect square",
+        "expr": "int_sqrt(4)",
+        "expected": 2
+      },
+      {
+        "label": "rounds down",
+        "expr": "int_sqrt(8)",
+        "expected": 2
+      },
+      {
+        "label": "zero",
+        "expr": "int_sqrt(0)",
+        "expected": 0
+      },
+      {
+        "label": "one",
+        "expr": "int_sqrt(1)",
+        "expected": 1
+      },
+      {
+        "label": "hundred",
+        "expr": "int_sqrt(100)",
+        "expected": 10
+      },
+      {
+        "label": "just below",
+        "expr": "int_sqrt(99)",
+        "expected": 9
+      },
+      {
+        "label": "large value",
+        "expr": "int_sqrt(2147395600)",
+        "expected": 46340
+      },
+      {
+        "label": "large square boundary",
+        "expr": "int_sqrt(10**40 - 1)",
+        "expected": 99999999999999999999
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_32.py"
+  },
+  {
+    "id": "simulation/challenge_33",
+    "folder": "simulation",
+    "name": "Challenge 33",
+    "title": "CHALLENGE 33",
+    "statement": "CHALLENGE 33\n\nA release pipeline built versions 1 to n in order. At some point a bad\nchange was introduced, and every version from that one onward is broken.\nYou are given n and a checker `is_broken(version)` that returns True if a\nversion is broken. Find and return the first broken version, calling the\nchecker as few times as you can.\n\nThe checker is passed in as a function, so you can call is_broken(v) for\nany version v from 1 to n.\n\nExamples:\n    first_broken(5, is_broken)  where versions 4 and 5 are broken -> 4\n    first_broken(10, is_broken) where only version 10 is broken   -> 10\n\nContract:\nn >= 1, and at least one version is broken. Only query versions in\n[1, n]. Use O(log n) checker calls; the tests enforce a call budget.",
+    "code": "def first_broken(n, is_broken):\n    # TODO: implement\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "middle version",
+        "expr": "first_broken(5, lambda v: v >= 4)",
+        "expected": 4
+      },
+      {
+        "label": "first is broken",
+        "expr": "first_broken(10, lambda v: v >= 1)",
+        "expected": 1
+      },
+      {
+        "label": "only last broken",
+        "expr": "first_broken(10, lambda v: v >= 10)",
+        "expected": 10
+      },
+      {
+        "label": "single version",
+        "expr": "first_broken(1, lambda v: v >= 1)",
+        "expected": 1
+      },
+      {
+        "label": "large range",
+        "expr": "first_broken(100, lambda v: v >= 37)",
+        "expected": 37
+      },
+      {
+        "label": "five of seven",
+        "expr": "first_broken(7, lambda v: v >= 5)",
+        "expected": 5
+      },
+      {
+        "label": "large range with call budget",
+        "expr": "first_broken(n, bounded_checker)",
+        "expected": 765432101
+      },
+      {
+        "label": "logarithmic call count",
+        "expr": "calls[0] <= n.bit_length()",
+        "expected": true
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_33.py"
+  },
+  {
+    "id": "simulation/challenge_34",
+    "folder": "simulation",
+    "name": "Challenge 34",
+    "title": "CHALLENGE 34",
+    "statement": "CHALLENGE 34\n\nA list of ticket numbers was originally sorted in ascending order with no\nrepeats, but the stack was then rotated at some unknown point (the front\nchunk was moved to the back). For example, [0,1,2,4,5,6,7] might become\n[4,5,6,7,0,1,2]. Given such a rotated list and a target ticket number,\nreturn its index, or -1 if it is not present.\n\nExamples:\n    locate([4, 5, 6, 7, 0, 1, 2], 0) -> 4\n    locate([4, 5, 6, 7, 0, 1, 2], 3) -> -1\n\nContract:\nTickets and target are integers. The list may be empty or not rotated.\nRequired time: O(log n).",
+    "code": "def locate(tickets, target):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "found in tail",
+        "expr": "locate([4, 5, 6, 7, 0, 1, 2], 0)",
+        "expected": 4
+      },
+      {
+        "label": "not present",
+        "expr": "locate([4, 5, 6, 7, 0, 1, 2], 3)",
+        "expected": -1
+      },
+      {
+        "label": "found in head",
+        "expr": "locate([4, 5, 6, 7, 0, 1, 2], 5)",
+        "expected": 1
+      },
+      {
+        "label": "single miss",
+        "expr": "locate([1], 0)",
+        "expected": -1
+      },
+      {
+        "label": "single hit",
+        "expr": "locate([1], 1)",
+        "expected": 0
+      },
+      {
+        "label": "empty",
+        "expr": "locate([], 5)",
+        "expected": -1
+      },
+      {
+        "label": "small rotation",
+        "expr": "locate([5, 1, 3], 5)",
+        "expected": 0
+      },
+      {
+        "label": "not rotated",
+        "expr": "locate([1, 2, 3, 4], 3)",
+        "expected": 2
+      },
+      {
+        "label": "two rotated first",
+        "expr": "locate([2, 1], 2)",
+        "expected": 0
+      },
+      {
+        "label": "two rotated second",
+        "expr": "locate([2, 1], 1)",
+        "expected": 1
+      },
+      {
+        "label": "pivot is smallest",
+        "expr": "locate([3, 4, 1, 2], 1)",
+        "expected": 2
+      }
+    ],
+    "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_34.py"
+  }
+]
