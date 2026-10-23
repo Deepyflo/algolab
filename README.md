@@ -22,6 +22,7 @@ Ouvrez ensuite [http://localhost:8000](http://localhost:8000). L’éditeur Code
 - **Gestion de la base d’exercices** : créer, modifier, supprimer, importer et exporter des exercices depuis la page **Mes exercices**. Chaque exercice comporte un énoncé, du code de départ et des cas de test.
 - **Persistance portable des énoncés** : les exercices sont conservés dans [`data/exercises.json`](data/exercises.json) par le serveur local. Ce fichier peut être versionné ou déplacé avec le projet pour retrouver la base sur une autre machine.
 - **Conditions d’examen** : chronomètre individuel par exercice (démarrer, pause, reprendre, remise à zéro), score de tests et indication du nombre de cas requis pour dépasser 80 %.
+- **Simulation d’examen blanc** : session de cinq simulations tirées au hasard ou choisies manuellement, durée totale de 60 ou 75 minutes, score cumulé et récapitulatif par exercice.
 - **Débogage** : `print()` s’affiche dans la console de résultats avec `stdout` et `stderr`. Les sorties sont bornées pour éviter qu’une boucle de debug ne remplisse toute la mémoire.
 - **Mesures d’exécution** : durée et estimation du pic de mémoire Python, avec limites de temps et mémoire configurables. L’exécution est isolée dans un Worker et peut être interrompue en cas de dépassement du délai.
 - **Complexité indicative** : analyse syntaxique heuristique donnant un ordre de grandeur comme `O(n)` ou `O(n log n)` lorsque le code le permet.
@@ -54,12 +55,15 @@ AlgoLab/
 ├── styles/                   # Styles séparés par zone de l’interface
 ├── custom.html               # Gestion des exercices
 ├── index.html                # Environnement d’entraînement
+├── exam.html                 # Simulation d’examen blanc
 └── server.py                 # Serveur local et API JSON
 ```
 
+La session d’examen est pilotée par `scripts/exam-session.js` et mise en forme dans `styles/exam.css`.
+
 ## Versions
 
-Le projet n’ayant pas encore eu de releases formelles, les numéros ci-dessous sont une **reconstitution rétrospective** des étapes demandées. La version actuelle est estimée à **0.9.0** : les fonctionnalités principales sont présentes, mais l’application reste un outil personnel en évolution.
+Le projet n’ayant pas encore eu de releases formelles, les numéros ci-dessous sont une **reconstitution rétrospective** des étapes demandées. La version actuelle est estimée à **0.10.0** : les fonctionnalités principales sont présentes, mais l’application reste un outil personnel en évolution.
 
 Voir le [changelog complet](CHANGELOG.md). Chaque nouvelle fonctionnalité demandée devra y être ajoutée dans la prochaine version appropriée.
 
