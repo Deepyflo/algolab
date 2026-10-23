@@ -2,20 +2,26 @@
 
 Historique reconstitué à partir des demandes et de l’état actuel du projet. Le dépôt n’ayant pas encore publié de versions, ces versions `0.x.x` sont des estimations de jalons, pas des releases taguées. La convention suivie : incrément mineur pour une étape fonctionnelle, patch pour une correction ou un petit complément.
 
-## [0.10.0] — 2026-10-23 — Simulation d’examen blanc
+## [0.12.0] — 2026-10-23 — Exercices d’examen élargis
 
-- Ajout d’une page de simulation d’examen accessible depuis l’interface principale.
-- Choix entre un tirage aléatoire de cinq simulations et une sélection manuelle de cinq exercices.
-- Affichage d’un seul exercice à la fois ; progression uniquement vers l’avant, sans liste révélant les sujets suivants ni retour aux exercices déjà passés.
-- Ajout d’un chronomètre global de 60 ou 75 minutes, avec fin automatique à l’expiration.
-- Affichage du nombre de tests réussis sur le total de la session et du nombre d’exercices déjà évalués.
-- Ajout d’un récapitulatif final avec temps écoulé, score global, seuil de réussite et détail des résultats par exercice.
+- La simulation d’examen pioche désormais dans tous les exercices de la base, y compris les warmups, drills et exercices personnalisés, et plus seulement dans la catégorie `simulation`.
+- Mise à jour des libellés du tirage aléatoire, du sélecteur manuel et du message d’erreur pour refléter ce choix élargi.
+- Renouvellement de l’URL versionnée du module de la page afin que le navigateur charge bien cette mise à jour.
 
 ## [0.11.0] — 2026-10-23 — Progression en entraînement
 
 - Ajout dans l’en-tête du mode entraînement d’un compteur d’exercices terminés sur le total disponible.
 - Un exercice est compté comme terminé lorsque tous ses tests sont réussis ; le compteur suit les validations enregistrées et se met à jour après une soumission ou l’effacement de la progression.
 - Le compteur est limité à la page d’entraînement et n’apparaît pas dans la simulation d’examen.
+
+## [0.10.0] — 2026-10-23 — Simulation d’examen blanc
+
+- Ajout d’une page de simulation d’examen accessible depuis l’interface principale.
+- Choix entre un tirage aléatoire de cinq exercices de la catégorie `simulation` et une sélection manuelle de cinq exercices.
+- Affichage d’un seul exercice à la fois ; progression uniquement vers l’avant, sans liste révélant les sujets suivants ni retour aux exercices déjà passés.
+- Ajout d’un chronomètre global de 60 ou 75 minutes, avec fin automatique à l’expiration.
+- Affichage du nombre de tests réussis sur le total de la session et du nombre d’exercices déjà évalués.
+- Ajout d’un récapitulatif final avec temps écoulé, score global, seuil de réussite et détail des résultats par exercice.
 
 ## [0.9.0] — 2026-10-23 — Identité visuelle AlgoLab
 
