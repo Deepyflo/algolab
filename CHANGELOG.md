@@ -6,6 +6,7 @@ Historique reconstitué à partir des demandes et de l’état actuel du projet.
 
 - La simulation d’examen pioche désormais dans tous les exercices de la base, y compris les warmups, drills et exercices personnalisés, et plus seulement dans la catégorie `simulation`.
 - Mise à jour des libellés du tirage aléatoire, du sélecteur manuel et du message d’erreur pour refléter ce choix élargi.
+- Renouvellement de l’URL versionnée du module de la page afin que le navigateur charge bien cette mise à jour.
 
 ## [0.11.0] — 2026-10-23 — Progression en entraînement
 
