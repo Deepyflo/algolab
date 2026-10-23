@@ -17,6 +17,7 @@ Ouvrez ensuite [http://localhost:8000](http://localhost:8000). L’éditeur Code
 ## Fonctionnalités
 
 - **IDE Python 3 dans le navigateur** : coloration syntaxique de style IDE, indentation automatique, touche Tab, numéros de ligne et édition multi-ligne.
+- **Identité visuelle personnalisée** : interface sombre aux accents orange brûlé et crème, avec une présentation chaleureuse et sobre.
 - **Exercices d’algorithmique** : warmups, drills et simulations, avec code de départ volontairement remis à `TODO: implement` pour pratiquer chaque solution.
 - **Gestion de la base d’exercices** : créer, modifier, supprimer, importer et exporter des exercices depuis la page **Mes exercices**. Chaque exercice comporte un énoncé, du code de départ et des cas de test.
 - **Persistance portable des énoncés** : les exercices sont conservés dans [`data/exercises.json`](data/exercises.json) par le serveur local. Ce fichier peut être versionné ou déplacé avec le projet pour retrouver la base sur une autre machine.
@@ -58,7 +59,7 @@ AlgoLab/
 
 ## Versions
 
-Le projet n’ayant pas encore eu de releases formelles, les numéros ci-dessous sont une **reconstitution rétrospective** des étapes demandées. La version actuelle est estimée à **0.8.0** : les fonctionnalités principales sont présentes, mais l’application reste un outil personnel en évolution.
+Le projet n’ayant pas encore eu de releases formelles, les numéros ci-dessous sont une **reconstitution rétrospective** des étapes demandées. La version actuelle est estimée à **0.9.0** : les fonctionnalités principales sont présentes, mais l’application reste un outil personnel en évolution.
 
 Voir le [changelog complet](CHANGELOG.md). Chaque nouvelle fonctionnalité demandée devra y être ajoutée dans la prochaine version appropriée.
 

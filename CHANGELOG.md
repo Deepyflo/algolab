@@ -2,6 +2,13 @@
 
 Historique reconstitué à partir des demandes et de l’état actuel du projet. Le dépôt n’ayant pas encore publié de versions, ces versions `0.x.x` sont des estimations de jalons, pas des releases taguées. La convention suivie : incrément mineur pour une étape fonctionnelle, patch pour une correction ou un petit complément.
 
+## [0.9.0] — 2026-10-23 — Identité visuelle AlgoLab
+
+- Refonte des pages d’entraînement et de gestion des exercices pour une interface moins générique et plus personnelle.
+- Conservation du dark mode avec une palette charbon, orange brûlé et crème.
+- Ajout de détails de marque chaleureux, de surfaces mieux hiérarchisées, de contrôles plus lisibles et d’une adaptation responsive retravaillée.
+- Harmonisation des composants de l’éditeur, de la console et du formulaire de création avec cette identité.
+
 ## [0.8.0] — 2026-10-23 — Soumissions et boucle de pratique
 
 - Ajout d’un bouton global pour effacer les brouillons, résultats, validations et chronos de tous les exercices, avec confirmation. Les exercices du fichier JSON restent intacts.
