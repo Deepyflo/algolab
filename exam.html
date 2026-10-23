@@ -67,18 +67,15 @@
 
       <section id="examSession" class="exam-session" hidden>
         <div class="session-toolbar">
-          <div class="session-heading"><span class="session-kicker">EXAMEN BLANC</span><strong id="sessionExerciseCount">0 / 5 exercices</strong></div>
+          <div class="session-heading"><span class="session-kicker">EXAMEN BLANC</span><strong id="sessionExerciseCount">Exercice 1 / 5</strong></div>
           <div class="session-stats">
             <div class="session-stat timer-stat"><span>Temps restant</span><strong id="examTimer">75:00</strong></div>
             <div class="session-stat"><span>Tests réussis</span><strong id="examTestScore">0 / 0</strong></div>
           </div>
           <button id="finishExam" class="btn finish-exam" type="button">Terminer l’examen</button>
         </div>
+        <div id="examProgress" class="exam-progress" role="progressbar" aria-label="Progression de la simulation" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"></div>
         <div class="exam-layout">
-          <aside class="exam-queue-panel">
-            <div class="queue-heading"><span>Ta session</span><span id="queueProgress">0 / 5</span></div>
-            <nav id="examQueue" class="exam-queue" aria-label="Exercices de la simulation"></nav>
-          </aside>
           <section class="exam-prompt">
             <div class="crumb">SIMULATION <span> / <b id="examPosition">EXERCICE 1</b></span></div>
             <h1 id="examTitle">Chargement…</h1>
@@ -89,6 +86,7 @@
               <span class="exam-file">&lt;/&gt; <span id="examFilename">solution.py</span></span>
               <div class="grow"></div><span id="examStatus" class="foot">À toi de jouer</span>
               <button id="submitExamExercise" class="btn run" type="button">Soumettre</button>
+              <button id="nextExamExercise" class="btn next-exercise" type="button">Exercice suivant →</button>
             </div>
             <div class="exam-editor-wrap"><div id="examEditor" class="editor" aria-label="Éditeur Python pour l’examen"></div></div>
             <div class="consoleHead"><span>▸ &nbsp;SORTIE PYTHON · TESTS</span><div class="spacer"></div><span id="examResultSummary">Non soumis</span></div>

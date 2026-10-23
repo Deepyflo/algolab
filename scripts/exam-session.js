@@ -90,48 +90,23 @@ function updateTimer() {
 }
 
 function updateSessionStats() {
-  const submitted = Object.keys(session.submissions).length;
   const passed = Object.values(session.submissions).reduce((sum, result) => sum + result.passed, 0);
   const total = session.exercises.reduce((sum, exercise) => sum + exercise.cases.length, 0);
-  $('#sessionExerciseCount').textContent = `${submitted} / ${EXERCISE_COUNT} exercices`;
-  $('#queueProgress').textContent = `${submitted} / ${EXERCISE_COUNT}`;
+  $('#sessionExerciseCount').textContent = `Exercice ${currentIndex + 1} / ${EXERCISE_COUNT}`;
   $('#examTestScore').textContent = `${passed} / ${total}`;
-  renderQueue();
+  $('#examProgress').setAttribute('aria-valuenow', String(currentIndex + 1));
+  $('#examProgress').replaceChildren(...session.exercises.map((_, index) => {
+    const segment = document.createElement('span');
+    segment.className = `progress-segment${index < currentIndex ? ' is-complete' : ''}${index === currentIndex ? ' is-current' : ''}`;
+    segment.setAttribute('aria-hidden', 'true');
+    return segment;
+  }));
 }
 
-function renderQueue() {
-  const queue = $('#examQueue');
-  queue.replaceChildren();
-  session.exercises.forEach((exercise, index) => {
-    const result = session.submissions[exercise.id];
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = `queue-item${currentIndex === index ? ' is-current' : ''}${result ? ' is-submitted' : ''}`;
-    button.disabled = isRunning;
-    const number = document.createElement('span');
-    number.className = 'queue-number';
-    number.textContent = String(index + 1).padStart(2, '0');
-    const details = document.createElement('span');
-    details.className = 'queue-copy';
-    const name = document.createElement('b');
-    name.textContent = exercise.name;
-    const status = document.createElement('small');
-    status.textContent = result ? `${result.passed} / ${result.total} tests` : `${exercise.cases.length} tests · à faire`;
-    const check = document.createElement('span');
-    check.className = 'queue-check';
-    check.textContent = result ? '✓' : '·';
-    details.append(name, status);
-    button.append(number, details, check);
-    button.addEventListener('click', () => selectExercise(index));
-    queue.append(button);
-  });
-}
-
-function selectExercise(index) {
+function showCurrentExercise() {
   if (!session || session.finished || isRunning) return;
-  currentIndex = index;
-  const exercise = session.exercises[index];
-  $('#examPosition').textContent = `EXERCICE ${index + 1} / ${EXERCISE_COUNT}`;
+  const exercise = session.exercises[currentIndex];
+  $('#examPosition').textContent = `EXERCICE ${currentIndex + 1} / ${EXERCISE_COUNT}`;
   $('#examTitle').textContent = exercise.name;
   $('#examDescription').textContent = exercise.statement;
   $('#examFilename').textContent = `${exercise.id.replace('/', '_')}.py`;
@@ -142,7 +117,10 @@ function selectExercise(index) {
   editor.setValue(session.code[exercise.id] ?? exercise.code);
   if (session.submissions[exercise.id]) renderExecution(session.submissions[exercise.id]);
   else $('#examConsole').innerHTML = '<span class="muted">Soumets ton code pour voir les tests.</span>';
-  renderQueue();
+  $('#nextExamExercise').textContent = currentIndex === EXERCISE_COUNT - 1
+    ? 'Terminer et voir le récap →'
+    : 'Exercice suivant →';
+  updateSessionStats();
 }
 
 function appendOutput(label, content, type = '') {
@@ -190,9 +168,10 @@ function createSession(exercises) {
   $('#examSetup').hidden = true;
   $('#examRecap').hidden = true;
   $('#examSession').hidden = false;
+  currentIndex = 0;
   updateTimer();
   updateSessionStats();
-  selectExercise(0);
+  showCurrentExercise();
   clearInterval(timerInterval);
   timerInterval = setInterval(updateTimer, 250);
 }
@@ -206,7 +185,7 @@ function submitCurrentExercise() {
   $('#examStatus').textContent = 'Démarrage de Python…';
   $('#examResultSummary').textContent = 'Exécution…';
   $('#examConsole').textContent = 'Le moteur Python exécute les tests…';
-  renderQueue();
+  $('#nextExamExercise').disabled = true;
   executeExercise(session.code[exercise.id], exercise.cases, {
     timeoutMs: PYTHON_TIMEOUT_MS,
     memoryLimitMB: PYTHON_MEMORY_LIMIT_MB,
@@ -234,8 +213,18 @@ function submitCurrentExercise() {
   }).finally(() => {
     isRunning = false;
     $('#submitExamExercise').disabled = false;
-    if (session && !session.finished) renderQueue();
+    $('#nextExamExercise').disabled = false;
   });
+}
+
+function advanceExercise() {
+  if (!session || session.finished || isRunning) return;
+  if (currentIndex >= EXERCISE_COUNT - 1) {
+    finishExam('completed');
+    return;
+  }
+  currentIndex += 1;
+  showCurrentExercise();
 }
 
 function renderRecap(reason) {
@@ -308,6 +297,7 @@ $('#startExam').addEventListener('click', () => {
   createSession(exercises);
 });
 $('#submitExamExercise').addEventListener('click', submitCurrentExercise);
+$('#nextExamExercise').addEventListener('click', advanceExercise);
 $('#finishExam').addEventListener('click', () => finishExam('manual'));
 $('#newExam').addEventListener('click', resetExam);
 

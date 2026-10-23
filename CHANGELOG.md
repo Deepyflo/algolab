@@ -6,6 +6,7 @@ Historique reconstitué à partir des demandes et de l’état actuel du projet.
 
 - Ajout d’une page de simulation d’examen accessible depuis l’interface principale.
 - Choix entre un tirage aléatoire de cinq simulations et une sélection manuelle de cinq exercices.
+- Affichage d’un seul exercice à la fois ; progression uniquement vers l’avant, sans liste révélant les sujets suivants ni retour aux exercices déjà passés.
 - Ajout d’un chronomètre global de 60 ou 75 minutes, avec fin automatique à l’expiration.
 - Affichage du nombre de tests réussis sur le total de la session et du nombre d’exercices déjà évalués.
 - Ajout d’un récapitulatif final avec temps écoulé, score global, seuil de réussite et détail des résultats par exercice.

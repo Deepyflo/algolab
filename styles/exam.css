@@ -77,22 +77,12 @@
 .finish-exam { border-color: #67453a; background: #2d211c; color: #eab39b; }
 .finish-exam:hover { border-color: var(--danger); background: #39251f; }
 
-.exam-layout { display: grid; min-height: 0; flex: 1; grid-template-columns: 205px minmax(230px, .85fr) minmax(380px, 1.25fr); gap: 9px; }
-.exam-queue-panel, .exam-prompt, .exam-workspace { min-width: 0; min-height: 0; border: 1px solid #403a30; border-radius: 11px 8px 11px 7px; background: #201e19; }
-.exam-queue-panel { overflow: auto; padding: 11px 9px; }
-.queue-heading { display: flex; justify-content: space-between; margin: 2px 4px 9px; color: #cfc3b0; font-size: 9px; font-weight: 700; }
-.queue-heading span:last-child { color: #a48e6a; font: 9px var(--mono); }
-.exam-queue { display: grid; gap: 5px; }
-.queue-item { display: flex; min-width: 0; align-items: center; gap: 8px; padding: 9px 7px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: #c7beaf; text-align: left; cursor: pointer; }
-.queue-item:hover:not(:disabled) { background: #2a271f; }
-.queue-item.is-current { border-color: #5b4330; background: #30271e; }
-.queue-item:disabled { cursor: wait; }
-.queue-number { color: #a38d68; font: 9px var(--mono); }
-.queue-copy { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 3px; }
-.queue-copy b { overflow: hidden; color: #e1d7c8; font-size: 9px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
-.queue-copy small { color: #9f9688; font: 8px var(--mono); }
-.queue-check { color: #827969; font-size: 11px; }
-.queue-item.is-submitted .queue-check { color: var(--success); }
+.exam-progress { display: grid; height: 4px; flex: none; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; }
+.progress-segment { border-radius: 999px; background: #403a30; }
+.progress-segment.is-complete { background: #99734c; }
+.progress-segment.is-current { background: var(--accent); }
+.exam-layout { display: grid; min-height: 0; flex: 1; grid-template-columns: minmax(250px, .8fr) minmax(390px, 1.2fr); gap: 9px; }
+.exam-prompt, .exam-workspace { min-width: 0; min-height: 0; border: 1px solid #403a30; border-radius: 11px 8px 11px 7px; background: #201e19; }
 .exam-prompt { overflow: auto; padding: 19px 17px; }
 .exam-prompt .crumb { margin-bottom: 13px; font-size: 8px; }
 .exam-prompt h1 { margin-bottom: 13px; font-size: clamp(19px, 1.8vw, 26px); overflow-wrap: anywhere; }
@@ -100,6 +90,9 @@
 
 .exam-workspace { display: flex; overflow: hidden; flex-direction: column; background: #171613; }
 .exam-editor-bar { display: flex; min-height: 42px; flex: none; align-items: center; gap: 8px; padding: 5px 9px; border-bottom: 1px solid #393328; background: #24211b; }
+.next-exercise { border-color: #705438; background: #30281d; color: #f0d28e; }
+.next-exercise:hover:not(:disabled) { border-color: var(--gold); background: #3a3021; color: #ffe8b2; }
+.next-exercise:disabled { opacity: .45; cursor: wait; }
 .exam-file { overflow: hidden; color: #d1c5b5; font: 9px var(--mono); text-overflow: ellipsis; white-space: nowrap; }
 .exam-file > span { color: #eee0cc; }
 .exam-editor-wrap { min-height: 170px; overflow: hidden; flex: 1; background: #171613; }
@@ -147,9 +140,7 @@
   .exam-session { height: auto; }
   .session-toolbar { flex-wrap: wrap; }
   .session-stats { margin-left: auto; }
-  .exam-layout { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; }
-  .exam-queue-panel { grid-column: 1 / -1; max-height: 150px; }
-  .exam-queue { grid-template-columns: repeat(5, minmax(110px, 1fr)); }
+  .exam-layout { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); grid-template-rows: auto auto; }
   .exam-prompt { min-height: 280px; }
   .exam-workspace { min-height: 70vh; grid-column: 1 / -1; }
   .exam-editor-wrap { min-height: 340px; flex: 1; }
@@ -166,8 +157,7 @@
   .setup-launch > div { min-width: calc(100% - 65px); }
   .start-exam { width: 100%; justify-content: center; }
   .exam-layout { grid-template-columns: 1fr; }
-  .exam-queue-panel, .exam-workspace { grid-column: auto; }
-  .exam-queue { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .exam-workspace { grid-column: auto; }
   .exam-prompt { min-height: auto; max-height: 45vh; }
   .session-toolbar { gap: 8px; }
   .session-heading { min-width: auto; }
