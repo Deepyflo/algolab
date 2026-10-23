@@ -157,9 +157,7 @@
   .exam-session { height: auto; }
   .session-toolbar { flex-wrap: wrap; }
   .session-stats { margin-left: auto; }
-  .exam-layout { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; }
-  .exam-queue-panel { grid-column: 1 / -1; max-height: 150px; }
-  .exam-queue { grid-template-columns: repeat(5, minmax(110px, 1fr)); }
+  .exam-layout { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); grid-template-rows: auto auto; }
   .exam-prompt { min-height: 280px; }
   .exam-workspace { min-height: 70vh; grid-column: 1 / -1; }
   .exam-editor-wrap { min-height: 340px; flex: 1; }
@@ -177,8 +175,6 @@
   .start-exam { width: 100%; justify-content: center; }
   .exam-layout { grid-template-columns: 1fr; }
   .exam-workspace { grid-column: auto; }
-  .exam-queue-panel, .exam-workspace { grid-column: auto; }
-  .exam-queue { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .exam-prompt { min-height: auto; max-height: 45vh; }
   .session-toolbar { gap: 8px; }
   .session-heading { min-width: auto; }
