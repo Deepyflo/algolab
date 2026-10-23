@@ -54,6 +54,15 @@ Historique reconstitué à partir des demandes et de l’état actuel du projet.
 - Un exercice est compté comme terminé lorsque tous ses tests sont réussis ; le compteur suit les validations enregistrées et se met à jour après une soumission ou l’effacement de la progression.
 - Le compteur est limité à la page d’entraînement et n’apparaît pas dans la simulation d’examen.
 
+## [0.10.0] — 2026-10-23 — Simulation d’examen blanc
+
+- Ajout d’une page de simulation d’examen accessible depuis l’interface principale.
+- Choix entre un tirage aléatoire de cinq exercices de la catégorie `simulation` et une sélection manuelle de cinq exercices.
+- Affichage d’un seul exercice à la fois ; progression uniquement vers l’avant, sans liste révélant les sujets suivants ni retour aux exercices déjà passés.
+- Ajout d’un chronomètre global de 60 ou 75 minutes, avec fin automatique à l’expiration.
+- Affichage du nombre de tests réussis sur le total de la session et du nombre d’exercices déjà évalués.
+- Ajout d’un récapitulatif final avec temps écoulé, score global, seuil de réussite et détail des résultats par exercice.
+
 ## [0.9.0] — 2026-10-23 — Identité visuelle AlgoLab
 
 - Refonte des pages d’entraînement et de gestion des exercices pour une interface moins générique et plus personnelle.
