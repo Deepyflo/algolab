@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulation d’examen — AlgoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css?v=2026-10-23-dark-personal">
+  <link rel="stylesheet" href="styles/editor.css?v=2026-10-23-dark-personal">
+  <link rel="stylesheet" href="styles/exam.css?v=2026-10-23-exam-session">
+</head>
+<body class="exam-page">
+  <div class="app">
+    <header class="top">
+      <a class="brand" href="index.html" aria-label="AlgoLab, accueil"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>algo<b>lab</b></span></a>
+      <div class="sub">Simulation d’examen</div><div class="grow"></div>
+      <div class="pill exam-target">5 exercices <i>·</i> 60–75 min <i>·</i> &gt;80 %</div>
+      <a class="btn back-link" href="index.html">← Entraînement</a>
+    </header>
+
+    <main class="exam-main">
+      <section id="examSetup" class="exam-setup">
+        <div class="exam-intro">
+          <div class="crumb">ENTRAÎNEMENT <span> / <b>EXAMEN BLANC</b></span></div>
+          <h1>Une session comme le jour J</h1>
+          <p>Cinq exercices, un temps limité et un bilan à la fin. Choisis ton format et concentre-toi sur ta méthode.</p>
+        </div>
+
+        <div class="setup-grid">
+          <section class="setup-card setup-options">
+            <fieldset class="mode-fieldset">
+              <legend>Choix des exercices</legend>
+              <div class="mode-switch">
+                <label class="mode-option"><input type="radio" name="examMode" value="random" checked><span class="mode-icon">⤨</span><span><b>5 au hasard</b><small>Un tirage parmi les simulations</small></span></label>
+                <label class="mode-option"><input type="radio" name="examMode" value="manual"><span class="mode-icon">☷</span><span><b>5 spécifiés</b><small>Tu choisis les exercices</small></span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="duration-fieldset">
+              <legend>Temps total</legend>
+              <div class="duration-options">
+                <label><input type="radio" name="examDuration" value="60"><span>60 min</span></label>
+                <label><input type="radio" name="examDuration" value="75" checked><span>75 min</span></label>
+              </div>
+              <p class="setup-note">Le chronomètre démarre au lancement et s’arrête automatiquement à zéro.</p>
+            </fieldset>
+
+            <div class="setup-summary"><span class="summary-spark">✳</span><p><b>Objectif</b><br>Dépasser 80 % des tests sur la session complète.</p></div>
+            <div id="setupError" class="setup-error" role="alert"></div>
+          </section>
+
+          <section id="manualPicker" class="setup-card manual-picker" hidden>
+            <div class="picker-heading"><div><h2>Compose ta session</h2><p>Choisis exactement cinq simulations.</p></div><span id="selectionCount" class="pill">0 / 5</span></div>
+            <div id="exerciseChoices" class="exercise-choices" aria-label="Exercices disponibles"></div>
+          </section>
+
+          <section class="setup-card setup-launch">
+            <span class="launch-number">5</span>
+            <div><h2>Prêt à te lancer ?</h2><p>Les exercices peuvent être soumis plusieurs fois. Le récapitulatif gardera ton dernier résultat pour chacun.</p></div>
+            <button id="startExam" class="btn run start-exam" type="button" disabled>Lancer la simulation <span aria-hidden="true">→</span></button>
+            <a class="setup-return" href="index.html">Continuer l’entraînement classique</a>
+          </section>
+        </div>
+      </section>
+
+      <section id="examSession" class="exam-session" hidden>
+        <div class="session-toolbar">
+          <div class="session-heading"><span class="session-kicker">EXAMEN BLANC</span><strong id="sessionExerciseCount">Exercice 1 / 5</strong></div>
+          <div class="session-stats">
+            <div class="session-stat timer-stat"><span>Temps restant</span><strong id="examTimer">75:00</strong></div>
+            <div class="session-stat"><span>Tests réussis</span><strong id="examTestScore">0 / 0</strong></div>
+          </div>
+          <button id="finishExam" class="btn finish-exam" type="button">Terminer l’examen</button>
+        </div>
+        <div id="examProgress" class="exam-progress" role="progressbar" aria-label="Progression de la simulation" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"></div>
+        <div class="exam-layout">
+          <section class="exam-prompt">
+            <div class="crumb">SIMULATION <span> / <b id="examPosition">EXERCICE 1</b></span></div>
+            <h1 id="examTitle">Chargement…</h1>
+            <div id="examDescription" class="exam-description"></div>
+          </section>
+          <section class="exam-workspace">
+            <div class="exam-editor-bar">
+              <span class="exam-file">&lt;/&gt; <span id="examFilename">solution.py</span></span>
+              <div class="grow"></div><span id="examStatus" class="foot">À toi de jouer</span>
+              <button id="submitExamExercise" class="btn run" type="button">Soumettre</button>
+              <button id="nextExamExercise" class="btn next-exercise" type="button">Exercice suivant →</button>
+            </div>
+            <div class="exam-editor-wrap"><div id="examEditor" class="editor" aria-label="Éditeur Python pour l’examen"></div></div>
+            <div class="consoleHead"><span>▸ &nbsp;SORTIE PYTHON · TESTS</span><div class="spacer"></div><span id="examResultSummary">Non soumis</span></div>
+            <div id="examConsole" class="console"><span class="muted">Soumets ton code pour voir les tests.</span></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="examRecap" class="exam-recap" hidden>
+        <div class="recap-heading"><div class="crumb">ENTRAÎNEMENT <span> / <b>RÉCAPITULATIF</b></span></div><h1 id="recapTitle">Simulation terminée</h1><p id="recapMessage"></p></div>
+        <div id="recapScoreCard" class="recap-score-card">
+          <div class="recap-score-main"><span>Score total</span><strong id="recapScore">0 %</strong><small id="recapTests">0 / 0 tests réussis</small></div>
+          <div class="recap-score-divider"></div>
+          <div class="recap-meta"><span>Temps écoulé</span><strong id="recapTime">00:00</strong></div>
+          <div class="recap-meta"><span>Seuil à dépasser</span><strong id="recapThreshold">0 tests</strong></div>
+        </div>
+        <section class="recap-exercises"><div class="recap-list-heading"><h2>Détail des exercices</h2><span>Dernière soumission par exercice</span></div><div id="recapList" class="recap-list"></div></section>
+        <div class="recap-actions"><a class="btn" href="index.html">Retour aux exercices</a><button id="newExam" class="btn run" type="button">Nouvelle simulation</button></div>
+      </section>
+    </main>
+  </div>
+
+  <template id="choiceTemplate">
+    <label class="choice-row"><input type="checkbox"><span class="choice-number"></span><span class="choice-copy"><b></b><small></small></span><span class="choice-check">✓</span></label>
+  </template>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+  <script type="module" src="scripts/exam-session.js?v=2026-10-23-exam-session"></script>
+</body>
+</html>

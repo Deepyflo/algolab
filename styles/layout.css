@@ -100,6 +100,8 @@
 .btn:active { transform: translateY(1px); }
 .clear-submissions { border-color: #67453a; background: #2d211c; color: #eab39b; }
 .clear-submissions:hover { border-color: var(--accent); background: #3a271e; color: #ffd2b9; }
+.exam-link { border-color: #705438; background: #30281d; color: #f0d28e; text-decoration: none; }
+.exam-link:hover { border-color: var(--gold); background: #3a3021; color: #ffe8b2; }
 
 .add-exercise {
   display: flex;
