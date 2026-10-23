@@ -11,6 +11,12 @@ Historique reconstitué à partir des demandes et de l’état actuel du projet.
 - Affichage du nombre de tests réussis sur le total de la session et du nombre d’exercices déjà évalués.
 - Ajout d’un récapitulatif final avec temps écoulé, score global, seuil de réussite et détail des résultats par exercice.
 
+## [0.11.0] — 2026-10-23 — Progression en entraînement
+
+- Ajout dans l’en-tête du mode entraînement d’un compteur d’exercices terminés sur le total disponible.
+- Un exercice est compté comme terminé lorsque tous ses tests sont réussis ; le compteur suit les validations enregistrées et se met à jour après une soumission ou l’effacement de la progression.
+- Le compteur est limité à la page d’entraînement et n’apparaît pas dans la simulation d’examen.
+
 ## [0.9.0] — 2026-10-23 — Identité visuelle AlgoLab
 
 - Refonte des pages d’entraînement et de gestion des exercices pour une interface moins générique et plus personnelle.

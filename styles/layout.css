@@ -82,6 +82,7 @@
 .language-pill { border-color: #514536; color: #f0c978; }
 .language-pill span { width: 6px; height: 6px; border-radius: 50%; background: var(--success); }
 .count-pill { color: #c6bfb2; }
+.training-progress { border-color: #426044; background: #20291f; color: #b8d8ae; font-weight: 600; }
 
 .btn {
   padding: 7px 11px;

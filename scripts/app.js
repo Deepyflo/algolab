@@ -23,6 +23,13 @@ function renderNav() {
   renderNavigation({ exercises, current, done: progress.done, query: $('#search').value, onSelect: selectExercise });
 }
 
+function updateTrainingProgress() {
+  const completed = exercises.filter(exercise => progress.done[exercise.id]).length;
+  const badge = $('#trainingProgress');
+  badge.textContent = `Terminés ${completed} / ${exercises.length}`;
+  badge.setAttribute('aria-label', `${completed} exercice${completed === 1 ? '' : 's'} terminé${completed === 1 ? '' : 's'} sur ${exercises.length}`);
+}
+
 function updateTimerDisplay() {
   if (!current) return;
   const metric = metricFor(current.id);
@@ -143,6 +150,7 @@ function showResults(execution, total) {
     progress.done[current.id] = true;
     saveDone(progress.done);
     renderNav();
+    updateTrainingProgress();
   }
 }
 
@@ -182,6 +190,7 @@ $('#clearSubmissions').addEventListener('click', () => {
   saveCode(progress.code);
   saveDone(progress.done);
   saveMetrics(progress.metrics);
+  updateTrainingProgress();
 
   if (current) {
     editor.setValue(current.code);
@@ -215,6 +224,7 @@ setInterval(updateTimerDisplay, 250);
 try {
   exercises = await loadExercises();
   $('#count').textContent = `${exercises.length} exercices`;
+  updateTrainingProgress();
   renderNav();
   const requestedId = new URLSearchParams(location.search).get('exercise');
   const selected = exercises.find(exercise => exercise.id === requestedId) ?? exercises[0];
