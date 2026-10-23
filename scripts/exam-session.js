@@ -303,8 +303,8 @@ $('#newExam').addEventListener('click', resetExam);
 
 try {
   const exercises = await loadExercises();
-  pool = exercises.filter(exercise => exercise.folder === 'simulation');
-  if (pool.length < EXERCISE_COUNT) throw new Error('Il faut au moins cinq simulations pour démarrer un examen blanc.');
+  pool = exercises;
+  if (pool.length < EXERCISE_COUNT) throw new Error('Il faut au moins cinq exercices dans la base pour démarrer un examen blanc.');
   renderChoices();
   $('#startExam').disabled = false;
 } catch (error) {

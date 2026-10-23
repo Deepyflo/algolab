@@ -23,7 +23,7 @@ Ouvrez ensuite [http://localhost:8000](http://localhost:8000). L’éditeur Code
 - **Persistance portable des énoncés** : les exercices sont conservés dans [`data/exercises.json`](data/exercises.json) par le serveur local. Ce fichier peut être versionné ou déplacé avec le projet pour retrouver la base sur une autre machine.
 - **Conditions d’examen** : chronomètre individuel par exercice (démarrer, pause, reprendre, remise à zéro), score de tests et indication du nombre de cas requis pour dépasser 80 %.
 - **Progression en entraînement** : compteur d’exercices terminés dans l’en-tête, mis à jour lorsqu’une soumission réussit tous les tests. Il est distinct du score de la simulation d’examen.
-- **Simulation d’examen blanc** : session de cinq simulations tirées au hasard ou choisies manuellement, durée totale de 60 ou 75 minutes, progression séquentielle sans aperçu des exercices suivants, score cumulé et récapitulatif final.
+- **Simulation d’examen blanc** : session de cinq exercices issus de toutes les catégories, tirés au hasard ou choisis manuellement, durée totale de 60 ou 75 minutes, progression séquentielle sans aperçu des sujets suivants, score cumulé et récapitulatif final.
 - **Débogage** : `print()` s’affiche dans la console de résultats avec `stdout` et `stderr`. Les sorties sont bornées pour éviter qu’une boucle de debug ne remplisse toute la mémoire.
 - **Mesures d’exécution** : durée et estimation du pic de mémoire Python, avec limites de temps et mémoire configurables. L’exécution est isolée dans un Worker et peut être interrompue en cas de dépassement du délai.
 - **Complexité indicative** : analyse syntaxique heuristique donnant un ordre de grandeur comme `O(n)` ou `O(n log n)` lorsque le code le permet.
