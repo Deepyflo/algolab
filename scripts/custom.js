@@ -27,7 +27,7 @@ function renderDatabase() {
   list.replaceChildren();
   $('#databaseCount').textContent = `${customExercises.length} exercice${customExercises.length === 1 ? '' : 's'}`;
   $('#databaseStatus').textContent = customExercises.length
-    ? 'Les exercices sont stockés dans data/exercises.json.'
+    ? 'Les exercices intégrés et personnalisés sont chargés depuis leurs fichiers JSON.'
     : 'La base JSON est prête. Elle ne contient encore aucun exercice.';
   if (!customExercises.length) {
     const empty = document.createElement('div');

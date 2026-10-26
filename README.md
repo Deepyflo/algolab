@@ -20,7 +20,7 @@ Ouvrez ensuite [http://localhost:8000](http://localhost:8000). L’éditeur Code
 - **Identité visuelle personnalisée** : interface sombre aux accents orange brûlé et crème, avec une présentation chaleureuse et sobre.
 - **Exercices d’algorithmique** : warmups, drills et simulations, avec code de départ volontairement remis à `TODO: implement` pour pratiquer chaque solution.
 - **Gestion de la base d’exercices** : créer, modifier, supprimer, importer et exporter des exercices depuis la page **Mes exercices**. Chaque exercice comporte un énoncé, du code de départ et des cas de test.
-- **Persistance portable des énoncés** : les exercices sont conservés dans [`data/exercises.json`](data/exercises.json) par le serveur local. Ce fichier peut être versionné ou déplacé avec le projet pour retrouver la base sur une autre machine.
+- **Base d’exercices séparée** : les exercices fournis sont versionnés dans [`data/exercises.json`](data/exercises.json). Les exercices personnalisés sont conservés dans `data/custom-exercises.json`, créé automatiquement et ignoré par Git afin de ne pas publier tes ajouts personnels. L’export/import JSON permet de transférer tes créations entre machines.
 - **Conditions d’examen** : chronomètre individuel par exercice (démarrer, pause, reprendre, remise à zéro), score de tests et indication du nombre de cas requis pour dépasser 80 %.
 - **Progression en entraînement** : compteur d’exercices terminés dans l’en-tête, mis à jour lorsqu’une soumission réussit tous les tests. Il est distinct du score de la simulation d’examen.
 - **Simulation d’examen blanc** : session de cinq exercices issus de toutes les catégories, tirés au hasard ou choisis manuellement, durée totale de 60 ou 75 minutes, progression séquentielle sans aperçu des sujets suivants, score cumulé et récapitulatif final.
@@ -35,11 +35,11 @@ Ouvrez ensuite [http://localhost:8000](http://localhost:8000). L’éditeur Code
 
 La mémoire indiquée correspond aux allocations Python suivies par `tracemalloc` ; elle ne mesure ni tout le navigateur ni le moteur Pyodide. La limite mémoire s’applique à ces allocations suivies. L’analyse de complexité est une heuristique syntaxique : elle ne prouve pas la complexité et peut manquer le coût de fonctions appelées ou la taille réelle des données.
 
-Les brouillons, scores, validations et chronos d’entraînement sont propres au navigateur et enregistrés dans son `localStorage`. La base des énoncés et l’historique des examens sont dans des fichiers JSON du projet ; ils peuvent être transférés avec celui-ci. Les sessions réalisées avant l’ajout de l’historique ne peuvent pas être reconstituées.
+Les brouillons, scores, validations et chronos d’entraînement sont propres au navigateur et enregistrés dans son `localStorage`. La base des exercices intégrés est versionnée. Les exercices personnalisés et l’historique des examens résident dans des fichiers JSON locaux ignorés par Git ; exporte les exercices personnalisés pour les transférer entre machines. Les sessions réalisées avant l’ajout de l’historique ne peuvent pas être reconstituées.
 
 ## Gérer les exercices
 
-Cliquez sur **Mes exercices** pour ouvrir l’interface de gestion. Elle permet de modifier ou supprimer aussi bien les exercices fournis que ceux ajoutés. Les opérations d’import et d’export servent à transférer la base entre machines ; les exercices personnalisés stockés par une ancienne version du navigateur peuvent également être importés.
+Cliquez sur **Mes exercices** pour ouvrir l’interface de gestion. Elle permet de modifier ou supprimer aussi bien les exercices fournis que ceux ajoutés. Les exercices créés ou importés sont stockés dans `data/custom-exercises.json`, un fichier local ignoré par Git. L’API fournit une liste combinée : les exercices personnalisés apparaissent donc aussi dans l’entraînement et peuvent être sélectionnés dans les simulations d’examen. Les opérations d’import et d’export servent à transférer les créations entre machines ; les exercices personnalisés stockés par une ancienne version du navigateur peuvent également être importés.
 
 Pour un cas de test personnalisé, indiquez un appel Python et sa valeur attendue en JSON, par exemple :
 
@@ -52,7 +52,8 @@ Attendu : [5]
 
 ```text
 AlgoLab/
-├── data/exercises.json       # Base d’exercices portable
+├── data/exercises.json       # Base des exercices intégrés, versionnée
+├── data/custom-exercises.json # Exercices personnalisés, généré et ignoré par Git
 ├── data/exam-history.example.json # Base vierge versionnée de l’historique
 ├── data/exam-history.json    # Historique local généré, ignoré par Git
 ├── python/                   # Runner Python et analyse de complexité
@@ -69,7 +70,7 @@ La session d’examen est pilotée par `scripts/exam-session.js` et mise en form
 
 ## Versions
 
-Le projet n’ayant pas encore eu de releases formelles, les numéros ci-dessous sont une **reconstitution rétrospective** des étapes demandées. La version actuelle est estimée à **0.14.1** : les fonctionnalités principales sont présentes, mais l’application reste un outil personnel en évolution.
+Le projet n’ayant pas encore eu de releases formelles, les numéros ci-dessous sont une **reconstitution rétrospective** des étapes demandées. La version actuelle est estimée à **0.15.0** : les fonctionnalités principales sont présentes, mais l’application reste un outil personnel en évolution.
 
 Voir le [changelog complet](CHANGELOG.md). Chaque nouvelle fonctionnalité demandée devra y être ajoutée dans la prochaine version appropriée.
 

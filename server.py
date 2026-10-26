@@ -11,32 +11,55 @@ import uuid
 
 ROOT = Path(__file__).resolve().parent
 DATABASE = ROOT / "data" / "exercises.json"
+CUSTOM_DATABASE = ROOT / "data" / "custom-exercises.json"
 EXAM_HISTORY_DATABASE = ROOT / "data" / "exam-history.json"
 DB_LOCK = Lock()
 MAX_BODY = 2_000_000
 
 
-def read_database():
-    if not DATABASE.exists():
+def read_list_database(path, description):
+    if not path.exists():
         return []
     try:
-        value = json.loads(DATABASE.read_text(encoding="utf-8"))
+        value = json.loads(path.read_text(encoding="utf-8"))
         return value if isinstance(value, list) else []
     except (OSError, json.JSONDecodeError) as error:
-        raise RuntimeError(f"La base JSON est illisible : {error}") from error
+        raise RuntimeError(f"{description} est illisible : {error}") from error
 
 
-def write_database(exercises):
-    DATABASE.parent.mkdir(parents=True, exist_ok=True)
-    fd, temp_name = tempfile.mkstemp(prefix="exercises-", suffix=".json", dir=DATABASE.parent)
+def write_list_database(path, exercises, prefix):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temp_name = tempfile.mkstemp(prefix=prefix, suffix=".json", dir=path.parent)
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as stream:
             json.dump(exercises, stream, ensure_ascii=False, indent=2)
             stream.write("\n")
-        os.replace(temp_name, DATABASE)
+        os.replace(temp_name, path)
     finally:
         if os.path.exists(temp_name):
             os.unlink(temp_name)
+
+
+def read_database():
+    return read_list_database(DATABASE, "La base des exercices")
+
+
+def write_database(exercises):
+    write_list_database(DATABASE, exercises, "exercises-")
+
+
+def read_custom_database():
+    if not CUSTOM_DATABASE.exists():
+        write_custom_database([])
+    return read_list_database(CUSTOM_DATABASE, "La base des exercices personnalisés")
+
+
+def write_custom_database(exercises):
+    write_list_database(CUSTOM_DATABASE, exercises, "custom-exercises-")
+
+
+def read_all_exercises():
+    return read_database() + read_custom_database()
 
 
 def read_exam_history():
@@ -146,7 +169,7 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
         if path == "/api/exercises":
             try:
                 with DB_LOCK:
-                    return self.send_json(200, read_database())
+                    return self.send_json(200, read_all_exercises())
             except RuntimeError as error:
                 return self.send_json(500, {"error": str(error)})
         return super().do_GET()
@@ -177,7 +200,9 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
                     validate_exercise(exercise)
                 with DB_LOCK:
                     exercises = read_database()
+                    custom_exercises = read_custom_database()
                     existing = {item.get("id"): index for index, item in enumerate(exercises)}
+                    existing_custom = {item.get("id"): index for index, item in enumerate(custom_exercises)}
                     added = 0
                     updated_count = 0
                     for item in imported:
@@ -193,17 +218,26 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
                             "id": exercise_id, "folder": folder, "name": title,
                             "title": title, "statement": item["statement"].strip(),
                             "code": item["code"], "cases": item["cases"],
-                            "custom": bool(item.get("custom", folder == "custom")),
+                            "custom": bool(item.get("custom", folder == "custom" or exercise_id.startswith("custom/"))),
                         }
                         if exercise_id in existing:
                             exercises[existing[exercise_id]] = normalized
                             updated_count += 1
+                        elif exercise_id in existing_custom:
+                            normalized["custom"] = True
+                            custom_exercises[existing_custom[exercise_id]] = normalized
+                            updated_count += 1
                         else:
-                            exercises.insert(0, normalized)
-                            existing = {entry.get("id"): index for index, entry in enumerate(exercises)}
+                            # New imports are user-owned data and stay out of the tracked base.
+                            normalized["custom"] = True
+                            custom_exercises.insert(0, normalized)
+                            existing_custom = {entry.get("id"): index for index, entry in enumerate(custom_exercises)}
                             added += 1
                     write_database(exercises)
+                    write_custom_database(custom_exercises)
                 return self.send_json(200, {"imported": added, "updated": updated_count, "total": len(imported)})
+            except OSError as error:
+                return self.send_json(500, {"error": f"Impossible d’écrire les bases d’exercices : {error}"})
             except (ValueError, json.JSONDecodeError, UnicodeDecodeError, RuntimeError) as error:
                 return self.send_json(400, {"error": str(error)})
         if path != "/api/exercises":
@@ -222,10 +256,12 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
                 "custom": True,
             }
             with DB_LOCK:
-                exercises = read_database()
+                exercises = read_custom_database()
                 exercises.insert(0, exercise)
-                write_database(exercises)
+                write_custom_database(exercises)
             return self.send_json(201, exercise)
+        except OSError as error:
+            return self.send_json(500, {"error": f"Impossible d’écrire les exercices personnalisés : {error}"})
         except (ValueError, json.JSONDecodeError, UnicodeDecodeError, RuntimeError) as error:
             return self.send_json(400, {"error": str(error)})
 
@@ -239,8 +275,13 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
             payload = self.read_json_body()
             validate_exercise(payload)
             with DB_LOCK:
-                exercises = read_database()
+                exercises = read_custom_database()
+                writer = write_custom_database
                 index = next((i for i, item in enumerate(exercises) if item.get("id") == exercise_id), None)
+                if index is None:
+                    exercises = read_database()
+                    writer = write_database
+                    index = next((i for i, item in enumerate(exercises) if item.get("id") == exercise_id), None)
                 if index is None:
                     return self.send_json(404, {"error": "Exercice introuvable."})
                 updated = {
@@ -252,8 +293,10 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
                     "cases": payload["cases"],
                 }
                 exercises[index] = updated
-                write_database(exercises)
+                writer(exercises)
             return self.send_json(200, updated)
+        except OSError as error:
+            return self.send_json(500, {"error": f"Impossible d’écrire la base des exercices : {error}"})
         except (ValueError, json.JSONDecodeError, UnicodeDecodeError, RuntimeError) as error:
             return self.send_json(400, {"error": str(error)})
 
@@ -282,11 +325,18 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
         exercise_id = unquote(path[len(prefix):])
         try:
             with DB_LOCK:
-                exercises = read_database()
+                exercises = read_custom_database()
+                writer = write_custom_database
                 remaining = [item for item in exercises if item.get("id") != exercise_id]
                 if len(remaining) == len(exercises):
+                    exercises = read_database()
+                    writer = write_database
+                    remaining = [item for item in exercises if item.get("id") != exercise_id]
+                if len(remaining) == len(exercises):
                     return self.send_json(404, {"error": "Exercice introuvable."})
-                write_database(remaining)
+                writer(remaining)
+        except OSError as error:
+            return self.send_json(500, {"error": f"Impossible d’écrire la base des exercices : {error}"})
         except RuntimeError as error:
             return self.send_json(500, {"error": str(error)})
         return self.send_json(200, {"deleted": exercise_id})
@@ -296,9 +346,11 @@ def main():
     address = ("127.0.0.1", 8000)
     with DB_LOCK:
         read_exam_history()
+        read_custom_database()
     server = ThreadingHTTPServer(address, AlgoLabHandler)
     print(f"AlgoLab est disponible sur http://localhost:{address[1]}")
-    print(f"Base JSON : {DATABASE}")
+    print(f"Base des exercices : {DATABASE}")
+    print(f"Exercices personnalisés : {CUSTOM_DATABASE}")
     print(f"Historique des examens : {EXAM_HISTORY_DATABASE}")
     try:
         server.serve_forever()
