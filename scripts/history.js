@@ -1,4 +1,4 @@
-import { loadExamHistory } from './exam-history-store.js';
+import { deleteExamRun, loadExamHistory } from './exam-history-store.js';
 import { formatDuration, TARGET_PERCENT } from './exam.js';
 
 const $ = selector => document.querySelector(selector);
@@ -84,7 +84,24 @@ function renderSession(record) {
   const result = create('div', `history-session-result${record.qualified ? ' is-qualified' : ''}`);
   result.append(create('strong', '', formatPercent(record.percent)));
   result.append(create('small', '', `${record.passed} / ${record.total} tests`));
-  heading.append(title, result);
+  const removeButton = create('button', 'history-delete-button', 'Supprimer');
+  removeButton.type = 'button';
+  removeButton.setAttribute('aria-label', `Supprimer la simulation du ${formatDate(record.finishedAt)}`);
+  removeButton.addEventListener('click', async () => {
+    if (!window.confirm('Supprimer définitivement cette simulation de l’historique ?')) return;
+    removeButton.disabled = true;
+    try {
+      await deleteExamRun(record.id);
+      await render();
+    } catch (error) {
+      removeButton.disabled = false;
+      const status = $('#historyStatus');
+      status.textContent = `Impossible de supprimer cette simulation : ${error.message}`;
+      status.classList.add('is-error');
+      status.hidden = false;
+    }
+  });
+  heading.append(title, result, removeButton);
 
   const footer = create('div', 'history-session-meta');
   footer.append(create('span', '', `Durée ${formatDuration(record.elapsedMs)}`));
@@ -106,11 +123,18 @@ function renderSession(record) {
 }
 
 async function render() {
+  const status = $('#historyStatus');
+  status.hidden = false;
+  status.classList.remove('is-error');
+  status.textContent = 'Chargement de l’historique…';
+  $('#historyContent').hidden = true;
   try {
     const records = await loadExamHistory();
     records.sort((left, right) => new Date(right.finishedAt) - new Date(left.finishedAt));
-    $('#historyStatus').hidden = true;
+    status.hidden = true;
     $('#historyContent').hidden = false;
+    $('#exerciseStats').replaceChildren();
+    $('#examHistoryList').replaceChildren();
     if (!records.length) {
       $('#historySessionCount').textContent = '0';
       $('#historyAverage').textContent = '—';
@@ -125,8 +149,8 @@ async function render() {
     const list = $('#examHistoryList');
     list.replaceChildren(...records.map(renderSession));
   } catch (error) {
-    $('#historyStatus').textContent = `Impossible de charger l’historique : ${error.message} Vérifie que le serveur AlgoLab est lancé.`;
-    $('#historyStatus').classList.add('is-error');
+    status.textContent = `Impossible de charger l’historique : ${error.message} Vérifie que le serveur AlgoLab est lancé.`;
+    status.classList.add('is-error');
   }
 }
 

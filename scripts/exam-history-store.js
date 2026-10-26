@@ -29,3 +29,10 @@ export async function saveExamRun(record) {
   });
   return readJsonResponse(response, 'Impossible d’enregistrer cette simulation.');
 }
+
+export async function deleteExamRun(id) {
+  const response = await fetch(`${HISTORY_API}/${encodeURIComponent(id)}`, {
+    method: 'DELETE',
+  });
+  return readJsonResponse(response, 'Impossible de supprimer cette simulation.');
+}

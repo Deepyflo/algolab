@@ -14,6 +14,11 @@ Historique reconstitué à partir des demandes et de l’état actuel du projet.
 - Déplacement du statut d’enregistrement en haut du récapitulatif pour qu’il soit immédiatement visible.
 - Renouvellement de l’URL du module d’examen afin que le navigateur charge le code de sauvegarde après actualisation.
 
+## [0.14.0] — 2026-10-26 — Gestion de l’historique
+
+- Ajout d’un bouton pour supprimer une simulation individuelle depuis la page Historique, après confirmation.
+- Mise à jour immédiate des statistiques et de la liste après suppression.
+
 ## [0.13.0] — 2026-10-26 — Historique des examens
 
 - Ajout d’une page dédiée qui récapitule toutes les simulations terminées, les cinq exercices rencontrés, le score global et la durée.

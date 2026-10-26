@@ -37,6 +37,9 @@
 .history-session-result strong { color: #e8d6b3; font: 16px var(--mono); }
 .history-session-result.is-qualified strong { color: var(--success); }
 .history-session-result small { color: #a79e90; font: 8px var(--mono); }
+.history-delete-button { flex: none; padding: 6px 9px; border: 1px solid #67453a; border-radius: 7px; background: #2d211c; color: #eab39b; font: 9px var(--sans); cursor: pointer; }
+.history-delete-button:hover:not(:disabled) { border-color: var(--danger); background: #39251f; }
+.history-delete-button:disabled { opacity: .55; cursor: wait; }
 .history-session-meta { display: flex; gap: 14px; padding: 8px 15px; border-bottom: 1px solid #39342b; color: #a79e90; font: 8px var(--mono); }
 .history-session-exercises { display: grid; }
 .history-exercise { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; gap: 9px; min-height: 34px; padding: 6px 15px; border-bottom: 1px solid #302d27; }

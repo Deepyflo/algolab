@@ -259,6 +259,23 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
 
     def do_DELETE(self):
         path = urlsplit(self.path).path
+        history_prefix = "/api/exam-history/"
+        if path.startswith(history_prefix):
+            record_id = unquote(path[len(history_prefix):]).strip()
+            if not record_id:
+                return self.send_json(400, {"error": "Identifiant de simulation manquant."})
+            try:
+                with DB_LOCK:
+                    history = read_exam_history()
+                    remaining = [item for item in history if item.get("id") != record_id]
+                    if len(remaining) == len(history):
+                        return self.send_json(404, {"error": "Simulation introuvable dans l’historique."})
+                    write_exam_history(remaining)
+                return self.send_json(200, {"deleted": record_id})
+            except OSError as error:
+                return self.send_json(500, {"error": f"Impossible de mettre à jour l’historique : {error}"})
+            except RuntimeError as error:
+                return self.send_json(500, {"error": str(error)})
         prefix = "/api/exercises/"
         if not path.startswith(prefix):
             return self.send_error(404, "Route introuvable")
