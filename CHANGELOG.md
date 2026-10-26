@@ -9,6 +9,11 @@ Historique reconstitué à partir des demandes et de l’état actuel du projet.
 - Les réponses HTML inattendues de l’API affichent désormais une erreur explicite dans l’interface au lieu d’une erreur JSON cryptique.
 - Les erreurs d’écriture du fichier sont renvoyées proprement par l’API.
 
+## [0.13.2] — 2026-10-26 — Visibilité de l’enregistrement d’examen
+
+- Déplacement du statut d’enregistrement en haut du récapitulatif pour qu’il soit immédiatement visible.
+- Renouvellement de l’URL du module d’examen afin que le navigateur charge le code de sauvegarde après actualisation.
+
 ## [0.13.0] — 2026-10-26 — Historique des examens
 
 - Ajout d’une page dédiée qui récapitule toutes les simulations terminées, les cinq exercices rencontrés, le score global et la durée.

@@ -68,7 +68,7 @@ La session d’examen est pilotée par `scripts/exam-session.js` et mise en form
 
 ## Versions
 
-Le projet n’ayant pas encore eu de releases formelles, les numéros ci-dessous sont une **reconstitution rétrospective** des étapes demandées. La version actuelle est estimée à **0.13.1** : les fonctionnalités principales sont présentes, mais l’application reste un outil personnel en évolution.
+Le projet n’ayant pas encore eu de releases formelles, les numéros ci-dessous sont une **reconstitution rétrospective** des étapes demandées. La version actuelle est estimée à **0.13.2** : les fonctionnalités principales sont présentes, mais l’application reste un outil personnel en évolution.
 
 Voir le [changelog complet](CHANGELOG.md). Chaque nouvelle fonctionnalité demandée devra y être ajoutée dans la prochaine version appropriée.
 

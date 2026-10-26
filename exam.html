@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css?v=2026-10-23-dark-personal">
   <link rel="stylesheet" href="styles/editor.css?v=2026-10-23-dark-personal">
-  <link rel="stylesheet" href="styles/exam.css?v=2026-10-26-exam-history">
+  <link rel="stylesheet" href="styles/exam.css?v=2026-10-26-exam-history-save-status">
 </head>
 <body class="exam-page">
   <div class="app">
@@ -98,6 +98,7 @@
 
       <section id="examRecap" class="exam-recap" hidden>
         <div class="recap-heading"><div class="crumb">ENTRAÎNEMENT <span> / <b>RÉCAPITULATIF</b></span></div><h1 id="recapTitle">Simulation terminée</h1><p id="recapMessage"></p></div>
+        <p id="historySaveStatus" class="history-save-status" role="status" aria-live="polite"></p>
         <div id="recapScoreCard" class="recap-score-card">
           <div class="recap-score-main"><span>Score total</span><strong id="recapScore">0 %</strong><small id="recapTests">0 / 0 tests réussis</small></div>
           <div class="recap-score-divider"></div>
@@ -105,7 +106,6 @@
           <div class="recap-meta"><span>Seuil à dépasser</span><strong id="recapThreshold">0 tests</strong></div>
         </div>
         <section class="recap-exercises"><div class="recap-list-heading"><h2>Détail des exercices</h2><span>Dernière soumission par exercice</span></div><div id="recapList" class="recap-list"></div></section>
-        <p id="historySaveStatus" class="history-save-status" role="status" aria-live="polite"></p>
         <div class="recap-actions"><a class="btn" href="index.html">Retour aux exercices</a><button id="newExam" class="btn run" type="button">Nouvelle simulation</button></div>
       </section>
     </main>
@@ -115,6 +115,6 @@
     <label class="choice-row"><input type="checkbox"><span class="choice-number"></span><span class="choice-copy"><b></b><small></small></span><span class="choice-check">✓</span></label>
   </template>
   <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
-  <script type="module" src="scripts/exam-session.js?v=2026-10-26-exam-history"></script>
+  <script type="module" src="scripts/exam-session.js?v=2026-10-26-exam-history-save-status"></script>
 </body>
 </html>
