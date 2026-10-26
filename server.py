@@ -41,7 +41,9 @@ def write_database(exercises):
 
 def read_exam_history():
     if not EXAM_HISTORY_DATABASE.exists():
-        return []
+        # The writable history is intentionally local and ignored by Git.
+        # Recreate it from an empty baseline whenever a fresh checkout starts.
+        write_exam_history([])
     try:
         value = json.loads(EXAM_HISTORY_DATABASE.read_text(encoding="utf-8"))
         return value if isinstance(value, list) else []
@@ -162,6 +164,8 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
                     history.append(record)
                     write_exam_history(history)
                 return self.send_json(201, record)
+            except OSError as error:
+                return self.send_json(500, {"error": f"Impossible d’écrire l’historique des examens : {error}"})
             except (ValueError, json.JSONDecodeError, UnicodeDecodeError, RuntimeError) as error:
                 return self.send_json(400, {"error": str(error)})
         if path == "/api/exercises/import":
@@ -273,9 +277,12 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
 
 def main():
     address = ("127.0.0.1", 8000)
+    with DB_LOCK:
+        read_exam_history()
     server = ThreadingHTTPServer(address, AlgoLabHandler)
     print(f"AlgoLab est disponible sur http://localhost:{address[1]}")
     print(f"Base JSON : {DATABASE}")
+    print(f"Historique des examens : {EXAM_HISTORY_DATABASE}")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

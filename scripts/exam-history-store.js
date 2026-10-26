@@ -1,10 +1,23 @@
 const HISTORY_API = './api/exam-history';
 
+async function readJsonResponse(response, fallbackMessage) {
+  const body = await response.text();
+  let payload;
+  try {
+    payload = body ? JSON.parse(body) : null;
+  } catch {
+    throw new Error(
+      `Le serveur a renvoyé une réponse non JSON (HTTP ${response.status}). ` +
+      'Redémarre AlgoLab avec server.py depuis le dossier du projet.'
+    );
+  }
+  if (!response.ok) throw new Error(payload?.error || fallbackMessage);
+  return payload;
+}
+
 export async function loadExamHistory() {
   const response = await fetch(HISTORY_API);
-  const payload = await response.json();
-  if (!response.ok) throw new Error(payload.error || 'Impossible de charger l’historique des examens.');
-  return payload;
+  return readJsonResponse(response, 'Impossible de charger l’historique des examens.');
 }
 
 export async function saveExamRun(record) {
@@ -14,7 +27,5 @@ export async function saveExamRun(record) {
     body: JSON.stringify(record),
     keepalive: true,
   });
-  const payload = await response.json();
-  if (!response.ok) throw new Error(payload.error || 'Impossible d’enregistrer cette simulation.');
-  return payload;
+  return readJsonResponse(response, 'Impossible d’enregistrer cette simulation.');
 }

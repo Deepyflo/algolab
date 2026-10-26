@@ -2,6 +2,13 @@
 
 Historique reconstitué à partir des demandes et de l’état actuel du projet. Le dépôt n’ayant pas encore publié de versions, ces versions `0.x.x` sont des estimations de jalons, pas des releases taguées. La convention suivie : incrément mineur pour une étape fonctionnelle, patch pour une correction ou un petit complément.
 
+## [0.13.1] — 2026-10-26 — Fiabilité de l’historique local
+
+- Le serveur initialise automatiquement `data/exam-history.json` avec une liste vide lorsqu’il manque, à partir de `data/exam-history.example.json` suivi par Git.
+- Le fichier d’historique modifiable est ignoré par Git ; son fichier de base reste versionné.
+- Les réponses HTML inattendues de l’API affichent désormais une erreur explicite dans l’interface au lieu d’une erreur JSON cryptique.
+- Les erreurs d’écriture du fichier sont renvoyées proprement par l’API.
+
 ## [0.13.0] — 2026-10-26 — Historique des examens
 
 - Ajout d’une page dédiée qui récapitule toutes les simulations terminées, les cinq exercices rencontrés, le score global et la durée.
