@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Historique des examens — AlgoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css?v=2026-10-23-dark-personal">
+  <link rel="stylesheet" href="styles/history.css?v=2026-10-26-delete-session">
+</head>
+<body class="history-page">
+  <div class="app">
+    <header class="top">
+      <a class="brand" href="index.html" aria-label="AlgoLab, accueil"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>algo<b>lab</b></span></a>
+      <div class="sub">Historique des examens</div><div class="grow"></div>
+      <a class="btn exam-link" href="exam.html">Nouvel examen</a>
+      <a class="btn back-link" href="index.html">← Entraînement</a>
+    </header>
+
+    <main class="history-main">
+      <section class="history-intro">
+        <div class="crumb">ENTRAÎNEMENT <span> / <b>HISTORIQUE</b></span></div>
+        <h1>Tes simulations</h1>
+        <p>Retrouve les exercices rencontrés et suis tes réussites d’une session à l’autre.</p>
+      </section>
+
+      <p id="historyStatus" class="history-status" role="status" aria-live="polite">Chargement de l’historique…</p>
+
+      <section id="historyContent" hidden>
+        <div class="history-overview" aria-label="Résumé des simulations">
+          <article class="history-stat"><span>Simulations réalisées</span><strong id="historySessionCount">0</strong></article>
+          <article class="history-stat"><span>Score moyen</span><strong id="historyAverage">—</strong></article>
+          <article class="history-stat"><span>Seuil dépassé</span><strong id="historyQualified">0 / 0</strong></article>
+        </div>
+
+        <section class="history-section">
+          <div class="history-section-heading"><div><span class="history-kicker">RÉPÉTITIONS</span><h2>Résultats par exercice</h2></div><small>Réussite = plus de 80 % des tests réussis lors d’une apparition.</small></div>
+          <div id="exerciseStats" class="exercise-stats"></div>
+        </section>
+
+        <section class="history-section">
+          <div class="history-section-heading"><div><span class="history-kicker">CHRONOLOGIE</span><h2>Toutes les simulations</h2></div></div>
+          <div id="examHistoryList" class="exam-history-list"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="scripts/history.js?v=2026-10-26-delete-session"></script>
+</body>
+</html>

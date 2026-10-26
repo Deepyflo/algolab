@@ -103,6 +103,8 @@
 .clear-submissions:hover { border-color: var(--accent); background: #3a271e; color: #ffd2b9; }
 .exam-link { border-color: #705438; background: #30281d; color: #f0d28e; text-decoration: none; }
 .exam-link:hover { border-color: var(--gold); background: #3a3021; color: #ffe8b2; }
+.history-link { border-color: #4c6042; background: #22291f; color: #c3d8b2; text-decoration: none; }
+.history-link:hover { border-color: var(--success); background: #293323; color: #e0f0d2; }
 
 .add-exercise {
   display: flex;

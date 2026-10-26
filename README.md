@@ -24,6 +24,7 @@ Ouvrez ensuite [http://localhost:8000](http://localhost:8000). L’éditeur Code
 - **Conditions d’examen** : chronomètre individuel par exercice (démarrer, pause, reprendre, remise à zéro), score de tests et indication du nombre de cas requis pour dépasser 80 %.
 - **Progression en entraînement** : compteur d’exercices terminés dans l’en-tête, mis à jour lorsqu’une soumission réussit tous les tests. Il est distinct du score de la simulation d’examen.
 - **Simulation d’examen blanc** : session de cinq exercices issus de toutes les catégories, tirés au hasard ou choisis manuellement, durée totale de 60 ou 75 minutes, progression séquentielle sans aperçu des sujets suivants, score cumulé et récapitulatif final.
+- **Historique des examens** : sauvegarde JSON locale de chaque session terminée, avec les exercices tirés, le score, la durée et le taux de réussite de chaque exercice sur ses apparitions répétées. Le code soumis est conservé avec chaque session ; une simulation peut être supprimée individuellement depuis l’historique.
 - **Débogage** : `print()` s’affiche dans la console de résultats avec `stdout` et `stderr`. Les sorties sont bornées pour éviter qu’une boucle de debug ne remplisse toute la mémoire.
 - **Mesures d’exécution** : durée et estimation du pic de mémoire Python, avec limites de temps et mémoire configurables. L’exécution est isolée dans un Worker et peut être interrompue en cas de dépassement du délai.
 - **Complexité indicative** : analyse syntaxique heuristique donnant un ordre de grandeur comme `O(n)` ou `O(n log n)` lorsque le code le permet.
@@ -33,7 +34,7 @@ Ouvrez ensuite [http://localhost:8000](http://localhost:8000). L’éditeur Code
 
 La mémoire indiquée correspond aux allocations Python suivies par `tracemalloc` ; elle ne mesure ni tout le navigateur ni le moteur Pyodide. La limite mémoire s’applique à ces allocations suivies. L’analyse de complexité est une heuristique syntaxique : elle ne prouve pas la complexité et peut manquer le coût de fonctions appelées ou la taille réelle des données.
 
-Les brouillons, scores, validations et chronos sont propres au navigateur et enregistrés dans son `localStorage`. Seule la base d’énoncés est dans le fichier JSON partagé avec le projet. L’effacement global supprime ces données de progression locales.
+Les brouillons, scores, validations et chronos d’entraînement sont propres au navigateur et enregistrés dans son `localStorage`. La base des énoncés et l’historique des examens sont dans des fichiers JSON du projet ; ils peuvent être transférés avec celui-ci. Les sessions réalisées avant l’ajout de l’historique ne peuvent pas être reconstituées.
 
 ## Gérer les exercices
 
@@ -51,12 +52,15 @@ Attendu : [5]
 ```text
 AlgoLab/
 ├── data/exercises.json       # Base d’exercices portable
+├── data/exam-history.example.json # Base vierge versionnée de l’historique
+├── data/exam-history.json    # Historique local généré, ignoré par Git
 ├── python/                   # Runner Python et analyse de complexité
 ├── scripts/                  # Interface, éditeur, navigation et exécution
 ├── styles/                   # Styles séparés par zone de l’interface
 ├── custom.html               # Gestion des exercices
 ├── index.html                # Environnement d’entraînement
 ├── exam.html                 # Simulation d’examen blanc
+├── history.html              # Historique et statistiques d’examen
 └── server.py                 # Serveur local et API JSON
 ```
 
@@ -64,7 +68,7 @@ La session d’examen est pilotée par `scripts/exam-session.js` et mise en form
 
 ## Versions
 
-Le projet n’ayant pas encore eu de releases formelles, les numéros ci-dessous sont une **reconstitution rétrospective** des étapes demandées. La version actuelle est estimée à **0.10.0** : les fonctionnalités principales sont présentes, mais l’application reste un outil personnel en évolution.
+Le projet n’ayant pas encore eu de releases formelles, les numéros ci-dessous sont une **reconstitution rétrospective** des étapes demandées. La version actuelle est estimée à **0.14.0** : les fonctionnalités principales sont présentes, mais l’application reste un outil personnel en évolution.
 
 Voir le [changelog complet](CHANGELOG.md). Chaque nouvelle fonctionnalité demandée devra y être ajoutée dans la prochaine version appropriée.
 

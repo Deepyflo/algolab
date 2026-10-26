@@ -2,6 +2,31 @@
 
 Historique reconstitué à partir des demandes et de l’état actuel du projet. Le dépôt n’ayant pas encore publié de versions, ces versions `0.x.x` sont des estimations de jalons, pas des releases taguées. La convention suivie : incrément mineur pour une étape fonctionnelle, patch pour une correction ou un petit complément.
 
+## [0.13.1] — 2026-10-26 — Fiabilité de l’historique local
+
+- Le serveur initialise automatiquement `data/exam-history.json` avec une liste vide lorsqu’il manque, à partir de `data/exam-history.example.json` suivi par Git.
+- Le fichier d’historique modifiable est ignoré par Git ; son fichier de base reste versionné.
+- Les réponses HTML inattendues de l’API affichent désormais une erreur explicite dans l’interface au lieu d’une erreur JSON cryptique.
+- Les erreurs d’écriture du fichier sont renvoyées proprement par l’API.
+
+## [0.13.2] — 2026-10-26 — Visibilité de l’enregistrement d’examen
+
+- Déplacement du statut d’enregistrement en haut du récapitulatif pour qu’il soit immédiatement visible.
+- Renouvellement de l’URL du module d’examen afin que le navigateur charge le code de sauvegarde après actualisation.
+
+## [0.14.0] — 2026-10-26 — Gestion de l’historique
+
+- Ajout d’un bouton pour supprimer une simulation individuelle depuis la page Historique, après confirmation.
+- Mise à jour immédiate des statistiques et de la liste après suppression.
+
+## [0.13.0] — 2026-10-26 — Historique des examens
+
+- Ajout d’une page dédiée qui récapitule toutes les simulations terminées, les cinq exercices rencontrés, le score global et la durée.
+- Ajout de statistiques par exercice : nombre d’apparitions, nombre et taux de simulations où le seuil strict de 80 % des tests a été dépassé, ainsi que le taux moyen de tests réussis.
+- Persistance des sessions dans `data/exam-history.json` via le serveur local, afin que l’historique puisse être sauvegardé et transféré avec le projet.
+- Conservation du dernier code soumis pour chaque exercice en vue de son affichage dans une PR distincte.
+- Les simulations réalisées avant cette version ne sont pas récupérables.
+
 ## [0.12.0] — 2026-10-23 — Exercices d’examen élargis
 
 - La simulation d’examen pioche désormais dans tous les exercices de la base, y compris les warmups, drills et exercices personnalisés, et plus seulement dans la catégorie `simulation`.
