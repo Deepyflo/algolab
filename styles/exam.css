@@ -83,22 +83,6 @@
 .progress-segment.is-current { background: var(--accent); }
 .exam-layout { display: grid; min-height: 0; flex: 1; grid-template-columns: minmax(250px, .8fr) minmax(390px, 1.2fr); gap: 9px; }
 .exam-prompt, .exam-workspace { min-width: 0; min-height: 0; border: 1px solid #403a30; border-radius: 11px 8px 11px 7px; background: #201e19; }
-.exam-layout { display: grid; min-height: 0; flex: 1; grid-template-columns: 205px minmax(230px, .85fr) minmax(380px, 1.25fr); gap: 9px; }
-.exam-queue-panel, .exam-prompt, .exam-workspace { min-width: 0; min-height: 0; border: 1px solid #403a30; border-radius: 11px 8px 11px 7px; background: #201e19; }
-.exam-queue-panel { overflow: auto; padding: 11px 9px; }
-.queue-heading { display: flex; justify-content: space-between; margin: 2px 4px 9px; color: #cfc3b0; font-size: 9px; font-weight: 700; }
-.queue-heading span:last-child { color: #a48e6a; font: 9px var(--mono); }
-.exam-queue { display: grid; gap: 5px; }
-.queue-item { display: flex; min-width: 0; align-items: center; gap: 8px; padding: 9px 7px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: #c7beaf; text-align: left; cursor: pointer; }
-.queue-item:hover:not(:disabled) { background: #2a271f; }
-.queue-item.is-current { border-color: #5b4330; background: #30271e; }
-.queue-item:disabled { cursor: wait; }
-.queue-number { color: #a38d68; font: 9px var(--mono); }
-.queue-copy { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 3px; }
-.queue-copy b { overflow: hidden; color: #e1d7c8; font-size: 9px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
-.queue-copy small { color: #9f9688; font: 8px var(--mono); }
-.queue-check { color: #827969; font-size: 11px; }
-.queue-item.is-submitted .queue-check { color: var(--success); }
 .exam-prompt { overflow: auto; padding: 19px 17px; }
 .exam-prompt .crumb { margin-bottom: 13px; font-size: 8px; }
 .exam-prompt h1 { margin-bottom: 13px; font-size: clamp(19px, 1.8vw, 26px); overflow-wrap: anywhere; }
@@ -150,7 +134,7 @@
 .history-save-status { min-height: 12px; margin: 9px 0 0; color: #a79e90; font-size: 9px; }
 
 @media (max-width: 1050px) {
-  .exam-layout { grid-template-columns: 175px minmax(210px, .8fr) minmax(340px, 1.2fr); }
+  .exam-layout { grid-template-columns: minmax(210px, .8fr) minmax(0, 1.2fr); }
   .session-toolbar { gap: 9px; }
   .session-stat { min-width: 100px; padding-right: 6px; padding-left: 8px; }
 }
