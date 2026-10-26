@@ -2,6 +2,12 @@
 
 Historique reconstitué à partir des demandes et de l’état actuel du projet. Le dépôt n’ayant pas encore publié de versions, ces versions `0.x.x` sont des estimations de jalons, pas des releases taguées. La convention suivie : incrément mineur pour une étape fonctionnelle, patch pour une correction ou un petit complément.
 
+## [0.14.1] — 2026-10-26 — Correction de la mise en page d’examen
+
+- Supprime les anciennes règles CSS de la file d’exercices et restaure la grille à deux colonnes de l’examen séquentiel.
+- Supprime le statut d’enregistrement dupliqué dans le récapitulatif.
+- Renouvelle l’URL du CSS pour éviter de conserver l’ancienne mise en page en cache.
+
 ## [0.14.0] — 2026-10-26 — Gestion de l’historique
 
 - Ajout d’un bouton pour supprimer une simulation individuelle depuis la page Historique, après confirmation.
