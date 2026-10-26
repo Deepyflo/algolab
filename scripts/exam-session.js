@@ -263,6 +263,19 @@ function renderRecap(reason) {
     status.className = 'recap-row-status';
     status.textContent = result ? result.status : 'À revoir';
     row.append(number, name, score, status);
+    if (result) {
+      const codeDetails = document.createElement('details');
+      codeDetails.className = 'recap-code';
+      codeDetails.open = true;
+      const codeSummary = document.createElement('summary');
+      codeSummary.textContent = 'Code de la dernière soumission';
+      const codeBlock = document.createElement('pre');
+      const code = document.createElement('code');
+      code.textContent = result.code ?? 'Code indisponible pour cette soumission.';
+      codeBlock.append(code);
+      codeDetails.append(codeSummary, codeBlock);
+      row.append(codeDetails);
+    }
     list.append(row);
   });
 }
