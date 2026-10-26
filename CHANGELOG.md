@@ -2,6 +2,14 @@
 
 Historique reconstitué à partir des demandes et de l’état actuel du projet. Le dépôt n’ayant pas encore publié de versions, ces versions `0.x.x` sont des estimations de jalons, pas des releases taguées. La convention suivie : incrément mineur pour une étape fonctionnelle, patch pour une correction ou un petit complément.
 
+## [0.13.0] — 2026-10-26 — Historique des examens
+
+- Ajout d’une page dédiée qui récapitule toutes les simulations terminées, les cinq exercices rencontrés, le score global et la durée.
+- Ajout de statistiques par exercice : nombre d’apparitions, nombre et taux de simulations où le seuil strict de 80 % des tests a été dépassé, ainsi que le taux moyen de tests réussis.
+- Persistance des sessions dans `data/exam-history.json` via le serveur local, afin que l’historique puisse être sauvegardé et transféré avec le projet.
+- Conservation du dernier code soumis pour chaque exercice en vue de son affichage dans une PR distincte.
+- Les simulations réalisées avant cette version ne sont pas récupérables.
+
 ## [0.12.0] — 2026-10-23 — Exercices d’examen élargis
 
 - La simulation d’examen pioche désormais dans tous les exercices de la base, y compris les warmups, drills et exercices personnalisés, et plus seulement dans la catégorie `simulation`.

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css?v=2026-10-23-dark-personal">
   <link rel="stylesheet" href="styles/editor.css?v=2026-10-23-dark-personal">
-  <link rel="stylesheet" href="styles/exam.css?v=2026-10-23-exam-session">
+  <link rel="stylesheet" href="styles/exam.css?v=2026-10-26-exam-history">
 </head>
 <body class="exam-page">
   <div class="app">
@@ -17,6 +17,7 @@
       <a class="brand" href="index.html" aria-label="AlgoLab, accueil"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>algo<b>lab</b></span></a>
       <div class="sub">Simulation d’examen</div><div class="grow"></div>
       <div class="pill exam-target">5 exercices <i>·</i> 60–75 min <i>·</i> &gt;80 %</div>
+      <a class="btn back-link" href="history.html">Historique</a>
       <a class="btn back-link" href="index.html">← Entraînement</a>
     </header>
 
@@ -104,6 +105,7 @@
           <div class="recap-meta"><span>Seuil à dépasser</span><strong id="recapThreshold">0 tests</strong></div>
         </div>
         <section class="recap-exercises"><div class="recap-list-heading"><h2>Détail des exercices</h2><span>Dernière soumission par exercice</span></div><div id="recapList" class="recap-list"></div></section>
+        <p id="historySaveStatus" class="history-save-status" role="status" aria-live="polite"></p>
         <div class="recap-actions"><a class="btn" href="index.html">Retour aux exercices</a><button id="newExam" class="btn run" type="button">Nouvelle simulation</button></div>
       </section>
     </main>
@@ -113,6 +115,6 @@
     <label class="choice-row"><input type="checkbox"><span class="choice-number"></span><span class="choice-copy"><b></b><small></small></span><span class="choice-check">✓</span></label>
   </template>
   <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
-  <script type="module" src="scripts/exam-session.js?v=2026-10-23-exam-all-exercises"></script>
+  <script type="module" src="scripts/exam-session.js?v=2026-10-26-exam-history"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@ import { loadExercises } from './catalog.js';
 import { createEditor } from './editor.js';
 import { executeExercise } from './runner.js';
 import { formatDuration, minimumPassingCount, TARGET_PERCENT } from './exam.js';
+import { saveExamRun } from './exam-history-store.js';
 
 const $ = selector => document.querySelector(selector);
 const EXERCISE_COUNT = 5;
@@ -195,6 +196,7 @@ function submitCurrentExercise() {
     session.submissions[exercise.id] = {
       passed,
       total: exercise.cases.length,
+      code: session.code[exercise.id],
       results: execution.results,
       stdout: execution.stdout,
       stderr: execution.stderr,
@@ -265,14 +267,52 @@ function renderRecap(reason) {
   });
 }
 
+function createHistoryRecord(reason) {
+  const passed = Object.values(session.submissions).reduce((sum, result) => sum + result.passed, 0);
+  const total = session.exercises.reduce((sum, exercise) => sum + exercise.cases.length, 0);
+  const percent = total ? passed / total * 100 : 0;
+  const finishedAt = Date.now();
+  return {
+    id: globalThis.crypto?.randomUUID?.() || `${finishedAt}-${Math.random().toString(36).slice(2)}`,
+    startedAt: new Date(session.startedAt).toISOString(),
+    finishedAt: new Date(finishedAt).toISOString(),
+    durationMs: session.durationMs,
+    elapsedMs: Math.min(session.durationMs, finishedAt - session.startedAt),
+    reason,
+    passed,
+    total,
+    percent,
+    qualified: percent > TARGET_PERCENT,
+    exercises: session.exercises.map(exercise => {
+      const result = session.submissions[exercise.id];
+      const exercisePercent = result?.total ? result.passed / result.total * 100 : 0;
+      return {
+        exerciseId: exercise.id,
+        name: exercise.name,
+        folder: exercise.folder,
+        passed: result?.passed ?? 0,
+        total: exercise.cases.length,
+        percent: exercisePercent,
+        qualified: exercisePercent > TARGET_PERCENT,
+        submittedCode: result?.code ?? null,
+      };
+    }),
+  };
+}
+
 function finishExam(reason = 'manual') {
   if (!session || session.finished) return;
   if (reason === 'manual' && !window.confirm('Terminer cette simulation et afficher le récapitulatif ?')) return;
+  const historyRecord = createHistoryRecord(reason);
   session.finished = true;
   clearInterval(timerInterval);
   $('#examSession').hidden = true;
   $('#examRecap').hidden = false;
   renderRecap(reason);
+  $('#historySaveStatus').textContent = 'Enregistrement de la simulation…';
+  saveExamRun(historyRecord)
+    .then(() => { $('#historySaveStatus').textContent = 'Simulation ajoutée à l’historique.'; })
+    .catch(error => { $('#historySaveStatus').textContent = `Historique non enregistré : ${error.message}`; });
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 

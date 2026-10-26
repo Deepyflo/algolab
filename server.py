@@ -4,12 +4,14 @@ from pathlib import Path
 from threading import Lock
 from urllib.parse import unquote, urlsplit
 import json
+import math
 import os
 import tempfile
 import uuid
 
 ROOT = Path(__file__).resolve().parent
 DATABASE = ROOT / "data" / "exercises.json"
+EXAM_HISTORY_DATABASE = ROOT / "data" / "exam-history.json"
 DB_LOCK = Lock()
 MAX_BODY = 2_000_000
 
@@ -35,6 +37,67 @@ def write_database(exercises):
     finally:
         if os.path.exists(temp_name):
             os.unlink(temp_name)
+
+
+def read_exam_history():
+    if not EXAM_HISTORY_DATABASE.exists():
+        return []
+    try:
+        value = json.loads(EXAM_HISTORY_DATABASE.read_text(encoding="utf-8"))
+        return value if isinstance(value, list) else []
+    except (OSError, json.JSONDecodeError) as error:
+        raise RuntimeError(f"L’historique des examens est illisible : {error}") from error
+
+
+def write_exam_history(history):
+    EXAM_HISTORY_DATABASE.parent.mkdir(parents=True, exist_ok=True)
+    fd, temp_name = tempfile.mkstemp(prefix="exam-history-", suffix=".json", dir=EXAM_HISTORY_DATABASE.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as stream:
+            json.dump(history, stream, ensure_ascii=False, indent=2)
+            stream.write("\n")
+        os.replace(temp_name, EXAM_HISTORY_DATABASE)
+    finally:
+        if os.path.exists(temp_name):
+            os.unlink(temp_name)
+
+
+def validate_exam_record(payload):
+    if not isinstance(payload, dict):
+        raise ValueError("La simulation doit être un objet JSON.")
+    if not isinstance(payload.get("id"), str) or not payload["id"].strip():
+        raise ValueError("Identifiant de simulation invalide.")
+    for key in ("startedAt", "finishedAt"):
+        if not isinstance(payload.get(key), str) or not payload[key].strip():
+            raise ValueError(f"Date {key} invalide.")
+    for key in ("durationMs", "elapsedMs", "passed", "total"):
+        if not isinstance(payload.get(key), int) or isinstance(payload[key], bool) or payload[key] < 0:
+            raise ValueError(f"Valeur {key} invalide.")
+    percent = payload.get("percent")
+    if not isinstance(percent, (int, float)) or isinstance(percent, bool) or not math.isfinite(percent) or not 0 <= percent <= 100:
+        raise ValueError("Taux de réussite invalide.")
+    if not isinstance(payload.get("qualified"), bool) or payload.get("reason") not in {"completed", "manual", "timeout"}:
+        raise ValueError("Résultat de simulation invalide.")
+    exercises = payload.get("exercises")
+    if not isinstance(exercises, list) or len(exercises) != 5:
+        raise ValueError("Une simulation doit contenir cinq exercices.")
+    for exercise in exercises:
+        if not isinstance(exercise, dict):
+            raise ValueError("Exercice invalide dans la simulation.")
+        for key in ("exerciseId", "name"):
+            if not isinstance(exercise.get(key), str) or not exercise[key].strip():
+                raise ValueError(f"Champ {key} manquant dans la simulation.")
+        for key in ("passed", "total"):
+            if not isinstance(exercise.get(key), int) or isinstance(exercise[key], bool) or exercise[key] < 0:
+                raise ValueError(f"Valeur {key} invalide pour un exercice.")
+        exercise_percent = exercise.get("percent")
+        if exercise["passed"] > exercise["total"] or not isinstance(exercise_percent, (int, float)) or isinstance(exercise_percent, bool) or not math.isfinite(exercise_percent) or not 0 <= exercise_percent <= 100:
+            raise ValueError("Score invalide pour un exercice.")
+        if not isinstance(exercise.get("qualified"), bool):
+            raise ValueError("Statut de réussite invalide pour un exercice.")
+        code = exercise.get("submittedCode")
+        if code is not None and not isinstance(code, str):
+            raise ValueError("Le code soumis doit être du texte.")
 
 
 def validate_exercise(payload):
@@ -71,7 +134,14 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
         return json.loads(self.rfile.read(length).decode("utf-8"))
 
     def do_GET(self):
-        if urlsplit(self.path).path == "/api/exercises":
+        path = urlsplit(self.path).path
+        if path == "/api/exam-history":
+            try:
+                with DB_LOCK:
+                    return self.send_json(200, read_exam_history())
+            except RuntimeError as error:
+                return self.send_json(500, {"error": str(error)})
+        if path == "/api/exercises":
             try:
                 with DB_LOCK:
                     return self.send_json(200, read_database())
@@ -81,6 +151,19 @@ class AlgoLabHandler(SimpleHTTPRequestHandler):
 
     def do_POST(self):
         path = urlsplit(self.path).path
+        if path == "/api/exam-history":
+            try:
+                record = self.read_json_body()
+                validate_exam_record(record)
+                with DB_LOCK:
+                    history = read_exam_history()
+                    if any(item.get("id") == record["id"] for item in history):
+                        return self.send_json(409, {"error": "Cette simulation figure déjà dans l’historique."})
+                    history.append(record)
+                    write_exam_history(history)
+                return self.send_json(201, record)
+            except (ValueError, json.JSONDecodeError, UnicodeDecodeError, RuntimeError) as error:
+                return self.send_json(400, {"error": str(error)})
         if path == "/api/exercises/import":
             try:
                 imported = self.read_json_body()
