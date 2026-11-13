@@ -6,13 +6,13 @@ const GROUP_LABELS = { custom: '00 — Mes exercices', warmup: '01 — Warmup', 
 
 export async function loadExercises() {
   const response = await fetch('./api/exercises');
-  if (!response.ok) throw new Error('Impossible de lire data/exercises.json. Lance le site avec python3 server.py.');
+  if (!response.ok) throw new Error('Impossible de lire la base des exercices. Lance le site avec python3 server.py.');
   return response.json();
 }
 
 export async function readExerciseDatabase() {
   const response = await fetch('./api/exercises');
-  if (!response.ok) throw new Error('Impossible de lire data/exercises.json.');
+  if (!response.ok) throw new Error('Impossible de lire la base des exercices.');
   return response.json();
 }
 

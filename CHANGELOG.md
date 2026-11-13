@@ -2,6 +2,14 @@
 
 Historique reconstitué à partir des demandes et de l’état actuel du projet. Le dépôt n’ayant pas encore publié de versions, ces versions `0.x.x` sont des estimations de jalons, pas des releases taguées. La convention suivie : incrément mineur pour une étape fonctionnelle, patch pour une correction ou un petit complément.
 
+## [0.15.0] — 2026-10-26 — Nouveaux exercices et stockage local des créations
+
+- Ajout de dix exercices sans doublon : Fizz Buzz, Plus One, Climbing Stairs, Isomorphic Strings, Find First Occurrence, Maximum Subarray, Pivot Index, Happy Number, Merge Sorted Lists et Flood Fill.
+- Chaque exercice possède un squelette à compléter et des cas de test couvrant plusieurs situations limites.
+- Séparation des données : la base intégrée reste dans `data/exercises.json`, tandis que les exercices créés ou importés sont stockés dans `data/custom-exercises.json`.
+- Le serveur crée le fichier personnalisé s’il est absent et combine son contenu avec la base intégrée pour l’entraînement et les simulations d’examen.
+- Le fichier personnalisé est ignoré par Git ; l’export/import JSON reste disponible pour transférer les créations entre machines.
+
 ## [0.14.1] — 2026-10-26 — Correction de la mise en page d’examen
 
 - Supprime les anciennes règles CSS de la file d’exercices et restaure la grille à deux colonnes de l’examen séquentiel.

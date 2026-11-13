@@ -3158,5 +3158,509 @@
       }
     ],
     "path": "/Users/florianrenders/Sites/_Technofutur/TECHNOBEL-PYTHON-ODOO-drill-leetcode/simulation/challenge_34.py"
+  },
+  {
+    "id": "warmup/fizz_buzz",
+    "folder": "warmup",
+    "name": "Fizz Buzz",
+    "title": "FIZZ BUZZ",
+    "statement": "FIZZ BUZZ\nPattern: Conditions and iteration\n\nGiven a positive integer n, return a list of strings from 1 to n. For multiples of 3 use \"Fizz\", for multiples of 5 use \"Buzz\", and for multiples of both use \"FizzBuzz\". Otherwise, use the decimal representation of the number.\n\nExamples:\n    fizz_buzz(5) -> [\"1\", \"2\", \"Fizz\", \"4\", \"Buzz\"]\n    fizz_buzz(15)[-1] -> \"FizzBuzz\"\n\nContract: n is a positive integer.",
+    "code": "def fizz_buzz(n):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "one value",
+        "expr": "fizz_buzz(1)",
+        "expected": [
+          "1"
+        ]
+      },
+      {
+        "label": "three",
+        "expr": "fizz_buzz(3)",
+        "expected": [
+          "1",
+          "2",
+          "Fizz"
+        ]
+      },
+      {
+        "label": "five",
+        "expr": "fizz_buzz(5)",
+        "expected": [
+          "1",
+          "2",
+          "Fizz",
+          "4",
+          "Buzz"
+        ]
+      },
+      {
+        "label": "both rules",
+        "expr": "fizz_buzz(15)[-1]",
+        "expected": "FizzBuzz"
+      },
+      {
+        "label": "multiple of three",
+        "expr": "fizz_buzz(6)[-1]",
+        "expected": "Fizz"
+      },
+      {
+        "label": "multiple of five",
+        "expr": "fizz_buzz(10)[-1]",
+        "expected": "Buzz"
+      }
+    ]
+  },
+  {
+    "id": "warmup/plus_one",
+    "folder": "warmup",
+    "name": "Plus One",
+    "title": "PLUS ONE",
+    "statement": "PLUS ONE\nPattern: Carry propagation\n\nA non-empty list of digits represents a non-negative integer, most significant digit first. Add one and return the resulting digits as a new list.\n\nExamples:\n    plus_one([1, 2, 3]) -> [1, 2, 4]\n    plus_one([9, 9]) -> [1, 0, 0]\n\nContract: every input value is a digit from 0 to 9. Do not mutate the input list.",
+    "code": "def plus_one(digits):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "ordinary increment",
+        "expr": "plus_one([1, 2, 3])",
+        "expected": [
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "label": "carry once",
+        "expr": "plus_one([1, 2, 9])",
+        "expected": [
+          1,
+          3,
+          0
+        ]
+      },
+      {
+        "label": "carry through all digits",
+        "expr": "plus_one([9, 9])",
+        "expected": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "label": "single nine",
+        "expr": "plus_one([9])",
+        "expected": [
+          1,
+          0
+        ]
+      },
+      {
+        "label": "single zero",
+        "expr": "plus_one([0])",
+        "expected": [
+          1
+        ]
+      },
+      {
+        "label": "long number",
+        "expr": "plus_one([4, 3, 2, 1])",
+        "expected": [
+          4,
+          3,
+          2,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "id": "warmup/climbing_stairs",
+    "folder": "warmup",
+    "name": "Climbing Stairs",
+    "title": "CLIMBING STAIRS",
+    "statement": "CLIMBING STAIRS\nPattern: Dynamic programming\n\nYou are climbing a staircase with n steps. Each time you may climb either 1 or 2 steps. Return the number of distinct ways to reach the top.\n\nExamples:\n    climb_stairs(2) -> 2\n    climb_stairs(4) -> 5\n\nContract: n is an integer from 0 to 45. For this exercise, there is one way to climb zero steps.",
+    "code": "def climb_stairs(n):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "zero steps",
+        "expr": "climb_stairs(0)",
+        "expected": 1
+      },
+      {
+        "label": "one step",
+        "expr": "climb_stairs(1)",
+        "expected": 1
+      },
+      {
+        "label": "two steps",
+        "expr": "climb_stairs(2)",
+        "expected": 2
+      },
+      {
+        "label": "three steps",
+        "expr": "climb_stairs(3)",
+        "expected": 3
+      },
+      {
+        "label": "five steps",
+        "expr": "climb_stairs(5)",
+        "expected": 8
+      },
+      {
+        "label": "larger input",
+        "expr": "climb_stairs(20)",
+        "expected": 10946
+      }
+    ]
+  },
+  {
+    "id": "warmup/isomorphic_strings",
+    "folder": "warmup",
+    "name": "Isomorphic Strings",
+    "title": "ISOMORPHIC STRINGS",
+    "statement": "ISOMORPHIC STRINGS\nPattern: Two-way mapping\n\nTwo strings s and t are isomorphic when each character in s can be replaced to get t, while preserving character order. Each character must always map to the same character, and two different characters cannot map to the same character.\n\nExamples:\n    is_isomorphic(\"egg\", \"add\") -> True\n    is_isomorphic(\"foo\", \"bar\") -> False\n\nContract: s and t have equal length and contain arbitrary case-sensitive characters.",
+    "code": "def is_isomorphic(s, t):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "repeated mapping",
+        "expr": "is_isomorphic(\"egg\", \"add\")",
+        "expected": true
+      },
+      {
+        "label": "conflicting mapping",
+        "expr": "is_isomorphic(\"foo\", \"bar\")",
+        "expected": false
+      },
+      {
+        "label": "long valid mapping",
+        "expr": "is_isomorphic(\"paper\", \"title\")",
+        "expected": true
+      },
+      {
+        "label": "reverse collision",
+        "expr": "is_isomorphic(\"ab\", \"cc\")",
+        "expected": false
+      },
+      {
+        "label": "one character",
+        "expr": "is_isomorphic(\"x\", \"a\")",
+        "expected": true
+      },
+      {
+        "label": "both empty",
+        "expr": "is_isomorphic(\"\", \"\")",
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "warmup/find_first_occurrence",
+    "folder": "warmup",
+    "name": "Find First Occurrence",
+    "title": "FIND THE FIRST OCCURRENCE IN A STRING",
+    "statement": "FIND THE FIRST OCCURRENCE IN A STRING\nPattern: String search\n\nGiven strings haystack and needle, return the index of the first occurrence of needle in haystack, or -1 if needle does not occur. Return 0 when needle is empty.\n\nExamples:\n    find_first(\"sadbutsad\", \"sad\") -> 0\n    find_first(\"leetcode\", \"leeto\") -> -1\n\nContract: use zero-based indices and preserve case.",
+    "code": "def find_first(haystack, needle):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "match at start",
+        "expr": "find_first(\"sadbutsad\", \"sad\")",
+        "expected": 0
+      },
+      {
+        "label": "match later",
+        "expr": "find_first(\"mississippi\", \"issip\")",
+        "expected": 4
+      },
+      {
+        "label": "not found",
+        "expr": "find_first(\"leetcode\", \"leeto\")",
+        "expected": -1
+      },
+      {
+        "label": "empty needle",
+        "expr": "find_first(\"abc\", \"\")",
+        "expected": 0
+      },
+      {
+        "label": "empty haystack",
+        "expr": "find_first(\"\", \"a\")",
+        "expected": -1
+      },
+      {
+        "label": "overlapping candidates",
+        "expr": "find_first(\"aaaaa\", \"bba\")",
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "id": "drill/maximum_subarray",
+    "folder": "drill",
+    "name": "Maximum Subarray",
+    "title": "MAXIMUM SUBARRAY",
+    "statement": "MAXIMUM SUBARRAY\nPattern: Kadane's algorithm\n\nGiven a non-empty list of integers, find a contiguous subarray with the largest sum and return that sum.\n\nExamples:\n    max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]) -> 6\n    max_subarray([5, 4, -1, 7, 8]) -> 23\n\nContract: the list contains at least one integer. The subarray must contain at least one element.",
+    "code": "def max_subarray(nums):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "best segment in middle",
+        "expr": "max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4])",
+        "expected": 6
+      },
+      {
+        "label": "single value",
+        "expr": "max_subarray([1])",
+        "expected": 1
+      },
+      {
+        "label": "all negative",
+        "expr": "max_subarray([-1, -2, -3])",
+        "expected": -1
+      },
+      {
+        "label": "whole list",
+        "expr": "max_subarray([5, 4, -1, 7, 8])",
+        "expected": 23
+      },
+      {
+        "label": "positive then negative",
+        "expr": "max_subarray([1, 2, -8, 4, 5])",
+        "expected": 9
+      },
+      {
+        "label": "zeros",
+        "expr": "max_subarray([-2, 0, -1])",
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "id": "drill/pivot_index",
+    "folder": "drill",
+    "name": "Pivot Index",
+    "title": "FIND PIVOT INDEX",
+    "statement": "FIND PIVOT INDEX\nPattern: Prefix sums\n\nReturn the leftmost index where the sum of all values strictly to its left equals the sum of all values strictly to its right. Return -1 when no such index exists.\n\nExamples:\n    pivot_index([1, 7, 3, 6, 5, 6]) -> 3\n    pivot_index([1, 2, 3]) -> -1\n\nContract: an empty list returns -1. The pivot value is included in neither side.",
+    "code": "def pivot_index(nums):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "pivot in middle",
+        "expr": "pivot_index([1, 7, 3, 6, 5, 6])",
+        "expected": 3
+      },
+      {
+        "label": "no pivot",
+        "expr": "pivot_index([1, 2, 3])",
+        "expected": -1
+      },
+      {
+        "label": "pivot at start",
+        "expr": "pivot_index([2, 1, -1])",
+        "expected": 0
+      },
+      {
+        "label": "single item",
+        "expr": "pivot_index([0])",
+        "expected": 0
+      },
+      {
+        "label": "leftmost pivot",
+        "expr": "pivot_index([0, 0, 0])",
+        "expected": 0
+      },
+      {
+        "label": "empty list",
+        "expr": "pivot_index([])",
+        "expected": -1
+      }
+    ]
+  },
+  {
+    "id": "drill/happy_number",
+    "folder": "drill",
+    "name": "Happy Number",
+    "title": "HAPPY NUMBER",
+    "statement": "HAPPY NUMBER\nPattern: Cycle detection\n\nStarting with a positive integer, repeatedly replace it by the sum of the squares of its digits. Return True if this process eventually reaches 1; otherwise it enters a cycle and should return False.\n\nExamples:\n    is_happy(19) -> True\n    is_happy(2) -> False\n\nContract: n is a positive integer.",
+    "code": "def is_happy(n):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "classic happy number",
+        "expr": "is_happy(19)",
+        "expected": true
+      },
+      {
+        "label": "enters a cycle",
+        "expr": "is_happy(2)",
+        "expected": false
+      },
+      {
+        "label": "one",
+        "expr": "is_happy(1)",
+        "expected": true
+      },
+      {
+        "label": "another happy number",
+        "expr": "is_happy(7)",
+        "expected": true
+      },
+      {
+        "label": "cycle member",
+        "expr": "is_happy(4)",
+        "expected": false
+      },
+      {
+        "label": "three digits",
+        "expr": "is_happy(100)",
+        "expected": true
+      }
+    ]
+  },
+  {
+    "id": "drill/merge_sorted_lists",
+    "folder": "drill",
+    "name": "Merge Sorted Lists",
+    "title": "MERGE TWO SORTED LISTS",
+    "statement": "MERGE TWO SORTED LISTS\nPattern: Two pointers\n\nGiven two lists sorted in non-decreasing order, return a new sorted list containing all values from both inputs. Do not modify either input.\n\nExamples:\n    merge_sorted_lists([1, 2, 4], [1, 3, 4]) -> [1, 1, 2, 3, 4, 4]\n    merge_sorted_lists([], [0]) -> [0]\n\nContract: inputs may be empty and may contain duplicate or negative values.",
+    "code": "def merge_sorted_lists(left, right):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "interleaved values",
+        "expr": "merge_sorted_lists([1, 2, 4], [1, 3, 4])",
+        "expected": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "label": "left empty",
+        "expr": "merge_sorted_lists([], [0])",
+        "expected": [
+          0
+        ]
+      },
+      {
+        "label": "right empty",
+        "expr": "merge_sorted_lists([-2, 5], [])",
+        "expected": [
+          -2,
+          5
+        ]
+      },
+      {
+        "label": "all left first",
+        "expr": "merge_sorted_lists([1, 2], [5, 6])",
+        "expected": [
+          1,
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "label": "negative and duplicate values",
+        "expr": "merge_sorted_lists([-3, 0, 0], [-2, 0, 4])",
+        "expected": [
+          -3,
+          -2,
+          0,
+          0,
+          0,
+          4
+        ]
+      },
+      {
+        "label": "both empty",
+        "expr": "merge_sorted_lists([], [])",
+        "expected": []
+      }
+    ]
+  },
+  {
+    "id": "drill/flood_fill",
+    "folder": "drill",
+    "name": "Flood Fill",
+    "title": "FLOOD FILL",
+    "statement": "FLOOD FILL\nPattern: Graph traversal\n\nGiven a rectangular image represented by a list of rows, a starting cell (sr, sc), and a new color, replace the starting cell and every 4-directionally connected cell of the same original color. Return a new image; do not mutate the input.\n\nExamples:\n    flood_fill([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2) -> [[2,2,2],[2,2,0],[2,0,1]]\n\nContract: the image is non-empty, rectangular, and the start position is valid.",
+    "code": "def flood_fill(image, sr, sc, color):\n    # TODO: implement\n    pass",
+    "cases": [
+      {
+        "label": "connected region",
+        "expr": "flood_fill([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2)",
+        "expected": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "label": "single cell",
+        "expr": "flood_fill([[0]], 0, 0, 3)",
+        "expected": [
+          [
+            3
+          ]
+        ]
+      },
+      {
+        "label": "same color is unchanged",
+        "expr": "flood_fill([[2,2],[2,2]], 0, 1, 2)",
+        "expected": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      {
+        "label": "diagonal is disconnected",
+        "expr": "flood_fill([[1,0],[0,1]], 0, 0, 4)",
+        "expected": [
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "label": "fill separate rows",
+        "expr": "flood_fill([[1,1],[1,1],[0,1]], 1, 0, 7)",
+        "expected": [
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            0,
+            7
+          ]
+        ]
+      }
+    ]
   }
 ]
